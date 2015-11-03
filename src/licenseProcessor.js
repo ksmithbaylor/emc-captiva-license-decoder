@@ -78,7 +78,7 @@ function nonSkippedChildrenPairs(nextModule, skipped, [module, index]) {
 function indentedModule(module) {
   return {
     ...module,
-    [NAME]: '   ' + module[NAME]
+    [NAME]: `   ${module[NAME]}`
   };
 }
 
