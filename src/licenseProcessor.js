@@ -6,11 +6,11 @@ export function processLicense(rawFile) {
     serverID: getServerID(rawFile),
     modules: correctlyOrdered(
       sortedByModuleName(
-        convertDateFields(
-          zipRowsWithColumns(
+        dateFieldsConverted(
+          rowsZippedWithColumns(
             onlyValidRows(
               linesToGrid(
-                removeComments(
+                commentsRemoved(
                   rawToLines(rawFile)
                 )
               )
@@ -86,17 +86,20 @@ function sortedByModuleName(modules) {
   return modules.sort(by(NAME));
 }
 
-function convertDateFields(modules) {
-  return modules.map(module => {
-    [VALID, ENTER_BY, ISSUED].forEach(field => {
-      module[field] = parseDate(module[field]);
-    });
-
-    return module;
-  });
+function dateFieldsConverted(modules) {
+  return modules.map(module => ({
+    ...module,
+    ...[VALID, ENTER_BY, ISSUED].reduce(
+      (obj, field) => ({
+        ...obj,
+        [field]: parseDate(module[field])
+      }),
+      {}
+    )
+  }));
 }
 
-function zipRowsWithColumns(grid) {
+function rowsZippedWithColumns(grid) {
   return grid.map(row => zipObject(COLUMN_NAMES, row));
 }
 
@@ -108,7 +111,7 @@ function linesToGrid(lines) {
   return lines.map(line => line.split(';'));
 }
 
-function removeComments(lines) {
+function commentsRemoved(lines) {
   return lines.filter(line => line.indexOf('\'') !== 0);
 }
 
