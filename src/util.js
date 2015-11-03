@@ -1,4 +1,4 @@
-import { ENTER_BY, ISSUED, VALID } from './data/columnNames';
+import { ENTER_BY, ISSUED, VALID, COPIES, PAGES } from './data/columnNames';
 
 export function isExpired(row) {
   return hasExpiry(row) && (row[VALID] < new Date());
@@ -28,4 +28,8 @@ export function formatDate(date) {
 
 export function isDateField(column) {
   return [ENTER_BY, ISSUED, VALID].indexOf(column) !== -1;
+}
+
+export function isUnlimited(column) {
+  return [COPIES, PAGES, VALID].indexOf(column) !== -1;
 }

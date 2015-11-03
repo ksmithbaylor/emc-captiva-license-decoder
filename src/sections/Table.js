@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isExpired, hasExpiry, isDateField, formatDate } from '../util';
+import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate } from '../util';
 import COLUMN_NAMES, { VALID, MODULE, CODE } from '../data/columnNames';
 
 export default class Table extends React.Component {
@@ -21,7 +21,7 @@ export default class Table extends React.Component {
             <tr style={getRowStyle(row)} key={i}>
               {COLUMN_NAMES.map((column, i) => (
                 <td style={getCellStyle(row, column)} key={i}>
-                  {optionallyFormatDate(row, column)}
+                  {getCellContents(row, column)}
                 </td>
               ))}
             </tr>
@@ -32,39 +32,26 @@ export default class Table extends React.Component {
   }
 }
 
-function optionallyFormatDate(row, column) {
-  return isDateField(column) ? formatDate(row[column]) : row[column];
+function getCellContents(row, column) {
+  return isDateField(column) ? (
+    formatDate(row[column])
+  ) : (
+    (isUnlimited(column) && row[column] === '0') ? 'Unlimited' : row[column]
+  );
 }
 
 function getCellStyle(row, column) {
   return {
-    ...expiredStyle(row, column),
-    ...alignStyle(row, column)
-  };
-}
-
-function expiredStyle(row, column) {
-  return column === VALID ? (
-    isExpired(row) ? {
-      color: 'white',
-      fontWeight: 'bold',
-      backgroundColor: 'darkred'
-    } : {
-      fontWeight: 'bold'
-    }
-  ) : {};
-}
-
-function alignStyle(row, column) {
-  return (column === MODULE || column === CODE) ? {
-    textAlign: 'left'
-  } : {
-    textAlign: 'center'
+    fontWeight: column === VALID ? 'bold' : 'inherit',
+    textAlign: (column === MODULE || column === CODE) ? 'left' : 'center'
   };
 }
 
 function getRowStyle(row) {
-  return hasExpiry(row) ? {
+  return isExpired(row) ? {
+    color: 'white',
+    backgroundColor: 'darkred'
+  } : hasExpiry(row) ? {
     color: 'red',
     backgroundColor: 'pink'
   } : {};

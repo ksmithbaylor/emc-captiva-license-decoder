@@ -46,7 +46,7 @@ export class App extends Component {
 }
 
 function processText(text) {
-  const lines = text.split('\n').filter(line => line.indexOf("'") !== 0);
+  const lines = text.split('\n').filter(line => line.indexOf('\'') !== 0);
   const grid = lines.map(line => line.split(';')).filter(line => line.length === 9);
   const rows = grid.map(row => zipObject(COLUMN_NAMES, row));
 
