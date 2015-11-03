@@ -12,17 +12,18 @@ export class App extends Component {
   }
 
   render() {
-    const View = this.state.summary ? Summary : Table;
+    const { summary, rawFile } = this.state;
+    const View = summary ? Summary : Table;
 
     return (
       <div>
         <input type="file" onChange={this.receiveFile}></input>
         <br />
-        <button onClick={e => this.setState({ summary: !this.state.summary })}>
+        <button onClick={e => this.setState({ summary: !summary })}>
           Toggle Summary
         </button>
-        {this.state.rawFile ? (
-          <View {...processLicense(this.state.rawFile)} />
+        {rawFile ? (
+          <View {...processLicense(rawFile)} />
         ) : (
           <div></div>
         )}

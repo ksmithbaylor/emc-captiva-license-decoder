@@ -1,39 +1,35 @@
 import React from 'react';
 
 import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate } from '../util';
-import COLUMN_NAMES, { VALID, MODULE, CODE } from '../data/columnNames';
+import COLUMN_NAMES, { VALID, NAME, CODE } from '../data/columnNames';
 
-export default class Table extends React.Component {
-  render() {
-    if (!this.props.license || !this.props.serverID) {
-      return <span></span>;
-    }
-
-    return (
-      <div>
-        <h2>Captiva Capture License ID: {this.props.serverID}</h2>
-        <table>
-          <tbody>
-            <tr>
+export default ({ modules, serverID }) => (
+  (!modules || !serverID) ? (
+    <span></span>
+  ) : (
+    <div>
+      <h2>Captiva Capture License ID: {serverID}</h2>
+      <table>
+        <tbody>
+          <tr>
+            {COLUMN_NAMES.map((column, i) => (
+              <th key={i}>{column}</th>
+            ))}
+          </tr>
+          {modules.map((row, i) => (
+            <tr style={rowStyle(row)} key={i}>
               {COLUMN_NAMES.map((column, i) => (
-                <th key={i}>{column}</th>
+                <td style={cellStyle(row, column)} key={i}>
+                  {cellContents(row, column)}
+                </td>
               ))}
             </tr>
-            {this.props.license.map((row, i) => (
-              <tr style={rowStyle(row)} key={i}>
-                {COLUMN_NAMES.map((column, i) => (
-                  <td style={cellStyle(row, column)} key={i}>
-                    {cellContents(row, column)}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+);
 
 function cellContents(row, column) {
   return isDateField(column) ? (
@@ -47,7 +43,7 @@ function cellStyle(row, column) {
   return {
     fontWeight: column === VALID ? 'bold' : 'inherit',
     textAlign: (column === CODE) ? 'left' : (
-      (column === MODULE) ? (
+      (column === NAME) ? (
         (row._indent) ? 'right' : 'left'
       ) : 'center'
     )
