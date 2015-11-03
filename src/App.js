@@ -4,7 +4,7 @@ import Summary from './sections/Summary';
 import Table from './sections/Table';
 
 import { zipObject, parseDate, formatDate } from './util';
-import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID } from './data/columnNames';
+import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, MODULE } from './data/columnNames';
 import old_license from 'raw!./data/license.lic';
 
 export class App extends Component {
@@ -39,7 +39,6 @@ export class App extends Component {
   }
 
   receiveFile = (event) => {
-    console.log('file changed!');
     const reader = new FileReader();
     reader.onload = e => this.setState({license: processText(reader.result)});
     reader.readAsText(event.target.files[0]);
@@ -47,17 +46,19 @@ export class App extends Component {
 }
 
 function processText(text) {
-  console.log('==============================================================');
   const lines = text.split('\n').filter(line => line.indexOf("'") !== 0);
   const grid = lines.map(line => line.split(';')).filter(line => line.length === 9);
   const rows = grid.map(row => zipObject(COLUMN_NAMES, row));
 
   [ENTER_BY, ISSUED, VALID].forEach(field => (
     rows.forEach(row => {
-      console.log('raw date was', row[field], typeof row[field]);
       row[field] = parseDate(row[field]);
     })
   ));
 
-  return rows;
+  return rows.sort((a, b) => {
+    if (a[MODULE] < b[MODULE]) return -1;
+    if (a[MODULE] > b[MODULE]) return 1;
+    return 0;
+  });
 }

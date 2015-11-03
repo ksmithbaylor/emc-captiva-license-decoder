@@ -1,22 +1,7 @@
 import React from 'react';
 
 import { isExpired, hasExpiry, isDateField, formatDate } from '../util';
-import COLUMN_NAMES, { VALID } from '../data/columnNames';
-
-const boldRed = {
-  color: 'red',
-  backgroundColor: 'pink'
-};
-
-const darkBoldRed = {
-  color: 'white',
-  fontWeight: 'bold',
-  backgroundColor: 'darkred'
-};
-
-const bold = {
-  fontWeight: 'bold'
-};
+import COLUMN_NAMES, { VALID, MODULE, CODE } from '../data/columnNames';
 
 export default class Table extends React.Component {
   render() {
@@ -52,11 +37,35 @@ function optionallyFormatDate(row, column) {
 }
 
 function getCellStyle(row, column) {
+  return {
+    ...expiredStyle(row, column),
+    ...alignStyle(row, column)
+  };
+}
+
+function expiredStyle(row, column) {
   return column === VALID ? (
-    isExpired(row) ? darkBoldRed : bold
+    isExpired(row) ? {
+      color: 'white',
+      fontWeight: 'bold',
+      backgroundColor: 'darkred'
+    } : {
+      fontWeight: 'bold'
+    }
   ) : {};
 }
 
+function alignStyle(row, column) {
+  return (column === MODULE || column === CODE) ? {
+    textAlign: 'left'
+  } : {
+    textAlign: 'center'
+  };
+}
+
 function getRowStyle(row) {
-  return hasExpiry(row) ? boldRed : {};
+  return hasExpiry(row) ? {
+    color: 'red',
+    backgroundColor: 'pink'
+  } : {};
 }
