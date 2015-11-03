@@ -20,10 +20,10 @@ export default class Table extends React.Component {
               ))}
             </tr>
             {this.props.license.map((row, i) => (
-              <tr style={getRowStyle(row)} key={i}>
+              <tr style={rowStyle(row)} key={i}>
                 {COLUMN_NAMES.map((column, i) => (
-                  <td style={getCellStyle(row, column)} key={i}>
-                    {getCellContents(row, column)}
+                  <td style={cellStyle(row, column)} key={i}>
+                    {cellContents(row, column)}
                   </td>
                 ))}
               </tr>
@@ -35,7 +35,7 @@ export default class Table extends React.Component {
   }
 }
 
-function getCellContents(row, column) {
+function cellContents(row, column) {
   return isDateField(column) ? (
     formatDate(row[column])
   ) : (
@@ -43,7 +43,7 @@ function getCellContents(row, column) {
   );
 }
 
-function getCellStyle(row, column) {
+function cellStyle(row, column) {
   return {
     fontWeight: column === VALID ? 'bold' : 'inherit',
     textAlign: (column === CODE) ? 'left' : (
@@ -54,7 +54,7 @@ function getCellStyle(row, column) {
   };
 }
 
-function getRowStyle(row) {
+function rowStyle(row) {
   return isExpired(row) ? {
     color: 'red',
     backgroundColor: 'pink'
