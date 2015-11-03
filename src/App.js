@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import Summary from './sections/Summary';
 import Table from './sections/Table';
 
-import COLUMN_NAMES from './data/columnNames';
+import { zipObject, parseDate, formatDate } from './util';
+import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID } from './data/columnNames';
 import old_license from 'raw!./data/license.lic';
 
 export class App extends Component {
@@ -46,24 +47,17 @@ export class App extends Component {
 }
 
 function processText(text) {
+  console.log('==============================================================');
   const lines = text.split('\n').filter(line => line.indexOf("'") !== 0);
   const grid = lines.map(line => line.split(';')).filter(line => line.length === 9);
   const rows = grid.map(row => zipObject(COLUMN_NAMES, row));
-  rows.forEach(row => row['Issue Date'] = parseDate(row['Issue Date']));
-  rows.forEach(row => row['Install By'] = parseDate(row['Install By']));
+
+  [ENTER_BY, ISSUED, VALID].forEach(field => (
+    rows.forEach(row => {
+      console.log('raw date was', row[field], typeof row[field]);
+      row[field] = parseDate(row[field]);
+    })
+  ));
+
   return rows;
-}
-
-function zipObject(names, values) {
-  const obj = {};
-  names.forEach((name, i) => obj[name] = values[i]);
-  return obj;
-}
-
-function parseDate(text) {
-  if (!text) return '';
-  const arr = text.match(/.{2}/g).map(n => parseInt(n));
-  arr[0] += 2000;
-  const date = new Date(arr[0], arr[1], arr[2]);
-  return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
 }

@@ -1,11 +1,21 @@
 import React from 'react';
 
-import COLUMN_NAMES from '../data/columnNames';
+import { isExpired, hasExpiry, isDateField, formatDate } from '../util';
+import COLUMN_NAMES, { VALID } from '../data/columnNames';
 
 const boldRed = {
   color: 'red',
-  fontWeight: 'bold',
   backgroundColor: 'pink'
+};
+
+const darkBoldRed = {
+  color: 'white',
+  fontWeight: 'bold',
+  backgroundColor: 'darkred'
+};
+
+const bold = {
+  fontWeight: 'bold'
 };
 
 export default class Table extends React.Component {
@@ -23,10 +33,11 @@ export default class Table extends React.Component {
             ))}
           </tr>
           {this.props.license.map((row, i) => (
-            <tr key={i}>
+            <tr style={getRowStyle(row)} key={i}>
               {COLUMN_NAMES.map((column, i) => (
-                  <td style={(column === 'Valid Until' && row[column] !== '0') ? boldRed : {}}
-                      key={i}>{row[column]}</td>
+                <td style={getCellStyle(row, column)} key={i}>
+                  {optionallyFormatDate(row, column)}
+                </td>
               ))}
             </tr>
           ))}
@@ -34,4 +45,18 @@ export default class Table extends React.Component {
       </table>
     );
   }
+}
+
+function optionallyFormatDate(row, column) {
+  return isDateField(column) ? formatDate(row[column]) : row[column];
+}
+
+function getCellStyle(row, column) {
+  return column === VALID ? (
+    isExpired(row) ? darkBoldRed : bold
+  ) : {};
+}
+
+function getRowStyle(row) {
+  return hasExpiry(row) ? boldRed : {};
 }
