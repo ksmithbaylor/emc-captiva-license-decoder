@@ -45,3 +45,11 @@ export function by(prop) {
     return 0;
   }
 }
+
+export function hasLetters(str) {
+  return /[a-zA-z]/.test(str);
+}
+
+export function lowerCaseEqual(a, b) {
+  return a.toLowerCase() === b.toLowerCase();
+}
