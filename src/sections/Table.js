@@ -5,29 +5,32 @@ import COLUMN_NAMES, { VALID, MODULE, CODE } from '../data/columnNames';
 
 export default class Table extends React.Component {
   render() {
-    if (!this.props.license) {
+    if (!this.props.license || !this.props.serverID) {
       return <span></span>;
     }
 
     return (
-      <table>
-        <tbody>
-          <tr>
-            {COLUMN_NAMES.map((column, i) => (
-              <th key={i}>{column}</th>
-            ))}
-          </tr>
-          {this.props.license.map((row, i) => (
-            <tr style={getRowStyle(row)} key={i}>
+      <div>
+        <h2>Captiva Capture License ID: {this.props.serverID}</h2>
+        <table>
+          <tbody>
+            <tr>
               {COLUMN_NAMES.map((column, i) => (
-                <td style={getCellStyle(row, column)} key={i}>
-                  {getCellContents(row, column)}
-                </td>
+                <th key={i}>{column}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {this.props.license.map((row, i) => (
+              <tr style={getRowStyle(row)} key={i}>
+                {COLUMN_NAMES.map((column, i) => (
+                  <td style={getCellStyle(row, column)} key={i}>
+                    {getCellContents(row, column)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
@@ -43,16 +46,20 @@ function getCellContents(row, column) {
 function getCellStyle(row, column) {
   return {
     fontWeight: column === VALID ? 'bold' : 'inherit',
-    textAlign: (column === MODULE || column === CODE) ? 'left' : 'center'
+    textAlign: (column === CODE) ? 'left' : (
+      (column === MODULE) ? (
+        (row._indent) ? 'right' : 'left'
+      ) : 'center'
+    )
   };
 }
 
 function getRowStyle(row) {
   return isExpired(row) ? {
-    color: 'white',
-    backgroundColor: 'darkred'
-  } : hasExpiry(row) ? {
     color: 'red',
     backgroundColor: 'pink'
+  } : hasExpiry(row) ? {
+    color: 'darkgreen',
+    backgroundColor: 'lightgreen'
   } : {};
 }
