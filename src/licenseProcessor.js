@@ -33,43 +33,37 @@ function correctlyOrdered(modules) {
   ).orderedModules;
 }
 
-function groupModulesReducer(accumulator, nextModule, index, allModules) {
-  const shouldSkip = member(accumulator.skipped, index) || hasLetters(nextModule[PAGES]);
+function groupModulesReducer({ orderedModules, skipped }, nextModule, index, allModules) {
+  const pairs = allModules.map((module, index) => [module, index]);
+  const nonSkipped = pairs.filter(([module, index]) => !member(skipped, index));
 
-  return shouldSkip ? accumulator : (
-    addNextChildren(accumulator, nextModule, index, allModules)
-  );
-}
+  // Parent: First module with a numeric PAGES column
+  const [parentModule, parentIndex] = nonSkipped.find(([module, index]) => !hasLetters(module[PAGES])) || [undefined, undefined];
 
-function addNextChildren({ orderedModules, skipped }, nextModule, index, allModules) {
-  const { modules, indices } = children(nextModule, allModules, skipped);
+  // Siblings: All modules with the same name as the parent
+  const siblings = parentModule !== undefined ? nonSkipped.filter(([module, index]) => (
+    index !== parentIndex && lowerCaseEqual(module[NAME], parentModule[NAME])
+  )) : [];
+
+  // Children: All modules with a PAGES column identical to the parent's NAME
+  const children = parentModule !== undefined ? nonSkipped.filter(([module, index]) => (
+    index !== parentIndex && lowerCaseEqual(module[PAGES], parentModule[NAME])
+  )) : [];
 
   return {
     orderedModules: [
       ...orderedModules,
-      nextModule,
-      ...modules.map(indentedModule)
+      ...(parentModule !== undefined ? [parentModule] : []),
+      ...siblings.map(([module, index]) => module),
+      ...children.map(([module, index]) => indentedModule(module))
     ],
     skipped: [
       ...skipped,
-      index,
-      ...indices
+      ...(parentIndex !== undefined ? [parentIndex] : []),
+      ...siblings.map(([module, index]) => index),
+      ...children.map(([module, index]) => index)
     ]
   };
-}
-
-function children(nextModule, allModules, skipped) {
-  return allModules
-    .map((module, index) => [module, index])
-    .filter(([module, index]) =>
-      !member(skipped, index) && lowerCaseEqual(module[PAGES], nextModule[NAME]))
-    .reduce(
-      (acc, nextPair) => ({
-        modules: [ ...acc.modules, nextPair[0] ],
-        indices: [ ...acc.indices, nextPair[1] ]
-      }),
-      { modules: [], indices: [] }
-    );
 }
 
 function indentedModule(module) {
