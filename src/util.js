@@ -21,7 +21,7 @@ export function parseDate(text) {
 }
 
 export function formatDate(date) {
-  if (date === null) return '';
+  if (!date) return '';
   const shortMonth = date.toLocaleString('en-us', { month: 'short' });
   return `${shortMonth} ${date.getDate()}, ${date.getFullYear()}`;
 }
