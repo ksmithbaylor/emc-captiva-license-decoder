@@ -31,9 +31,14 @@ export class App extends Component {
     );
   }
 
+  componentDidMount() {
+    this.reader = new FileReader();
+    this.reader.onload = e => this.setState({ rawFile: this.reader.result });
+  }
+
   receiveFile = (event) => {
-    const reader = new FileReader();
-    reader.onload = e => this.setState({ rawFile: reader.result });
-    reader.readAsText(event.target.files[0]);
+    if (event.target.files[0]) {
+      this.reader.readAsText(event.target.files[0]);
+    }
   }
 }
