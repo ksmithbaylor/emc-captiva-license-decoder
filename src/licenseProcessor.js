@@ -61,7 +61,8 @@ function addNextChildren({ orderedModules, skipped }, nextModule, index, allModu
 function children(nextModule, allModules, skipped) {
   return allModules
     .map((module, index) => [module, index])
-    .filter(nonSkippedChildrenPairs.bind(null, nextModule, skipped))
+    .filter(([module, index]) =>
+      !member(skipped, index) && lowerCaseEqual(module[PAGES], nextModule[NAME]))
     .reduce(
       (acc, nextPair) => ({
         modules: [ ...acc.modules, nextPair[0] ],
@@ -69,10 +70,6 @@ function children(nextModule, allModules, skipped) {
       }),
       { modules: [], indices: [] }
     );
-}
-
-function nonSkippedChildrenPairs(nextModule, skipped, [module, index]) {
-  return !member(skipped, index) && lowerCaseEqual(module[PAGES], nextModule[NAME]);
 }
 
 function indentedModule(module) {

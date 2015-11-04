@@ -34,19 +34,14 @@ export default ({ modules, serverID }) => (
 function cellContents(row, column) {
   return isDateField(column) ? (
     formatDate(row[column])
-  ) : (
-    (isUnlimited(column) && row[column] === '0') ? 'Unlimited' : row[column]
-  );
+  ) : (isUnlimited(column) && row[column] === '0') ?
+    'Unlimited' : row[column];
 }
 
 function cellStyle(row, column) {
   return {
-    fontWeight: column === VALID ? 'bold' : 'inherit',
-    textAlign: (column === CODE) ? 'left' : (
-      (column === NAME) ? (
-        (row._indent) ? 'right' : 'left'
-      ) : 'center'
-    )
+    fontWeight: (column === VALID) ? 'bold' : 'inherit',
+    textAlign: (column === CODE || column === CODE) ? 'left' : 'center'
   };
 }
 
