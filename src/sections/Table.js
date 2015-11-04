@@ -41,7 +41,7 @@ function cellContents(row, column) {
 function cellStyle(row, column) {
   return {
     fontWeight: (column === VALID) ? 'bold' : 'inherit',
-    textAlign: (column === CODE || column === CODE) ? 'left' : 'center'
+    textAlign: (column === CODE || column === NAME) ? 'left' : 'center'
   };
 }
 
