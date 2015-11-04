@@ -69,7 +69,7 @@ function groupModulesReducer({ orderedModules, skipped }, nextModule, index, all
 function indentedModule(module) {
   return {
     ...module,
-    [NAME]: `   ${module[NAME]}`
+    [NAME]: `    ${module[NAME]}`
   };
 }
 
