@@ -42,7 +42,9 @@ function groupModulesReducer({ orderedModules, skipped }, nextModule, index, all
 
   // Siblings: All modules with the same name as the parent
   const siblings = parentModule !== undefined ? nonSkipped.filter(([module, index]) => (
-    index !== parentIndex && lowerCaseEqual(module[NAME], parentModule[NAME])
+    index !== parentIndex
+    && lowerCaseEqual(module[NAME], parentModule[NAME])
+    && !hasLetters(module[PAGES])
   )) : [];
 
   // Children: All modules with a PAGES column identical to the parent's NAME
