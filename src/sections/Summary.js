@@ -38,6 +38,10 @@ export default ({ modules, serverID }) => (
             'Scan Plus (premium)',
             scanPlus(modules, true)
           )}
+          {row(
+            'Major Exporters',
+            majorExporters(modules)
+          )}
         </tbody>
       </table>
     </div>
@@ -90,6 +94,24 @@ function scanPlus(modules, premium) {
     COPIES,
     modules.filter(withName('GROUP4')).filter(withFeature(premium ? 'D' : 'C'))
   );
+}
+
+function majorExporters(modules) {
+  const exporterMappings = {
+    'EMC': [ 'EXAX', 'IAEXDM' ],
+    'IBM + FileNet': [ 'IAXNET2', 'EXFNCM', 'IAEXVI', 'IAEXFAF', 'EXICM', 'EXCSSAP' ],
+    'SharePoint': [ 'EXSHRPT2' ],
+    'GLOBAL360': [ 'IAEXWNT' ],
+    'OPENTEXT LIVELINK': [ 'EXLL2' ],
+    'SAP Archive and AP Connect': [ 'EXSAPAL', 'ASISAP' ]
+  };
+
+
+  return Object.keys(exporterMappings).filter(exporter => (
+    exporterMappings[exporter].some(name => (
+      modules.find(withName(name))
+    ))
+  )).join('\n');
 }
 
 function withName(name) {
