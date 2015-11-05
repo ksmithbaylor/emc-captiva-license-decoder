@@ -22,6 +22,10 @@ export default ({ modules, serverID }) => (
             'Advanced Recognition Volume',
             advancedRecognitionVolume(modules)
           )}
+          {row(
+            'Production Auto Learning',
+            productionAutoLearning(modules)
+          )}
         </tbody>
       </table>
     </div>
@@ -59,6 +63,10 @@ function advancedRecognitionVolume(modules) {
   return (classifs.length > 0 || extracts.length > 0) ? (
     Math.max(sumOf(PAGES, classifs), sumOf(PAGES, extracts))
   ) : 0;
+}
+
+function productionAutoLearning(modules) {
+  return modules.find(withName('DPCOLLEC')) ? 'Yes' : 'No';
 }
 
 function withName(name) {
