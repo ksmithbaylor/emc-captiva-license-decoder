@@ -18,6 +18,10 @@ export default ({ modules, serverID }) => (
             'Page Volume',
             pageVolume(modules)
           )}
+          {row(
+            'Advanced Recognition Volume',
+            advancedRecognitionVolume(modules)
+          )}
         </tbody>
       </table>
     </div>
@@ -30,28 +34,37 @@ function row(title, value) {
       <td style={{ fontWeight: 'bold' }}>{title}:</td>
       <td style={{ paddingLeft: '1em' }}>{value}</td>
     </tr>
-  )
+  );
 }
 
 function isEnterprise(modules) {
-  const serverModule = modules.find(module => module[NAME].includes('SERVER'));
+  const serverModule = modules.find(withName('SERVER'));
 
   const hasFeatures = /[CDEFSW]/.test(serverModule[FEATURES]);
-  const hasModules = modules.some(module => (
-    ['DPMANAGER', 'WSINPUT', 'WSOUTPUT', 'ECOPY'].some(name => (
-      module[NAME].includes(name)
-    ))
+  const hasModules = ['DPMANAGER', 'WSINPUT', 'WSOUTPUT', 'ECOPY'].some(name => (
+    modules.some(withName(name))
   ));
 
   return hasFeatures || hasModules;
 }
 
 function pageVolume(modules) {
-  return modules.filter(
-    module => module[NAME].includes('ANNUAL')
-  ).map(
-    module => module[PAGES]
-  ).reduce((a, b) => (
-    parseInt(a) + parseInt(b)
-  ), 0);
+  return sumOf(PAGES, modules.filter(withName('ANNUAL')));
+}
+
+function advancedRecognitionVolume(modules) {
+  const classifs = modules.filter(withName('CLASSIF'));
+  const extracts = modules.filter(withName('EXTRACT'));
+
+  return (classifs.length > 0 || extracts.length > 0) ? (
+    Math.max(sumOf(PAGES, classifs), sumOf(PAGES, extracts))
+  ) : 0;
+}
+
+function withName(name) {
+  return module => module[NAME].includes(name);
+}
+
+function sumOf(column, modules) {
+  return modules.map(module => parseInt(module[column])).reduce((a, b) => a + b, 0);
 }
