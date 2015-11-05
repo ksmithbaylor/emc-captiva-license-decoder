@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NAME, PAGES, FEATURES } from '../data/columnNames';
+import { NAME, COPIES, PAGES, FEATURES } from '../data/columnNames';
 
 export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
@@ -25,6 +25,10 @@ export default ({ modules, serverID }) => (
           {row(
             'Production Auto Learning',
             productionAutoLearning(modules)
+          )}
+          {row(
+            'Attend Clients',
+            attendClients(modules)
           )}
         </tbody>
       </table>
@@ -69,8 +73,12 @@ function productionAutoLearning(modules) {
   return modules.find(withName('DPCOLLEC')) ? 'Yes' : 'No';
 }
 
+function attendClients(modules) {
+  return sumOf(COPIES, modules.filter(withName('GROUP4')));
+}
+
 function withName(name) {
-  return module => module[NAME].includes(name);
+  return module => module[NAME].toLowerCase().includes(name.toLowerCase());
 }
 
 function sumOf(column, modules) {
