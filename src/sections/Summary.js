@@ -30,6 +30,14 @@ export default ({ modules, serverID }) => (
             'Attend Clients',
             attendClients(modules)
           )}
+          {row(
+            'Scan Plus (standard)',
+            scanPlus(modules, false)
+          )}
+          {row(
+            'Scan Plus (premium)',
+            scanPlus(modules, true)
+          )}
         </tbody>
       </table>
     </div>
@@ -77,8 +85,19 @@ function attendClients(modules) {
   return sumOf(COPIES, modules.filter(withName('GROUP4')));
 }
 
+function scanPlus(modules, premium) {
+  return sumOf(
+    COPIES,
+    modules.filter(withName('GROUP4')).filter(withFeature(premium ? 'D' : 'C'))
+  );
+}
+
 function withName(name) {
   return module => module[NAME].toLowerCase().includes(name.toLowerCase());
+}
+
+function withFeature(code) {
+  return module => new RegExp(code).test(module);
 }
 
 function sumOf(column, modules) {
