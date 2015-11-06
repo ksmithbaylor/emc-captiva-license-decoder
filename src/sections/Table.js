@@ -11,9 +11,9 @@ export default ({ modules, serverID }) => (
       <h2>Captiva Capture License ID: {serverID}</h2>
       <table>
         <tbody>
-          <tr>
+          <tr style={headerStyle()}>
             {COLUMN_NAMES.map((column, i) => (
-              <th key={i}>{column}</th>
+              <th style={{ padding: '5px' }} key={i}>{column}</th>
             ))}
           </tr>
           {modules.map((row, i) => (
@@ -30,6 +30,14 @@ export default ({ modules, serverID }) => (
     </div>
   )
 );
+
+function headerStyle() {
+  return {
+    backgroundColor: '#1565C0',
+    color: '#ffffff',
+    fontSize: '1.1em'
+  };
+}
 
 function cellContents(row, column) {
   return isDateField(column) ? (
