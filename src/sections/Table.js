@@ -16,11 +16,11 @@ export default ({ modules, serverID }) => (
               <th style={{ padding: '5px' }} key={i}>{column}</th>
             ))}
           </tr>
-          {modules.map((row, i) => (
-            <tr style={rowStyle(row)} key={i}>
+          {modules.map((module, i) => (
+            <tr style={rowStyle(module)} key={i}>
               {COLUMN_NAMES.map((column, i) => (
-                <td style={cellStyle(row, column)} key={i}>
-                  {cellContents(row, column)}
+                <td style={cellStyle(module, column)} key={i}>
+                  {cellContents(module, column)}
                 </td>
               ))}
             </tr>
@@ -39,29 +39,29 @@ function headerStyle() {
   };
 }
 
-function cellContents(row, column) {
+function cellContents(module, column) {
   return isDateField(column) ? (
-    formatDate(row[column])
-  ) : (isUnlimited(column) && row[column] === '0') ?
-    'Unlimited' : row[column];
+    formatDate(module[column])
+  ) : (isUnlimited(column) && module[column] === '0') ?
+    'Unlimited' : module[column];
 }
 
-function cellStyle(row, column) {
+function cellStyle(module, column) {
   return {
     fontWeight: (column === VALID) ? 'bold' : 'inherit',
     textAlign: (column === CODE || column === NAME) ? 'left' : 'center',
     backgroundColor: (column === NAME) ? (
-      (row[NAME].startsWith(' ')) ? '#BBDEFB' : '#64B5F6'
+      (module[NAME].startsWith(' ')) ? '#BBDEFB' : '#64B5F6'
     ) : undefined,
     color: (column === NAME) ? '#000000' : undefined
   };
 }
 
-function rowStyle(row) {
-  return isExpired(row) ? {
+function rowStyle(module) {
+  return isExpired(module) ? {
     color: '#B71C1C',
     backgroundColor: '#FFCDD2'
-  } : hasExpiry(row) ? {
+  } : hasExpiry(module) ? {
     color: '#1B5E20',
     backgroundColor: '#C8E6C9'
   } : {};
