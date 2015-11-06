@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NAME, COPIES, PAGES, FEATURES } from '../data/columnNames';
+import { NAME, CONNECTIONS, PAGES, FEATURES } from '../data/columnNames';
 
 export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
@@ -86,12 +86,12 @@ function productionAutoLearning(modules) {
 }
 
 function attendClients(modules) {
-  return sumOf(COPIES, modules.filter(withName('GROUP4')));
+  return sumOf(CONNECTIONS, modules.filter(withName('GROUP4')));
 }
 
 function scanPlus(modules, premium) {
   return sumOf(
-    COPIES,
+    CONNECTIONS,
     modules.filter(withName('GROUP4')).filter(withFeature(premium ? 'D' : 'C'))
   );
 }

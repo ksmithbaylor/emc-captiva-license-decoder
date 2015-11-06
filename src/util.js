@@ -1,4 +1,4 @@
-import { ENTER_BY, ISSUED, VALID, COPIES, PAGES } from './data/columnNames';
+import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from './data/columnNames';
 
 export function isExpired(row) {
   return hasExpiry(row) && (row[VALID] < new Date());
@@ -31,7 +31,7 @@ export function isDateField(column) {
 }
 
 export function isUnlimited(column) {
-  return member([COPIES, PAGES, VALID], column);
+  return member([CONNECTIONS, PAGES, VALID], column);
 }
 
 export function member(arr, elem) {
