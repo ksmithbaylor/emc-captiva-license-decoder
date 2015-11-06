@@ -33,23 +33,25 @@ function correctlyOrdered(modules) {
   ).orderedModules;
 }
 
-function groupModulesReducer({ orderedModules, skipped }, nextModule, index, allModules) {
+function groupModulesReducer({ orderedModules, skipped }, __, _, allModules) {
   const pairs = allModules.map((module, index) => [module, index]);
   const nonSkipped = pairs.filter(([module, index]) => !member(skipped, index));
 
   // Parent: First module with a numeric PAGES column
   const [parentModule, parentIndex] = nonSkipped.find(([module, index]) => !hasLetters(module[PAGES])) || [undefined, undefined];
 
-  // Siblings: All modules with the same name as the parent
+  // Siblings: All modules with the same NAME as the parent and numeric PAGES column
   const siblings = parentModule !== undefined ? nonSkipped.filter(([module, index]) => (
     index !== parentIndex
     && lowerCaseEqual(module[NAME], parentModule[NAME])
     && !hasLetters(module[PAGES])
   )) : [];
 
-  // Children: All modules with a PAGES column identical to the parent's NAME
+  // Children: All modules with a PAGES column identical to the parent's NAME and not already in the siblings
   const children = parentModule !== undefined ? nonSkipped.filter(([module, index]) => (
-    index !== parentIndex && lowerCaseEqual(module[PAGES], parentModule[NAME])
+    index !== parentIndex
+    && !member(siblings.map(([module, i]) => i), index)
+    && lowerCaseEqual(module[PAGES], parentModule[NAME])
   )) : [];
 
   return {
