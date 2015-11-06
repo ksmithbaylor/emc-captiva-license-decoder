@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { NAME, CONNECTIONS, PAGES, FEATURES } from '../data/columnNames';
+import { hasLetters, numberWithCommas } from '../util';
 
 export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
@@ -52,7 +53,7 @@ function row(title, value) {
   return (
     <tr>
       <td style={{ fontWeight: 'bold' }}>{title}:</td>
-      <td style={{ paddingLeft: '1em' }}>{value}</td>
+      <td style={{ paddingLeft: '1em' }}>{hasLetters(value) ? value : numberWithCommas(value)}</td>
     </tr>
   );
 }

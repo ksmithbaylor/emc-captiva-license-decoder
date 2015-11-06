@@ -53,3 +53,7 @@ export function hasLetters(str) {
 export function lowerCaseEqual(a, b) {
   return a.toLowerCase() === b.toLowerCase();
 }
+
+export function numberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

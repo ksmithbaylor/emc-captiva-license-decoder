@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate } from '../util';
+import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate, numberWithCommas } from '../util';
 import COLUMN_NAMES, { VALID, NAME, CODE } from '../data/columnNames';
 
 export default ({ modules, serverID }) => (
@@ -43,7 +43,7 @@ function cellContents(module, column) {
   return isDateField(column) ? (
     formatDate(module[column])
   ) : (isUnlimited(column) && module[column] === '0') ?
-    'Unlimited' : module[column];
+    'Unlimited' : numberWithCommas(module[column]);
 }
 
 function cellStyle(module, column) {
