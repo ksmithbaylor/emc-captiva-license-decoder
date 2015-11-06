@@ -1,11 +1,11 @@
 import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from './data/columnNames';
 
-export function isExpired(row) {
-  return hasExpiry(row) && (row[VALID] < new Date());
+export function isExpired(module) {
+  return hasExpiry(module) && (module[VALID] < new Date());
 }
 
-export function hasExpiry(row) {
-  return row[VALID];
+export function hasExpiry(module) {
+  return module[VALID];
 }
 
 export function zipObject(names, values) {
