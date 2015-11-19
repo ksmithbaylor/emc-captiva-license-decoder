@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NAME, CONNECTIONS, PAGES, FEATURES } from '../data/columnNames';
+import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from '../data/columnNames';
 import { hasLetters, numberWithCommas } from '../util';
 
 export default ({ modules, serverID }) => (
@@ -93,7 +93,9 @@ function attendClients(modules) {
 function scanPlus(modules, premium) {
   return sumOf(
     CONNECTIONS,
-    modules.filter(withName('GROUP4')).filter(withFeature(premium ? 'D' : 'C'))
+    modules.filter(withName('SCANPLUS'))
+           .filter(notExpired)
+           .filter(withFeature(premium ? 'D' : 'C'))
   );
 }
 
@@ -120,9 +122,13 @@ function withName(name) {
 }
 
 function withFeature(code) {
-  return module => new RegExp(code).test(module);
+  return module => new RegExp(code).test(module[FEATURES]);
 }
 
 function sumOf(column, modules) {
   return modules.map(module => parseInt(module[column])).reduce((a, b) => a + b, 0);
+}
+
+function notExpired(module) {
+  return !module[VALID] || (module[VALID] > new Date());
 }
