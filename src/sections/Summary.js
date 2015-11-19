@@ -52,8 +52,12 @@ export default ({ modules, serverID }) => (
 function row(title, value) {
   return (
     <tr>
-      <td style={{ fontWeight: 'bold' }}>{title}:</td>
-      <td style={{ paddingLeft: '1em' }}>{hasLetters(value) ? value : numberWithCommas(value)}</td>
+      <td style={{ fontWeight: 'bold' }}>
+        {title}:
+      </td>
+      <td style={{ paddingLeft: '1em' }}>
+        {hasLetters(value) ? value : numberWithCommas(value)}
+      </td>
     </tr>
   );
 }
