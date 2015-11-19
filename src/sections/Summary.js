@@ -16,7 +16,7 @@ export default ({ modules, serverID }) => (
             isEnterprise(modules) ? 'Enterprise' : 'Standard'
           )}
           {row(
-            'Page Volume',
+            'Page Volume (PPY)',
             pageVolume(modules)
           )}
           {row(
@@ -28,15 +28,15 @@ export default ({ modules, serverID }) => (
             productionAutoLearning(modules)
           )}
           {row(
-            'Attend Clients',
+            'Attended Clients',
             attendClients(modules)
           )}
           {row(
-            'Scan Plus (standard)',
+            'ScanPlus (standard)',
             scanPlus(modules, false)
           )}
           {row(
-            'Scan Plus (premium)',
+            'ScanPlus (premium)',
             scanPlus(modules, true)
           )}
           {row(
