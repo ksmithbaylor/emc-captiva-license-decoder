@@ -16,8 +16,16 @@ export function zipObject(names, values) {
 
 export function parseDate(text) {
   if (text === '' || text === '0') return null;
-  const arr = text.match(/.{2}/g).map(n => parseInt(n));
-  return new Date(arr[0] + 2000, arr[1], arr[2]);
+
+  const [day, month, maybeYear] = [
+    text.substr(text.length - 2),
+    text.substr(text.length - 4, 2),
+    text.substr(0, text.length - 4)
+  ].map(x => parseInt(x, 10));
+
+  const year = maybeYear >= 20 ? Math.floor(maybeYear / 10) : maybeYear;
+
+  return new Date(year + 2000, month - 1, day);
 }
 
 export function formatDate(date) {
