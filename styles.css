@@ -3,8 +3,8 @@ table {
 }
 
 table, tr, th, td {
-    border: 1px solid black;
-    padding: 0 5px;
+    border: 1px solid #9E9E9E;
+    padding: 0.25em 0.25em;
 }
 
 td {

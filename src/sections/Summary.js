@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { NAME, COPIES, PAGES, FEATURES } from '../data/columnNames';
+import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from '../data/columnNames';
+import { hasLetters, numberWithCommas } from '../util';
 
 export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
@@ -15,7 +16,7 @@ export default ({ modules, serverID }) => (
             isEnterprise(modules) ? 'Enterprise' : 'Standard'
           )}
           {row(
-            'Page Volume',
+            'Page Volume (PPY)',
             pageVolume(modules)
           )}
           {row(
@@ -27,15 +28,15 @@ export default ({ modules, serverID }) => (
             productionAutoLearning(modules)
           )}
           {row(
-            'Attend Clients',
+            'Attended Clients',
             attendClients(modules)
           )}
           {row(
-            'Scan Plus (standard)',
+            'ScanPlus (standard)',
             scanPlus(modules, false)
           )}
           {row(
-            'Scan Plus (premium)',
+            'ScanPlus (premium)',
             scanPlus(modules, true)
           )}
           {row(
@@ -51,8 +52,12 @@ export default ({ modules, serverID }) => (
 function row(title, value) {
   return (
     <tr>
-      <td style={{ fontWeight: 'bold' }}>{title}:</td>
-      <td style={{ paddingLeft: '1em' }}>{value}</td>
+      <td style={{ fontWeight: 'bold' }}>
+        {title}:
+      </td>
+      <td style={{ paddingLeft: '1em' }}>
+        {hasLetters(value) ? value : numberWithCommas(value)}
+      </td>
     </tr>
   );
 }
@@ -86,13 +91,15 @@ function productionAutoLearning(modules) {
 }
 
 function attendClients(modules) {
-  return sumOf(COPIES, modules.filter(withName('GROUP4')));
+  return sumOf(CONNECTIONS, modules.filter(withName('GROUP4')));
 }
 
 function scanPlus(modules, premium) {
   return sumOf(
-    COPIES,
-    modules.filter(withName('GROUP4')).filter(withFeature(premium ? 'D' : 'C'))
+    CONNECTIONS,
+    modules.filter(withName('SCANPLUS'))
+           .filter(notExpired)
+           .filter(withFeature(premium ? 'D' : 'C'))
   );
 }
 
@@ -119,9 +126,13 @@ function withName(name) {
 }
 
 function withFeature(code) {
-  return module => new RegExp(code).test(module);
+  return module => new RegExp(code).test(module[FEATURES]);
 }
 
 function sumOf(column, modules) {
   return modules.map(module => parseInt(module[column])).reduce((a, b) => a + b, 0);
+}
+
+function notExpired(module) {
+  return !module[VALID] || (module[VALID] > new Date());
 }

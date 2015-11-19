@@ -1,11 +1,11 @@
-import { ENTER_BY, ISSUED, VALID, COPIES, PAGES } from './data/columnNames';
+import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from './data/columnNames';
 
-export function isExpired(row) {
-  return hasExpiry(row) && (row[VALID] < new Date());
+export function isExpired(module) {
+  return hasExpiry(module) && (module[VALID] < new Date());
 }
 
-export function hasExpiry(row) {
-  return row[VALID];
+export function hasExpiry(module) {
+  return module[VALID];
 }
 
 export function zipObject(names, values) {
@@ -16,8 +16,16 @@ export function zipObject(names, values) {
 
 export function parseDate(text) {
   if (text === '' || text === '0') return null;
-  const arr = text.match(/.{2}/g).map(n => parseInt(n));
-  return new Date(arr[0] + 2000, arr[1], arr[2]);
+
+  const [day, month, maybeYear] = [
+    text.substr(text.length - 2),
+    text.substr(text.length - 4, 2),
+    text.substr(0, text.length - 4)
+  ].map(x => parseInt(x, 10));
+
+  const year = maybeYear >= 20 ? Math.floor(maybeYear / 10) : maybeYear;
+
+  return new Date(year + 2000, month - 1, day);
 }
 
 export function formatDate(date) {
@@ -31,7 +39,7 @@ export function isDateField(column) {
 }
 
 export function isUnlimited(column) {
-  return member([COPIES, PAGES, VALID], column);
+  return member([CONNECTIONS, PAGES, VALID], column);
 }
 
 export function member(arr, elem) {
@@ -52,4 +60,8 @@ export function hasLetters(str) {
 
 export function lowerCaseEqual(a, b) {
   return a.toLowerCase() === b.toLowerCase();
+}
+
+export function numberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

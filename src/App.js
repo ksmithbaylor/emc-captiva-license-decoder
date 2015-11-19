@@ -20,7 +20,7 @@ export class App extends Component {
         <input type="file" onChange={this.receiveFile}></input>
         <br />
         <button onClick={e => this.setState({ summary: !summary })}>
-          Toggle Summary
+          {summary ? 'Back to Listing' : 'Summary View'}
         </button>
         {rawFile ? (
           <View {...processLicense(rawFile)} />
