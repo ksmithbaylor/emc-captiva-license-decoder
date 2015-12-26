@@ -9,9 +9,13 @@ export function hasExpiry(module) {
 }
 
 export function zipObject(names, values) {
-  const obj = {};
-  names.forEach((name, i) => obj[name] = values[i]);
-  return obj;
+  return names.reduce(
+    (obj, name, i) => ({
+      ...obj,
+      [name]: values[i]
+    }),
+    {}
+  );
 }
 
 export function parseDate(text) {
