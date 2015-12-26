@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate, numberWithCommas } from '../util';
-import COLUMN_NAMES, { VALID, NAME, CODE } from '../data/columnNames';
+import COLUMN_NAMES, { VALID, NAME, CODE, DISABLES } from '../data/columnNames';
 
 export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
@@ -12,13 +12,13 @@ export default ({ modules, serverID }) => (
       <table>
         <tbody>
           <tr style={headerStyle()}>
-            {COLUMN_NAMES.map((column, i) => (
+            {onlyCertainColumns.map((column, i) => (
               <th style={{ padding: '5px' }} key={i}>{column}</th>
             ))}
           </tr>
           {modules.map((module, i) => (
             <tr style={rowStyle(module)} key={i}>
-              {COLUMN_NAMES.map((column, i) => (
+              {onlyCertainColumns.map((column, i) => (
                 <td style={cellStyle(module, column)} key={i}>
                   {cellContents(module, column)}
                 </td>
@@ -30,6 +30,8 @@ export default ({ modules, serverID }) => (
     </div>
   )
 );
+
+const onlyCertainColumns = COLUMN_NAMES.filter(name => name !== CODE && name !== DISABLES);
 
 function headerStyle() {
   return {
