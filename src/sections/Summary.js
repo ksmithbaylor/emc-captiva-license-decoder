@@ -74,10 +74,12 @@ function isEnterprise(modules) {
 }
 
 function pageVolume(modules) {
+  // TODO if any of them are 0, means unlimited
   return sumOf(PAGES, modules.filter(withName('ANNUAL')));
 }
 
 function advancedRecognitionVolume(modules) {
+  // TODO if 0, means unlimited for either one
   const classifs = modules.filter(withName('CLASSIF'));
   const extracts = modules.filter(withName('EXTRACT'));
 
@@ -95,6 +97,8 @@ function attendClients(modules) {
 }
 
 function scanPlus(modules, premium) {
+  // TODO if any SCANPLUS present with 0 in the connections, then it means
+  // unlimited
   return sumOf(
     CONNECTIONS,
     modules.filter(withName('SCANPLUS'))
