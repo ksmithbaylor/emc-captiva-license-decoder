@@ -1,29 +1,122 @@
-import { zipObject, parseDate, formatDate, member, by, hasLetters, lowerCaseEqual } from './util';
 import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, NAME, PAGES } from './data/columnNames';
+import { zipObject, parseDate, formatDate, pipe, member, by, hasLetters, lowerCaseEqual } from './util';
+
+////////////////////////////////////////////////////////////////////////////////
+// Composed pipelines for file and pasted inputs
+
+const commonSteps = [
+  rowsZippedWithColumns,
+  dateFieldsConverted,
+  sortedByModuleName,
+  correctlyOrdered
+];
 
 export function processLicense(rawFile) {
   return {
-    serverID: getServerID(rawFile),
-    modules: correctlyOrdered(
-      sortedByModuleName(
-        dateFieldsConverted(
-          rowsZippedWithColumns(
-            onlyValidRows(
-              linesToGrid(
-                commentsRemoved(
-                  rawToLines(rawFile)
-                )
-              )
-            )
-          )
-        )
-      )
+    serverID: getFileServerID(rawFile),
+    modules: pipe(
+      rawFile,
+      rawToLines,
+      commentsRemoved,
+      linesToGrid,
+      onlyRowsOfLength(9),
+      ...commonSteps
     )
   };
 }
 
-function getServerID(rawFile) {
+export function processPaste(pasted) {
+  return {
+    serverID: getPastedServerID(pasted),
+    modules: pipe(
+      pasted,
+      onlyValidSection,
+      rawToLines,
+      replaceTabsWithSemicolons,
+      linesToGrid,
+      onlyRowsOfLength(11),
+      correctPastedColumnOrder,
+      removeHeaderLine,
+      ...commonSteps
+    )
+  };
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Steps only for file input
+
+function getFileServerID(rawFile) {
   return rawToLines(rawFile)[0].split(' ').slice(-1)[0];
+}
+
+function rawToLines(rawFile) {
+  return rawFile.split('\n');
+}
+
+function commentsRemoved(lines) {
+  return lines.filter(line => line.indexOf('\'') !== 0);
+}
+
+function linesToGrid(lines) {
+  return lines.map(line => line.split(';').map(col => col.trim()));
+}
+
+function onlyRowsOfLength(length) {
+  return function (grid) {
+    return grid.filter(row => row.length === length);
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Steps only for pasted input
+
+function getPastedServerID(pasted) {
+  return rawToLines(pasted).find(line => line.includes('Server ID:')).split('\t')[1];
+}
+
+function onlyValidSection(pasted) {
+  return pasted.split('License Details')[1].split('License Files')[0];
+}
+
+function replaceTabsWithSemicolons(lines) {
+  return lines.map(line => line.replace(new RegExp('\t', 'g'), ';'));
+}
+
+function correctPastedColumnOrder(grid) {
+  return grid.map(row => ([
+    ...row.slice(0, 4),
+    row[7],
+    ...row.slice(4, 7),
+    row[9]
+  ]));
+}
+
+function removeHeaderLine(grid) {
+  return grid.slice(1);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Common steps used by both file and pasted input
+
+function rowsZippedWithColumns(grid) {
+  return grid.map(row => zipObject(COLUMN_NAMES, row));
+}
+
+function dateFieldsConverted(modules) {
+  return modules.map(module => ({
+    ...module,
+    ...[VALID, ENTER_BY, ISSUED].reduce(
+      (obj, field) => ({
+        ...obj,
+        [field]: parseDate(module[field])
+      }),
+      {}
+    )
+  }));
+}
+
+function sortedByModuleName(modules) {
+  return modules.sort(by(NAME));
 }
 
 function correctlyOrdered(modules) {
@@ -32,6 +125,9 @@ function correctlyOrdered(modules) {
     { orderedModules: [], skipped: [] }
   ).orderedModules;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Sorting functionality, used for both
 
 function groupModulesReducer({ orderedModules, skipped }, __, _, allModules) {
   const pairs = allModules.map((module, index) => [module, index]);
@@ -75,41 +171,4 @@ function indentedModule(module) {
     ...module,
     [NAME]: `    ${module[NAME]}`
   };
-}
-
-function sortedByModuleName(modules) {
-  return modules.sort(by(NAME));
-}
-
-function dateFieldsConverted(modules) {
-  return modules.map(module => ({
-    ...module,
-    ...[VALID, ENTER_BY, ISSUED].reduce(
-      (obj, field) => ({
-        ...obj,
-        [field]: parseDate(module[field])
-      }),
-      {}
-    )
-  }));
-}
-
-function rowsZippedWithColumns(grid) {
-  return grid.map(row => zipObject(COLUMN_NAMES, row));
-}
-
-function onlyValidRows(grid) {
-  return grid.filter(row => row.length === 9);
-}
-
-function linesToGrid(lines) {
-  return lines.map(line => line.split(';'));
-}
-
-function commentsRemoved(lines) {
-  return lines.filter(line => line.indexOf('\'') !== 0);
-}
-
-function rawToLines(rawFile) {
-  return rawFile.split('\n');
 }

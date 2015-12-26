@@ -15,7 +15,7 @@ export function zipObject(names, values) {
 }
 
 export function parseDate(text) {
-  if (text === '' || text === '0') return null;
+  if (text === '' || text === '0' || text.toLowerCase() === 'unlimited') return null;
 
   const [day, month, maybeYear] = [
     text.substr(text.length - 2),
@@ -64,4 +64,11 @@ export function lowerCaseEqual(a, b) {
 
 export function numberWithCommas(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export function pipe(input, ...fs) {
+  return fs.reduce(
+    ((nextInput, f) => f.call(null, nextInput)),
+    input
+  );
 }
