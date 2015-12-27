@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from '../data/columnNames';
-import { hasLetters, numberWithCommas } from '../util';
+import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from 'data/columnNames';
+import { hasLetters, numberWithCommas } from 'util';
 
 export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
