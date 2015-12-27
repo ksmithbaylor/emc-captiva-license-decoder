@@ -1,4 +1,4 @@
-import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from './data/columnNames';
+import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from 'data/columnNames';
 
 export function isExpired(module) {
   return hasExpiry(module) && (module[VALID] < new Date());

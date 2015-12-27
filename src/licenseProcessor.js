@@ -1,5 +1,5 @@
-import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, NAME, PAGES } from './data/columnNames';
-import { zipObject, parseDate, formatDate, pipe, member, by, hasLetters, lowerCaseEqual } from './util';
+import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, NAME, PAGES } from 'data/columnNames';
+import { zipObject, parseDate, formatDate, pipe, member, by, hasLetters, lowerCaseEqual } from 'util';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Composed pipelines for file and pasted inputs

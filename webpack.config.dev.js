@@ -16,6 +16,12 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  resolve: {
+    alias: {
+      data: __dirname + '/src/data',
+      util: __dirname + '/src/util.js'
+    }
+  },
   module: {
     loaders: [{
       test: /\.js$/,
