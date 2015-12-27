@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import Summary from './sections/Summary';
 import Table from './sections/Table';
+import Header from './Header';
 
 import { processLicense, processPaste } from './licenseProcessor';
 
-export class App extends Component {
+export default class App extends Component {
   static propTypes = {}
 
   state = {
@@ -24,7 +25,9 @@ export class App extends Component {
     );
 
     return (
-      <div>
+      <div style={{ marginTop: 80 }}>
+        <Header />
+        <br />
         <textarea onChange={this.receivePaste} />
         <br />
         <input type="file" onChange={this.receiveFile} />
