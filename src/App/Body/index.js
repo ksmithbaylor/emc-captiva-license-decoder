@@ -22,7 +22,9 @@ export default class Body extends Component {
         backToStart={this.backToStart}
       />
     ) : (
-      <InputOptions newResults={this.handleNewResults} />
+      <InputOptions
+        newResults={this.handleNewResults}
+      />
     );
 
     return (
