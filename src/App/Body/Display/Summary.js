@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Paper from 'material-ui/lib/paper';
+
 import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from 'data/columnNames';
 import { hasLetters, numberWithCommas } from 'util';
 
@@ -7,9 +9,8 @@ export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
     <span></span>
   ) : (
-    <div>
-      <h2>Captiva Capture License ID: {serverID}</h2>
-      <table style={{ border: 'none' }}>
+    <Paper zDepth={2} style={{ marginTop: '1rem', padding: '1rem', display: 'inline-block' }}>
+      <table style={{ borderStyle: 'hidden', borderCollapse: 'collapse' }}>
         <tbody>
           {row(
             'Server Type',
@@ -45,17 +46,17 @@ export default ({ modules, serverID }) => (
           )}
         </tbody>
       </table>
-    </div>
+    </Paper>
   )
 );
 
 function row(title, value) {
   return (
-    <tr>
-      <td style={{ fontWeight: 'bold' }}>
+    <tr style={{ border: '1px solid #e0e0e0' }}>
+      <td style={{ fontWeight: 'bold', verticalAlign: 'top', padding: '0.25rem 1rem' }}>
         {title}:
       </td>
-      <td style={{ paddingLeft: '1em' }}>
+      <td style={{ padding: '0.25rem 1rem' }}>
         {hasLetters(value) ? value : numberWithCommas(value)}
       </td>
     </tr>
@@ -122,7 +123,7 @@ function majorExporters(modules) {
     exporterMappings[exporter].some(name => (
       modules.find(withName(name))
     ))
-  )).join('\n');
+  )).map((str, i) => <div key={i}>{str}</div>)
 }
 
 function withName(name) {

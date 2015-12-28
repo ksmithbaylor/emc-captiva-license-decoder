@@ -5,16 +5,3 @@ html, body {
 body {
   font-family: "Roboto", sans-serif;
 }
-
-table {
-    border-collapse: collapse;
-}
-
-table, tr, th, td {
-    border: 1px solid #9E9E9E;
-    padding: 0.25em 0.25em;
-}
-
-td {
-    white-space: pre;
-}
