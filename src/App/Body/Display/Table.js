@@ -60,7 +60,7 @@ export default class DisplayTable extends Component {
 
   componentDidMount() {
     let lastViewportHeight = window.innerHeight;
-    window.addEventListener('resize', event => {
+    this.resizeListener = window.addEventListener('resize', event => {
       if (lastViewportHeight !== window.innerHeight) {
         this.setState({
           height: getTableHeight()
@@ -70,7 +70,7 @@ export default class DisplayTable extends Component {
 
     const paper = findDOMNode(this);
     let wasVisible = false;
-    window.addEventListener('scroll', event => {
+    this.scrollListener = window.addEventListener('scroll', event => {
       const elemBottom = paper.getBoundingClientRect().bottom;
       const isVisible = elemBottom <= window.innerHeight;
 
@@ -82,6 +82,11 @@ export default class DisplayTable extends Component {
         this.setState({ scrollingAllowed: false });
       }
     });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeListener, false)
+    window.removeEventListener('scroll', this.scrollListener, false)
   }
 }
 
