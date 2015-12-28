@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import request from 'superagent';
 
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -11,7 +12,9 @@ import { processLicense, processPaste } from 'processor';
 
 export default class InputOptions extends Component {
   state = {
-    pasteModalOpen: false
+    pasteModalOpen: false,
+    helpModalOpen: false,
+    helpText: null
   }
 
   render() {
@@ -40,8 +43,25 @@ export default class InputOptions extends Component {
           </div>
         </Paper>
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <RaisedButton label="Display Help" />
+          <RaisedButton label="Display Help" onTouchTap={this.openHelpModal} />
         </div>
+        <Dialog
+          title="How to use this tool"
+          open={this.state.helpModalOpen}
+          modal={false}
+          actions={[
+            <FlatButton
+              label="OK"
+              primary={true}
+              onTouchTap={this.closeHelpModal}
+            />
+          ]}
+          onRequestClose={this.closeHelpModal}
+        >
+          <span style={{ whiteSpace: 'pre-wrap' }}>
+            {this.state.helpText ? this.state.helpText : 'Loading...'}
+          </span>
+        </Dialog>
         <Dialog
           title="Paste a license"
           open={this.state.pasteModalOpen}
@@ -84,10 +104,16 @@ export default class InputOptions extends Component {
     this.fileReader.onload = event => setTimeout((() => this.props.newResults(
       processLicense(this.fileReader.result)
     )), 200);
+
+    request('/help.txt', (err, res) => {
+      this.setState({ helpText: res.text });
+    });
   }
 
   closePasteModal = () => this.setState({ pasteModalOpen: false })
   openPasteModal = () => this.setState({ pasteModalOpen: true })
+  closeHelpModal = () => this.setState({ helpModalOpen: false })
+  openHelpModal = () => this.setState({ helpModalOpen: true })
 
   receiveFile = (event) => {
     if (event.target.files[0]) {
