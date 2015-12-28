@@ -18,7 +18,7 @@ export default class Body extends Component {
     const viewMarkup = showResults ? (
       <Display modules={modules} serverID={serverID} />
     ) : (
-      <InputOptions />
+      <InputOptions newResults={this.handleNewResults} />
     );
 
     return (
@@ -26,6 +26,11 @@ export default class Body extends Component {
         {viewMarkup}
       </div>
     )
+  }
+
+  handleNewResults = ({ modules, serverID }) => {
+    console.log('got new results:', modules.length, serverID);
+    this.setState({ modules, serverID });
   }
 
   switchView = () => {
