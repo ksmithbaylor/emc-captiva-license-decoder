@@ -8,13 +8,8 @@ import Table from './Table';
 
 export default ({ modules, serverID, backToStart }) => (
   <div>
-    <div>
-      <BackButton onTouchTap={backToStart} />
-      <span style={{ marginLeft: '2rem', fontSize: '1.5rem', verticalAlign: 'middle', display: 'inline-block' }}>
-        License ID: {serverID}
-      </span>
-    </div>
-    <br />
+    <BackButton onTouchTap={backToStart} />
+    <br /><br />
     <Divider />
     <Summary modules={modules} serverID={serverID} />
     <Table modules={modules} serverID={serverID} />

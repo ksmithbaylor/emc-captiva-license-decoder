@@ -9,8 +9,9 @@ export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
     <span></span>
   ) : (
-    <Paper zDepth={2} style={{ marginTop: '1rem', padding: '1rem', display: 'inline-block' }}>
-      <table style={{ borderStyle: 'hidden', borderCollapse: 'collapse' }}>
+    <Paper zDepth={2} style={{ marginTop: '1rem', padding: '1rem' }}>
+      <h2 style={{ marginTop: 0, color: '#00406E', textAlign: 'center' }}>Summary for License #{serverID}</h2>
+      <table style={{ borderStyle: 'hidden', borderCollapse: 'collapse', margin: '0 auto' }}>
         <tbody>
           {row(
             'Server Type',
