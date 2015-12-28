@@ -16,7 +16,11 @@ export default class Body extends Component {
     const { modules, serverID, showResults } = this.state;
 
     const viewMarkup = showResults ? (
-      <Display modules={modules} serverID={serverID} />
+      <Display
+        modules={modules}
+        serverID={serverID}
+        backToStart={this.backToStart}
+      />
     ) : (
       <InputOptions newResults={this.handleNewResults} />
     );
