@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
 
 import Header from './Header';
 import Body from './Body';
 
-export default () => (
-  <div>
-    <Header />
-    <Body />
-  </div>
-);
+@ThemeDecorator(ThemeManager.getMuiTheme({ palette: { accent1Color: '#2c95dd' } }))
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <Body />
+      </div>
+    );
+  }
+};
+
+export default App;

@@ -32,7 +32,7 @@ export default class InputOptions extends Component {
           <div style={sectionStyle}>
             <RaisedButton
               label="PASTE"
-              secondary={true}
+              primary={true}
               style={buttonStyle}
               onTouchTap={this.openPasteModal}
             />
@@ -48,7 +48,7 @@ export default class InputOptions extends Component {
           actions={[
             <FlatButton
               label="Cancel"
-              secondary={true}
+              primary={true}
               onTouchTap={this.closePasteModal}
             />,
             <FlatButton
@@ -71,6 +71,7 @@ export default class InputOptions extends Component {
             fullWidth={true}
             onEnterKeyDown={this.receivePaste}
             autoFocus
+            underlineFocusStyle={{ borderColor: '#2c95dd' }}
             style={{ marginTop: '1rem', backgroundColor: '#f0f0f0' }}
           />
         </Dialog>
