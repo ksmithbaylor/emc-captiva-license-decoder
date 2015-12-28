@@ -1,0 +1,190 @@
+
+
+    Home
+    Applications +
+
+    Customers
+    Products
+    Keys
+    Dongles
+    Reports
+    More...
+
+    History:
+    Dongles
+    Dongles: 114719
+    Dongle Details : 114719
+    Dongles: 113966
+    Dongle Details : 113966
+
+Dongle / Customer Details / Activation
+Dongle #: 	113966 	  	Company Name: 	EMC Internal
+
+Key Status: 	In Use At Customer Site 	  	Site Location: 	Jim Smith
+Key Type: 	Dongle-less 	Profile Type: IA/IAX 5.3 - IA 5.2 w/patch 	  	Version of IA: 	6.5
+Maintenance: 	Start: 09/02/09
+End: 09/02/10 	  	Description:
+	09-02-09 NCA18-090209 INTERNAL LICENSE REQUEST FORM~ 09/20/11, NCA42-092011 Internal Request, extended for one 1 year. 1/20/2012, Added PAL per Bruce Robinson.
+NCA38-021813, Extended the license for 1 year with eInput until 02/18/2014 as per Jim Smith.
+extended server for 1yr.
+Key Destruction: 	Pending:
+Received: 	  	  	Reset Enter By Date Denied: 	 No
+  	  	  	  	Extend EBD Status: 	None	
+  	  	  	 		Activation/Reactivation Denied: 	 No	
+Server ID: 	113966 	  	Activation Date: 	1/16/2014 9:34:53 AM
+Old Profile ID: 	6FHA-UIWP-93NA-ZID7-RPHK-WIEQ-C7M
+	 		Web Activation Date: 	3/19/2013 8:38:00 AM
+Current Profile ID: 	3GM9-9CHZ-AW65-U457-F2LG-F597-R88
+	  	Name: 	
+Activation Key: 	JXE3-KJYD-67UK-Y3PA-YV8R-TXQF-63R
+	  	Key Conversion: 	
+Activation Web
+First Name: 	Jim 	  	Activation Web Email: 	jim.smith@emc.com
+Activation Web
+Last Name: 	Smith 	  	  	 
+
+License Details
+Module 	Connections 	Pages / Trans 	Valid Until 	Features 	Issued 	Disables 	Enter by Date 	Last modified by 	License Code 	
+ANNUAL 	0 	0 	150115 		140115 		150115 	somans2 	760-44976/A 	
+SERVER 		ANNUAL 	150115 	CSR 	140115 			somans2 	25775-19128 	
+CLASSIF 	2 	1000000 	150115 		140115 		150115 	somans2 	6792-44464/A 	
+DPCLSSF 	CLASSIF 	CLASSIF 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	4747-96933 	
+DPCLSSF 	CLASSIF 	CLASSIF 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	9545-04181 	
+CLASSIF 	1 	1000000 	150115 		140115 		150115 	somans2 	15595-91569/A 	
+DPCLSSF 	CLASSIF 	CLASSIF 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	4747-96933 	
+DPCLSSF 	CLASSIF 	CLASSIF 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	9545-04181 	
+EXTRACT 	3 	1000000 	150115 		140115 		150115 	somans2 	6771-33249/A 	
+DPRECO 	EXTRACT 	EXTRACT 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	1490-35956 	
+DPRECO 	EXTRACT 	EXTRACT 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	18267-57557 	
+EXTRACT 	3 	1000000 	150115 		140115 		150115 	somans2 	18258-48256/A 	
+DPRECO 	EXTRACT 	EXTRACT 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	1490-35956 	
+DPRECO 	EXTRACT 	EXTRACT 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	18267-57557 	
+GROUP1 	0 	0 	150115 	X 	140115 		150115 	somans2 	10838-06419 	
+IAAQA 	GROUP1 	GROUP1 	Unlimited 	X 	090902 			rahint 	8880-83410 	
+IAFAFIDX 	GROUP1 	GROUP1 	Unlimited 	X 	090902 			rahint 	16820-02679 	
+IAINDEX 	GROUP1 	GROUP1 	Unlimited 	X 	090902 			rahint 	3517-52947 	
+IAIPI 	GROUP1 	GROUP1 	Unlimited 	BCDEMX 	090902 			rahint 	9550-77538 	
+IAIQA 	GROUP1 	GROUP1 	Unlimited 		090902 			rahint 	17533-40562 	
+IAOCR 	GROUP1 	GROUP1 	Unlimited 	X 	090902 			rahint 	11516-38435 	
+IAOCRED 	GROUP1 	GROUP1 	Unlimited 		090902 			rahint 	18276-07282 	
+IARESCAN 	GROUP1 	GROUP1 	Unlimited 	D 	090902 			rahint 	8060-01378 	
+IASTAMP 	GROUP1 	GROUP1 	Unlimited 		090902 			rahint 	793-05393 	
+SSOCR 	GROUP1 	GROUP1 	Unlimited 	X 	090902 			rahint 	19476-54817 	
+GROUP2 	0 	0 	150115 		140115 		150115 	somans2 	2835-13494 	
+FORMSTUD 	GROUP2 	GROUP2 	Unlimited 		090902 			rahint 	31443-28101 	
+IACHRINS 	GROUP2 	GROUP2 	Unlimited 		090902 			rahint 	28698-96085 	
+IAFORMID 	GROUP2 	GROUP2 	Unlimited 		090902 			rahint 	2814-32816 	
+IAFRMEDT 	GROUP2 	GROUP2 	Unlimited 		090902 			rahint 	6799-40849 	
+IAPAGEID 	GROUP2 	GROUP2 	Unlimited 		090902 			rahint 	36876-37989 	
+IARECOG 	GROUP2 	GROUP2 	Unlimited 		090902 			rahint 	33430-84436 	
+IARECVAL 	GROUP2 	GROUP2 	Unlimited 		090902 			rahint 	12089-16656 	
+IAVALEDT 	GROUP2 	GROUP2 	Unlimited 		090902 			rahint 	22130-12373 	
+GROUP4 	0 	0 	150115 		140115 		150115 	somans2 	4732-17712 	
+DPCLSSFE 	GROUP4 	GROUP4 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	10843-65812 	
+DPCLSSFE 	GROUP4 	GROUP4 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	8791-86837 	
+DPVALID 	GROUP4 	GROUP4 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	13452-46100 	
+DPVALID 	GROUP4 	GROUP4 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	8186-64404 	
+IAFAFIDX 	GROUP4 	GROUP4 	Unlimited 	X 	090902 			rahint 	8774-82743 	
+IAIQA 	GROUP4 	GROUP4 	Unlimited 		090902 			rahint 	17533-40627 	
+INDXPLUS 	GROUP4 	GROUP4 	Unlimited 		090902 			rahint 	14166-31253 	
+RSCANPLS 	GROUP4 	GROUP4 	Unlimited 	D 	090902 			rahint 	4708-34133 	
+GROUP5 	0 	0 	Unlimited 		140115 		150115 	somans2 	5383-42129 	
+EMAILIMP 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	12824-88915 	
+EXFILE 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	85-10180 	
+IACOPY 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	15501-13527 	
+IAEXIDX 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	12103-09315 	
+IAEXIMG 	GROUP5 	GROUP5 	Unlimited 	X 	090902 			rahint 	68-20835 	
+IAEXPDF 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	18198-27090 	
+IAIPI 	GROUP5 	GROUP5 	Unlimited 	BCDEMX 	090902 			rahint 	20832-79779 	
+IAMDW 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	3441-34470 	
+IAPDEV 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	12903-10608 	
+IASTAMP 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	685-57553 	
+IAXODBC2 	GROUP5 	GROUP5 	Unlimited 	X 	090902 			rahint 	8873-80935 	
+PAGEREG 	GROUP5 	GROUP5 	Unlimited 	X 	090902 			rahint 	1501-48081 	
+SSOCR 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	5470-17408 	
+VAL2XML 	GROUP5 	GROUP5 	Unlimited 		090902 			rahint 	4035-94176 	
+ABYOCR2 	0 	0 	150115 		140115 			somans2 	16840-44469 	
+AESEXTR 	0 	0 	Unlimited 		090902 			rahint 	1342-71846 	
+APCONEXP 	0 	0 	Unlimited 		090902 			rahint 	19580-40260 	
+ASISAP 	0 	0 	Unlimited 		090902 			rahint 	4049-21237 	
+BATCHCRT 	0 	0 	Unlimited 		090902 			rahint 	10174-67765 	
+CAPCON 	0 	0 	Unlimited 		090902 			rahint 	17483-43488 	
+CONVERTR 	0 	0 	Unlimited 		090902 			rahint 	9515-87476 	
+DPCLSSF 	0 	0 	Unlimited 	BCDEFGH 	090902 			rahint 	9530-15188 	
+DPCLSSFE 	0 	0 	Unlimited 	BCDEFGH 	090902 			rahint 	16234-15765 	
+DPCOLLEC 	0 	0 	Unlimited 	BCDEFGHIJKNOX 	130218 			channs 	4731-39829 	
+DPMANAGR 	6 	0 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	2704-24820 	
+DPMANAGR 	6 	0 	150115 	BCDEFGHIJKNOX 	140115 			somans2 	8744-02452 	
+DPMANAGR 	0 	0 	Unlimited 	BCDEFGH 	090902 			rahint 	13441-64580 	
+DPRECO 	0 	0 	Unlimited 	BCDEFGH 	090902 			rahint 	20288-70612 	
+DPVALID 	0 	0 	Unlimited 	BCDEFGH 	090902 			rahint 	6071-14212 	
+EINDEX 	0 	0 	Unlimited 	X 	130218 			channs 	13526-92435 	
+EMAILIMP 	0 	0 	Unlimited 		090902 			rahint 	2149-89379 	
+ERESCAN 	0 	0 	Unlimited 	X 	130218 			channs 	8861-09105 	
+EROUTER 	0 	0 	Unlimited 		090902 			rahint 	4762-38548 	
+ESCAN 	0 	0 	Unlimited 	X 	130218 			channs 	6773-68741 	
+ESTATUS 	0 	0 	Unlimited 	X 	130218 			channs 	2816-29588 	
+EXAX 	0 	0 	Unlimited 	X 	090902 			rahint 	6739-29860 	
+EXCSSAP 	0 	0 	Unlimited 	X 	090902 			rahint 	14234-96096 	
+EXFILE 	0 	0 	Unlimited 		090902 			rahint 	18940-44405 	
+EXFNCM 	0 	0 	Unlimited 	X 	090902 			rahint 	12814-97990 	
+EXICM 	0 	0 	Unlimited 	X 	090902 			rahint 	6173-86886 	
+EXIMANAG 	0 	0 	Unlimited 	X 	090902 			rahint 	9409-23793 	
+EXIXOS 	0 	0 	Unlimited 		090902 			rahint 	17573-13618 	
+EXLL2 	0 	0 	Unlimited 	X 	090902 			rahint 	10128-82048 	
+EXSAPAL 	0 	0 	Unlimited 		090902 			rahint 	788-12144 	
+EXSHRPT2 	0 	0 	Unlimited 	X 	090902 			rahint 	13552-40342 	
+IACOPY 	0 	0 	Unlimited 		090902 			rahint 	4784-52407 	
+IADOKU 	0 	0 	Unlimited 		090902 			rahint 	4113-51651 	
+IAEXDM 	0 	0 	Unlimited 	X 	090902 			rahint 	8786-31666 	
+IAEXFAF 	0 	0 	Unlimited 	X 	090902 			rahint 	11480-33718 	
+IAEXFNET 	0 	0 	Unlimited 		090902 			rahint 	8833-34131 	
+IAEXIDX 	0 	0 	Unlimited 		090902 			rahint 	10201-89379 	
+IAEXIMG 	0 	0 	Unlimited 	X 	090902 			rahint 	16861-17282 	
+IAEXPDF 	0 	0 	Unlimited 		090902 			rahint 	15550-45267 	
+IAEXTXT 	0 	0 	Unlimited 		090902 			rahint 	4179-60946 	
+IAEXVI 	0 	0 	Unlimited 		090902 			rahint 	17455-09346 	
+IAEXWNT 	0 	0 	Unlimited 		090902 			rahint 	17488-98435 	
+IAEXWOI 	0 	0 	Unlimited 		090902 			rahint 	14798-26163 	
+IAFORMID 	0 	0 	Unlimited 		090902 			rahint 	16907-86545 	
+IAFRMEDT 	0 	0 	Unlimited 		090902 			rahint 	7391-36193 	
+IAIMGCMP 	0 	0 	Unlimited 	O 	090902 			rahint 	10860-36821 	
+IAMDW 	0 	0 	Unlimited 		090902 			rahint 	6062-12902 	
+IAMKIMG 	0 	0 	Unlimited 		090902 			rahint 	125-65106 	
+IAODIMDW 	0 	0 	Unlimited 		090902 			rahint 	162-76325 	
+IAPAGEID 	0 	0 	Unlimited 		090902 			rahint 	37563-87205 	
+IAPDEV 	0 	0 	Unlimited 		090902 			rahint 	20285-73617 	
+IASCAN 	0 	0 	Unlimited 	D 	090902 			rahint 	16190-38931 	
+IASCAN 	0 	0 	Unlimited 	ABCD 	090902 			rahint 	5495-56931 	
+IASORT 	0 	0 	Unlimited 		090902 			rahint 	4812-35776 	
+IAXFNET2 	0 	0 	Unlimited 		090902 			rahint 	16212-83810 	
+IAXIBMOD 	0 	0 	Unlimited 		090902 			rahint 	14110-21331 	
+IAXODBC2 	0 	0 	Unlimited 	X 	090902 			rahint 	2693-08886 	
+IBMLTOIA 	0 	0 	Unlimited 		090902 			rahint 	15546-82420 	
+PAGEREG 	0 	0 	Unlimited 		090902 			rahint 	12807-28017 	
+PROCRIA 	0 	0 	Unlimited 	ABCDEFHIKLMNOPS 	090902 			rahint 	19584-00563 	
+PSGEMAIL 	0 	0 	Unlimited 		090902 			rahint 	1354-20773 	
+REPLCTR 	0 	0 	Unlimited 		090902 			rahint 	40934-52982 	
+SCANPLUS 	0 	0 	Unlimited 	D 	090902 			rahint 	12091-93125 	
+SIGGEN 	0 	0 	Unlimited 		090902 			rahint 	18201-71216 	
+SIGVERIF 	0 	0 	Unlimited 		090902 			rahint 	16228-07441 	
+VAL2XML 	0 	0 	Unlimited 		090902 			rahint 	6741-92257 	
+WSINPUT 	0 	0 	Unlimited 		090902 			rahint 	17478-08914 	
+WSOUTPUT 	0 	0 	Unlimited 		090902 			rahint 	2797-69795 	
+		
+
+License Files 	
+Existing Files / Archive 	File Name 	File Type 	Date Created 	 
+  	113966 	CAF File 	Thu Jan 16 09:34:54 PST 2014 	
+  	113966 	License File 	Fri Oct 2 07:12:01 PDT 2009 	
+  	113966 	License File 	Thu Sep 3 09:36:18 PDT 2009 	
+  	113966 	License File 	Thu Sep 3 09:36:55 PDT 2009 	
+  	113966 	License File 	Fri Sep 24 07:06:50 PDT 2010 	
+  	113966 	License File 	Tue Sep 20 09:03:32 PDT 2011 	
+  	113966 	License File 	Fri Jan 20 16:01:51 PST 2012 	
+  	113966 	License File 	Mon Apr 9 07:11:17 PDT 2012 	
+  	113966 	License File 	Mon Feb 18 08:38:59 PST 2013 	
+  	113966 	License File 	Wed Jan 15 14:21:31 PST 2014 	
+Create New File 	  			
+
+Copyright © 2007 EMC Captiva - Internal use only.

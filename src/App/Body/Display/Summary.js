@@ -1,15 +1,17 @@
 import React from 'react';
 
-import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from '../data/columnNames';
-import { hasLetters, numberWithCommas } from '../util';
+import Paper from 'material-ui/lib/paper';
+
+import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from 'data/columnNames';
+import { hasLetters, numberWithCommas } from 'util';
 
 export default ({ modules, serverID }) => (
   (!modules || !serverID) ? (
     <span></span>
   ) : (
-    <div>
-      <h2>Captiva Capture License ID: {serverID}</h2>
-      <table style={{ border: 'none' }}>
+    <Paper zDepth={2} style={{ marginTop: '1rem', padding: '1rem' }}>
+      <h2 style={{ marginTop: 0, color: '#00406E', textAlign: 'center' }}>Summary for License #{serverID}</h2>
+      <table style={{ borderStyle: 'hidden', borderCollapse: 'collapse', margin: '0 auto' }}>
         <tbody>
           {row(
             'Server Type',
@@ -45,17 +47,17 @@ export default ({ modules, serverID }) => (
           )}
         </tbody>
       </table>
-    </div>
+    </Paper>
   )
 );
 
 function row(title, value) {
   return (
-    <tr>
-      <td style={{ fontWeight: 'bold' }}>
+    <tr style={{ border: '1px solid #e0e0e0' }}>
+      <td style={{ fontWeight: 'bold', verticalAlign: 'top', padding: '0.25rem 1rem' }}>
         {title}:
       </td>
-      <td style={{ paddingLeft: '1em' }}>
+      <td style={{ padding: '0.25rem 1rem' }}>
         {hasLetters(value) ? value : numberWithCommas(value)}
       </td>
     </tr>
@@ -74,10 +76,12 @@ function isEnterprise(modules) {
 }
 
 function pageVolume(modules) {
+  // TODO if any of them are 0, means unlimited
   return sumOf(PAGES, modules.filter(withName('ANNUAL')));
 }
 
 function advancedRecognitionVolume(modules) {
+  // TODO if 0, means unlimited for either one
   const classifs = modules.filter(withName('CLASSIF'));
   const extracts = modules.filter(withName('EXTRACT'));
 
@@ -95,6 +99,8 @@ function attendClients(modules) {
 }
 
 function scanPlus(modules, premium) {
+  // TODO if any SCANPLUS present with 0 in the connections, then it means
+  // unlimited
   return sumOf(
     CONNECTIONS,
     modules.filter(withName('SCANPLUS'))
@@ -118,7 +124,7 @@ function majorExporters(modules) {
     exporterMappings[exporter].some(name => (
       modules.find(withName(name))
     ))
-  )).join('\n');
+  )).map((str, i) => <div key={i}>{str}</div>)
 }
 
 function withName(name) {

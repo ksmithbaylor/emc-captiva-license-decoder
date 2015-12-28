@@ -1,4 +1,4 @@
-import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from './data/columnNames';
+import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from 'data/columnNames';
 
 export function isExpired(module) {
   return hasExpiry(module) && (module[VALID] < new Date());
@@ -9,13 +9,17 @@ export function hasExpiry(module) {
 }
 
 export function zipObject(names, values) {
-  const obj = {};
-  names.forEach((name, i) => obj[name] = values[i]);
-  return obj;
+  return names.reduce(
+    (obj, name, i) => ({
+      ...obj,
+      [name]: values[i]
+    }),
+    {}
+  );
 }
 
 export function parseDate(text) {
-  if (text === '' || text === '0') return null;
+  if (text === '' || text === '0' || text.toLowerCase() === 'unlimited') return null;
 
   const [day, month, maybeYear] = [
     text.substr(text.length - 2),
@@ -64,4 +68,11 @@ export function lowerCaseEqual(a, b) {
 
 export function numberWithCommas(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export function pipe(input, ...fs) {
+  return fs.reduce(
+    ((nextInput, f) => f.call(null, nextInput)),
+    input
+  );
 }
