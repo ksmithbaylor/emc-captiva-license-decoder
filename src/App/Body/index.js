@@ -44,5 +44,7 @@ export default class Body extends Component {
 
 const containerStyle = {
   width: pageWidth,
-  margin: '3rem auto'
+  marginTop: '8rem',
+  marginLeft: 'auto',
+  marginRight: 'auto'
 };

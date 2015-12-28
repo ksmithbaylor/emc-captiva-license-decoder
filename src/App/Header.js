@@ -32,7 +32,9 @@ const barStyle = {
 };
 
 const centerContainerStyle = {
-  position: 'relative',
+  position: 'fixed',
+  top: 0,
+  left: sideMargin,
   width: pageWidth,
   margin: '0 auto',
   fontSize: '2rem',
