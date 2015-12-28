@@ -80,9 +80,9 @@ export default class InputOptions extends Component {
 
   componentDidMount() {
     this.fileReader = new FileReader();
-    this.fileReader.onload = event => this.props.newResults(
+    this.fileReader.onload = event => setTimeout((() => this.props.newResults(
       processLicense(this.fileReader.result)
-    );
+    )), 200);
   }
 
   closePasteModal = () => this.setState({ pasteModalOpen: false })
@@ -96,9 +96,9 @@ export default class InputOptions extends Component {
 
   receivePaste = (event) => {
     this.closePasteModal();
-    this.props.newResults(
+    setTimeout((() => this.props.newResults(
       processPaste(this.refs.pasteInput.getValue())
-    );
+    )), 200);
   }
 }
 
