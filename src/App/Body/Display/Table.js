@@ -59,34 +59,38 @@ export default class DisplayTable extends Component {
   }
 
   componentDidMount() {
-    let lastViewportHeight = window.innerHeight;
-    this.resizeListener = window.addEventListener('resize', event => {
-      if (lastViewportHeight !== window.innerHeight) {
-        this.setState({
-          height: getTableHeight()
-        });
-      }
-    });
+    this.lastViewportHeight = window.innerHeight;
+    this.resizeListener = window.addEventListener('resize', this.onResize);
 
-    const paper = findDOMNode(this);
-    let wasVisible = false;
-    this.scrollListener = window.addEventListener('scroll', event => {
-      const elemBottom = paper.getBoundingClientRect().bottom;
-      const isVisible = elemBottom <= window.innerHeight;
-
-      if (isVisible && !wasVisible) {
-        wasVisible = true;
-        this.setState({ scrollingAllowed: true });
-      } else if (!isVisible && wasVisible) {
-        wasVisible = false;
-        this.setState({ scrollingAllowed: false });
-      }
-    });
+    this.paper = findDOMNode(this);
+    this.wasVisible = false;
+    this.scrollListener = window.addEventListener('scroll', this.onScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeListener, false)
-    window.removeEventListener('scroll', this.scrollListener, false)
+    window.removeEventListener('resize', this.onResize, false)
+    window.removeEventListener('scroll', this.onScroll, false)
+  }
+
+  onScroll = () => {
+    const elemBottom = this.paper.getBoundingClientRect().bottom;
+    const isVisible = elemBottom <= window.innerHeight;
+
+    if (isVisible && !this.wasVisible) {
+      this.wasVisible = true;
+      this.setState({ scrollingAllowed: true });
+    } else if (!isVisible && this.wasVisible) {
+      this.wasVisible = false;
+      this.setState({ scrollingAllowed: false });
+    }
+  }
+
+  onResize = () => {
+    if (this.lastViewportHeight !== window.innerHeight) {
+      this.setState({
+        height: getTableHeight()
+      });
+    }
   }
 }
 
