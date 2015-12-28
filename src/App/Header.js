@@ -5,8 +5,7 @@ import Paper from 'material-ui/lib/paper';
 import { sideMargin, pageWidth } from 'data/layout';
 
 export default () => (
-  <div>
-    <Paper rounded={false} zDepth={1} style={barStyle} />
+  <Paper rounded={false} zDepth={1} style={barStyle}>
     <div style={centerContainerStyle}>
       <Paper rounded={false} zDepth={2} style={logoStyle}>
         <img src="logo.png" style={logoImageStyle} />
@@ -15,15 +14,12 @@ export default () => (
         CAPTIVA License Decoder
       </span>
     </div>
-  </div>
+  </Paper>
 );
-
-const logoSide = 6;
-const barHeight = 5;
 
 const barStyle = {
   backgroundColor: '#4e5052',
-  height: barHeight + 'rem',
+  height: '5rem',
   width: '100%',
   position: 'fixed',
   left: 0,
@@ -32,28 +28,27 @@ const barStyle = {
 };
 
 const centerContainerStyle = {
-  position: 'fixed',
-  top: 0,
-  left: sideMargin,
   width: pageWidth,
   margin: '0 auto',
-  fontSize: '2rem',
   zIndex: 1001
 };
 
-const logoImageStyle = {
-  height: logoSide + 'rem',
-  width: logoSide + 'rem'
-}
-
 const logoStyle = {
   backgroundColor: '#2c95dd',
-  position: 'fixed',
-  ...logoImageStyle
+  display: 'inline-block',
+  fontSize: 0
+};
+
+const logoImageStyle = {
+  display: 'inline-block',
+  height: '6rem',
 };
 
 const titleStyle = {
-  marginLeft: (logoSide + 1.5) + 'rem',
-  lineHeight: barHeight + 'rem',
+  display: 'inline-block',
+  verticalAlign: 'top',
+  marginLeft: '1.5rem',
+  fontSize: '2rem',
+  lineHeight: '5rem',
   color: 'white'
 };
