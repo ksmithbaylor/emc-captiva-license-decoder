@@ -33,12 +33,11 @@ export default class Body extends Component {
   }
 
   handleNewResults = ({ modules, serverID }) => {
-    console.log('got new results:', modules.length, serverID);
-    this.setState({ modules, serverID });
+    this.setState({ modules, serverID, showResults: true });
   }
 
-  switchView = () => {
-    this.setState({ showResults: !this.state.showResults });
+  backToStart = () => {
+    this.setState({ showResults: false });
   }
 }
 
