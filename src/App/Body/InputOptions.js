@@ -65,10 +65,12 @@ export default class InputOptions extends Component {
           box below.
           <TextField
             ref="pasteInput"
-            multiline={true}
-            rows={2}
+            multiLine={true}
+            rows={3}
+            rowsMax={3}
             fullWidth={true}
             onEnterKeyDown={this.receivePaste}
+            autoFocus
             style={{ marginTop: '1rem', backgroundColor: '#f0f0f0' }}
           />
         </Dialog>
