@@ -20,8 +20,7 @@ const iconStyle = {
   height: '100%',
   display: 'inline-block',
   verticalAlign: 'middle',
-  paddingLeft: '0.5rem',
-  paddingRight: 0,
+  padding: 0,
   lineHeight: '2rem',
   fontSize: '2rem'
 };
