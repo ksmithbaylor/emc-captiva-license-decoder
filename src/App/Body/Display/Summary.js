@@ -76,8 +76,10 @@ function isEnterprise(modules) {
 }
 
 function pageVolume(modules) {
-  // TODO if any of them are 0, means unlimited
-  return sumOf(PAGES, modules.filter(withName('ANNUAL')));
+  const annuals = modules.filter(withName('ANNUAL'));
+  return annuals.some(a => a[PAGES] == '0')
+    ? 'Unlimited'
+    : sumOf(PAGES, annuals);
 }
 
 function advancedRecognitionVolume(modules) {
