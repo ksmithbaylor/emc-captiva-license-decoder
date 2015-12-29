@@ -103,9 +103,11 @@ function attendClients(modules) {
 }
 
 function scanPlus(modules, premium) {
-  // TODO if any SCANPLUS present with 0 in the connections, then it means
-  // unlimited
-  return sumOf(
+  const unlimited = modules.some(m => (
+    withName('SCANPLUS')(m) && m[CONNECTIONS] == '0'
+  ));
+
+  return unlimited ? 'Unlimited' : sumOf(
     CONNECTIONS,
     modules.filter(withName('SCANPLUS'))
            .filter(notExpired)
