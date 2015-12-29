@@ -7,7 +7,7 @@ import Header from './Header';
 import Body from './Body';
 
 @ThemeDecorator(ThemeManager.getMuiTheme({ palette: { accent1Color: '#2c95dd' } }))
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <div>
@@ -16,6 +16,4 @@ class App extends Component {
       </div>
     );
   }
-};
-
-export default App;
+}
