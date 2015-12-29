@@ -72,7 +72,18 @@ export function numberWithCommas(number) {
 
 export function pipe(input, ...fs) {
   return fs.reduce(
-    ((nextInput, f) => f.call(null, nextInput)),
+    ((nextInput, f) => {
+      let result;
+
+      try {
+        if (nextInput.error) throw new Error();
+        result = f.call(null, nextInput);
+      } catch (ex) {
+        result = { error: true };
+      }
+
+      return result;
+    }),
     input
   );
 }

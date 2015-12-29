@@ -22,99 +22,36 @@ request('/src/data/functions.json', (err, res) => {
 const columnsToDisplay = COLUMN_NAMES.filter(name => name !== CODE && name !== DISABLES);
 columnsToDisplay.splice(1, 0, 'Function');
 
-export default class DisplayTable extends Component {
-  state = {
-    height: getTableHeight()
-  }
-
-  render() {
-    const { modules, serverID } = this.props;
-    const { height } = this.state;
-
-    return (!modules || !serverID) ? (
-      <span></span>
-    ) : (
-      <Paper zDepth={2} style={{ marginTop: '1rem', display: 'inline-block' }}>
-        <Table
-          ref="mainTable"
-          height={height}
-          selectable={false}
-          fixedHeader={true}
-        >
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow style={headerStyle}>
+export default ({ modules, serverID }) => (
+  (!modules || !serverID) ? (
+    <span></span>
+  ) : (
+    <Paper zDepth={2} style={{ marginTop: '1rem', display: 'inline-block' }}>
+      <Table selectable={false}>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+          <TableRow style={headerStyle}>
+            {columnsToDisplay.map((column, i) => (
+              <TableRowColumn style={{ overflow: 'visible', textAlign: 'center', whiteSpace: 'normal', fontSize: '1rem', padding: 0 }} key={i}>
+                {column}
+              </TableRowColumn>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody displayRowCheckbox={false}>
+          {modules.map((module, i) => (
+            <TableRow style={rowStyle(module)} key={i}>
               {columnsToDisplay.map((column, i) => (
-                <TableRowColumn style={{ overflow: 'visible', textAlign: 'center', whiteSpace: 'normal', fontSize: '1rem', padding: 0 }} key={i}>
-                  {column}
+                <TableRowColumn style={cellStyle(module, column)} key={i}>
+                  {cellContents(module, column)}
                 </TableRowColumn>
               ))}
             </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {modules.map((module, i) => (
-              <TableRow style={rowStyle(module)} key={i}>
-                {columnsToDisplay.map((column, i) => (
-                  <TableRowColumn style={cellStyle(module, column)} key={i}>
-                    {cellContents(module, column)}
-                  </TableRowColumn>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    );
-  }
-
-  componentDidMount() {
-    this.lastViewportHeight = window.innerHeight;
-    this.resizeListener = window.addEventListener('resize', this.onResize);
-
-    this.paper = findDOMNode(this);
-    this.tableBody = findDOMNode(this.refs.mainTable.refs.tableDiv);
-    this.tableBody.style.overflow = 'hidden';
-    window.tableBody = this.tableBody;
-    this.wasVisible = false;
-    this.scrollListener = window.addEventListener('scroll', this.onScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize, false)
-    window.removeEventListener('scroll', this.onScroll, false)
-  }
-
-  onScroll = () => {
-    console.timeStamp('scroll handler');
-    const elemBottom = this.paper.getBoundingClientRect().bottom;
-    const isVisible = elemBottom <= window.innerHeight;
-
-    if (isVisible && !this.wasVisible) {
-      console.log('trying to start scrolling');
-      this.wasVisible = true;
-      this.tableBody.style.overflow = 'inherit';
-    } else if (!isVisible && this.wasVisible) {
-      console.log('trying to stop scrolling');
-      this.wasVisible = false;
-      this.tableBody.style.overflow = 'hidden';
-    }
-    console.timeEnd('scroll handler');
-  }
-
-  onResize = () => {
-    if (this.lastViewportHeight !== window.innerHeight) {
-      this.setState({
-        height: getTableHeight()
-      });
-    }
-  }
-}
-
-function getTableHeight() {
-  const viewPortHeightPx = window.innerHeight;
-  const rootFontSizePx = parseInt(window.getComputedStyle(document.querySelector(':root')).fontSize)
-  const viewPortHeightRem = viewPortHeightPx / rootFontSizePx;
-  return (viewPortHeightRem - 10) + 'rem';
-}
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
+  )
+)
 
 function cellContents(module, column) {
   if (isDateField(column)) return formatDate(module[column]);

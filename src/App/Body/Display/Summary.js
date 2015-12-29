@@ -6,49 +6,45 @@ import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from 'data/columnNames';
 import { hasLetters, numberWithCommas } from 'util';
 
 export default ({ modules, serverID }) => (
-  (!modules || !serverID) ? (
-    <span></span>
-  ) : (
-    <Paper zDepth={2} style={{ marginTop: '1rem', padding: '1rem' }}>
-      <h2 style={{ marginTop: 0, color: '#00406E', textAlign: 'center' }}>Summary for License #{serverID}</h2>
-      <table style={{ borderStyle: 'hidden', borderCollapse: 'collapse', margin: '0 auto' }}>
-        <tbody>
-          {row(
-            'Server Type',
-            isEnterprise(modules) ? 'Enterprise' : 'Standard'
-          )}
-          {row(
-            'Page Volume (PPY)',
-            pageVolume(modules)
-          )}
-          {row(
-            'Advanced Recognition Volume',
-            advancedRecognitionVolume(modules)
-          )}
-          {row(
-            'Production Auto Learning',
-            productionAutoLearning(modules)
-          )}
-          {row(
-            'Attended Clients',
-            attendClients(modules)
-          )}
-          {row(
-            'ScanPlus (standard)',
-            scanPlus(modules, false)
-          )}
-          {row(
-            'ScanPlus (premium)',
-            scanPlus(modules, true)
-          )}
-          {row(
-            'Major Exporters',
-            majorExporters(modules)
-          )}
-        </tbody>
-      </table>
-    </Paper>
-  )
+  <Paper zDepth={2} style={{ marginTop: '1rem', padding: '1rem' }}>
+    <h2 style={{ marginTop: 0, color: '#00406E', textAlign: 'center' }}>Summary for License #{serverID}</h2>
+    <table style={{ borderStyle: 'hidden', borderCollapse: 'collapse', margin: '0 auto' }}>
+      <tbody>
+        {row(
+          'Server Type',
+          isEnterprise(modules) ? 'Enterprise' : 'Standard'
+        )}
+        {row(
+          'Page Volume (PPY)',
+          pageVolume(modules)
+        )}
+        {row(
+          'Advanced Recognition Volume',
+          advancedRecognitionVolume(modules)
+        )}
+        {row(
+          'Production Auto Learning',
+          productionAutoLearning(modules)
+        )}
+        {row(
+          'Attended Clients',
+          attendClients(modules)
+        )}
+        {row(
+          'ScanPlus (standard)',
+          scanPlus(modules, false)
+        )}
+        {row(
+          'ScanPlus (premium)',
+          scanPlus(modules, true)
+        )}
+        {row(
+          'Major Exporters',
+          majorExporters(modules)
+        )}
+      </tbody>
+    </table>
+  </Paper>
 );
 
 function row(title, value) {
