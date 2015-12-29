@@ -8,6 +8,7 @@ import Dialog from 'material-ui/lib/dialog';
 import TextField from 'material-ui/lib/text-field';
 
 import { processLicense, processPaste } from 'processor';
+import { version } from 'root/package.json';
 
 export default class InputOptions extends Component {
   state = {
@@ -61,7 +62,7 @@ export default class InputOptions extends Component {
           ]}
           onRequestClose={this.closeAboutModal}
         >
-          <p>CAPTIVA License Decoder (version 1.1)</p>
+          <p>CAPTIVA License Decoder (version {version})</p>
           <p>{'Concept and functionality by Jim Smith. Created and designed by '}
             <a href="https://www.linkedin.com/in/ksmithbaylor" target="_blank">
               Kevin Smith
