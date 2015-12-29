@@ -24,23 +24,22 @@ columnsToDisplay.splice(1, 0, 'Function');
 
 export default class DisplayTable extends Component {
   state = {
-    scrollingAllowed: false,
     height: getTableHeight()
   }
 
   render() {
     const { modules, serverID } = this.props;
-    const { scrollingAllowed, height } = this.state;
+    const { height } = this.state;
 
     return (!modules || !serverID) ? (
       <span></span>
     ) : (
       <Paper zDepth={2} style={{ marginTop: '1rem', display: 'inline-block' }}>
         <Table
+          ref="mainTable"
           height={height}
           selectable={false}
           fixedHeader={true}
-          bodyStyle={{ overflow: scrollingAllowed ? 'inherit' : 'hidden' }}
         >
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow style={headerStyle}>
@@ -72,6 +71,9 @@ export default class DisplayTable extends Component {
     this.resizeListener = window.addEventListener('resize', this.onResize);
 
     this.paper = findDOMNode(this);
+    this.tableBody = findDOMNode(this.refs.mainTable.refs.tableDiv);
+    this.tableBody.style.overflow = 'hidden';
+    window.tableBody = this.tableBody;
     this.wasVisible = false;
     this.scrollListener = window.addEventListener('scroll', this.onScroll);
   }
@@ -82,16 +84,20 @@ export default class DisplayTable extends Component {
   }
 
   onScroll = () => {
+    console.timeStamp('scroll handler');
     const elemBottom = this.paper.getBoundingClientRect().bottom;
     const isVisible = elemBottom <= window.innerHeight;
 
     if (isVisible && !this.wasVisible) {
+      console.log('trying to start scrolling');
       this.wasVisible = true;
-      this.setState({ scrollingAllowed: true });
+      this.tableBody.style.overflow = 'inherit';
     } else if (!isVisible && this.wasVisible) {
+      console.log('trying to stop scrolling');
       this.wasVisible = false;
-      this.setState({ scrollingAllowed: false });
+      this.tableBody.style.overflow = 'hidden';
     }
+    console.timeEnd('scroll handler');
   }
 
   onResize = () => {
@@ -138,6 +144,7 @@ function cellStyle(module, column) {
   return {
     whiteSpace: isIndented ? 'pre' : 'pre-wrap',
     overflow: 'visible',
+    height: '1.5rem',
     fontWeight: (column === VALID) ? 'bold' : 'inherit',
     textAlign: (column === CODE || column === NAME) ? 'left' : 'center',
     backgroundColor: (column === NAME) ? (
