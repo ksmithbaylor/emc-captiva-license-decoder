@@ -17,7 +17,7 @@ app.use(express.static('dist'));
 app.use(express.static('.'));
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'dev.html'));
 });
 
 const port = process.env.PORT || 3000;
