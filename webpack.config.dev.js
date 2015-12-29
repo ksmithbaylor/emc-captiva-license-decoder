@@ -20,7 +20,8 @@ module.exports = {
     alias: {
       data: __dirname + '/src/data',
       util: __dirname + '/src/util.js',
-      processor: __dirname + '/src/licenseProcessor.js'
+      processor: __dirname + '/src/licenseProcessor.js',
+      root: __dirname
     }
   },
   module: {
@@ -31,7 +32,7 @@ module.exports = {
     }, {
       test: /\.json$/,
       loaders: ['json'],
-      include: path.join(__dirname, 'src')
+      exclude: path.join(__dirname, 'node_modules')
     }]
   }
 };
