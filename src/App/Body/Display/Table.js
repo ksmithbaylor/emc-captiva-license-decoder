@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
+import request from 'superagent';
 
 import Paper from 'material-ui/lib/paper';
 import Table from 'material-ui/lib/table/table';
@@ -12,6 +13,14 @@ import TableRowColumn from 'material-ui/lib/table/table-row-column';
 
 import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate, numberWithCommas } from 'util';
 import COLUMN_NAMES, { VALID, NAME, CODE, DISABLES } from 'data/columnNames';
+
+let functions = {};
+request('/src/data/functions.json', (err, res) => {
+  functions = res.body;
+});
+
+const columnsToDisplay = COLUMN_NAMES.filter(name => name !== CODE && name !== DISABLES);
+columnsToDisplay.splice(1, 0, 'Function');
 
 export default class DisplayTable extends Component {
   state = {
@@ -35,7 +44,7 @@ export default class DisplayTable extends Component {
         >
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow style={headerStyle}>
-              {onlyCertainColumns.map((column, i) => (
+              {columnsToDisplay.map((column, i) => (
                 <TableRowColumn style={{ overflow: 'visible', textAlign: 'center', whiteSpace: 'normal', fontSize: '1rem', padding: 0 }} key={i}>
                   {column}
                 </TableRowColumn>
@@ -45,7 +54,7 @@ export default class DisplayTable extends Component {
           <TableBody displayRowCheckbox={false}>
             {modules.map((module, i) => (
               <TableRow style={rowStyle(module)} key={i}>
-                {onlyCertainColumns.map((column, i) => (
+                {columnsToDisplay.map((column, i) => (
                   <TableRowColumn style={cellStyle(module, column)} key={i}>
                     {cellContents(module, column)}
                   </TableRowColumn>
@@ -101,13 +110,11 @@ function getTableHeight() {
   return (viewPortHeightRem - 10) + 'rem';
 }
 
-const onlyCertainColumns = COLUMN_NAMES.filter(name => name !== CODE && name !== DISABLES);
-
 function cellContents(module, column) {
-  return isDateField(column) ? (
-    formatDate(module[column])
-  ) : (isUnlimited(column) && module[column] === '0') ?
-    'Unlimited' : numberWithCommas(module[column]);
+  if (isDateField(column)) return formatDate(module[column]);
+  if (isUnlimited(column) && module[column === '0']) return 'Unlimited';
+  if (column === 'Function') return functions[module[NAME]];
+  return numberWithCommas(module[column]);
 }
 
 const headerStyle = {
@@ -126,12 +133,15 @@ function rowStyle(module) {
 }
 
 function cellStyle(module, column) {
+  const isIndented = module[NAME].startsWith(' ');
+
   return {
-    whiteSpace: 'pre',
+    whiteSpace: isIndented ? 'pre' : 'pre-wrap',
+    overflow: 'visible',
     fontWeight: (column === VALID) ? 'bold' : 'inherit',
     textAlign: (column === CODE || column === NAME) ? 'left' : 'center',
     backgroundColor: (column === NAME) ? (
-      (module[NAME].startsWith(' ')) ? '#B6E0FE' : '#60B3EE'
+      isIndented ? '#B6E0FE' : '#60B3EE'
     ) : undefined,
     color: (column === NAME) ? '#000000' : undefined
   };

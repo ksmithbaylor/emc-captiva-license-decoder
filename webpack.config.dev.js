@@ -28,6 +28,10 @@ module.exports = {
       test: /\.js$/,
       loaders: ['babel?stage=0'],
       include: path.join(__dirname, 'src')
+    }, {
+      test: /\.json$/,
+      loaders: ['json'],
+      include: path.join(__dirname, 'src')
     }]
   }
 };

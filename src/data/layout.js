@@ -1,4 +1,4 @@
 export default {
   sideMargin: '4rem',
-  pageWidth: '960px'
+  pageWidth: '1024px'
 };
