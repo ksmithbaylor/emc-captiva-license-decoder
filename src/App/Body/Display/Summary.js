@@ -83,12 +83,14 @@ function pageVolume(modules) {
 }
 
 function advancedRecognitionVolume(modules) {
-  // TODO if 0, means unlimited for either one
   const classifs = modules.filter(withName('CLASSIF'));
   const extracts = modules.filter(withName('EXTRACT'));
+  const classifsSum = sumOf(PAGES, classifs);
+  const extractsSum = sumOf(PAGES, extracts);
+  const unlimited = classifsSum === 0 || extractsSum === 0;
 
   return (classifs.length > 0 || extracts.length > 0) ? (
-    Math.max(sumOf(PAGES, classifs), sumOf(PAGES, extracts))
+    unlimited ? 'Unlimited' : Math.max(classifsSum, extractsSum)
   ) : 0;
 }
 
