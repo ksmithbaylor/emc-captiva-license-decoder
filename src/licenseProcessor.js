@@ -13,7 +13,7 @@ const commonSteps = [
 
 export function processLicense(rawFile) {
   return {
-    serverID: getFileServerID(rawFile),
+    serverID: pipe(rawFile, getFileServerID),
     modules: pipe(
       rawFile,
       rawToLines,
@@ -27,7 +27,7 @@ export function processLicense(rawFile) {
 
 export function processPaste(pasted) {
   return {
-    serverID: getPastedServerID(pasted),
+    serverID: pipe(pasted, getPastedServerID),
     modules: pipe(
       pasted,
       onlyValidSection,
