@@ -85,19 +85,24 @@ export default class InputOptions extends Component {
           modal={false}
           onRequestClose={this.closePasteModal}
         >
-          While viewing the license in C4, press Ctrl+A and then Ctrl+C to
-          select all the text on the page. Then, press Ctrl+V in the text
-          box below.
+          While viewing the license in C4, press Ctrl+A (to select all text)
+          and then Ctrl+C (to copy to the clipboard).  Navigate to this
+          screen’s text box below, then press Ctrl-V (to paste the license
+          file into the box) and click the SUBMIT button below or press the
+          Enter key.
           <TextField
             ref="pasteInput"
             multiLine={true}
-            rows={3}
-            rowsMax={3}
+            rows={1}
+            rowsMax={5}
             fullWidth={true}
             onEnterKeyDown={this.receivePaste}
             autoFocus
+            hintText="Paste clipboard here"
+            hintStyle={{ marginLeft: '5px' }}
+            underlineStyle={{ bottom: 0, borderColor: '#a0a0a0' }}
             underlineFocusStyle={{ borderColor: '#2c95dd' }}
-            style={{ marginTop: '1rem', backgroundColor: '#f0f0f0' }}
+            style={{ marginTop: '1rem', border: '1px solid #a0a0a0', borderBottom: 'none', verticalAlign: 'top' }}
           />
         </Dialog>
       </div>
