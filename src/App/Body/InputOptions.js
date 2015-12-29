@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import request from 'superagent';
 
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -13,8 +12,7 @@ import { processLicense, processPaste } from 'processor';
 export default class InputOptions extends Component {
   state = {
     pasteModalOpen: false,
-    helpModalOpen: false,
-    helpText: null
+    aboutModalOpen: false
   }
 
   render() {
@@ -48,24 +46,27 @@ export default class InputOptions extends Component {
           </div>
         </Paper>
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <RaisedButton label="Display Help" onTouchTap={this.openHelpModal} />
+          <RaisedButton label="About" onTouchTap={this.openAboutModal} />
         </div>
         <Dialog
-          title="How to use this tool"
-          open={this.state.helpModalOpen}
+          title="About this tool"
+          open={this.state.aboutModalOpen}
           modal={false}
           actions={[
             <FlatButton
               label="OK"
               primary={true}
-              onTouchTap={this.closeHelpModal}
+              onTouchTap={this.closeAboutModal}
             />
           ]}
-          onRequestClose={this.closeHelpModal}
+          onRequestClose={this.closeAboutModal}
         >
-          <span style={{ whiteSpace: 'pre-wrap' }}>
-            {this.state.helpText ? this.state.helpText : 'Loading...'}
-          </span>
+          <p>CAPTIVA License Decoder (version 1.1)</p>
+          <p>{'Concept and functionality by Jim Smith. Created and designed by '}
+            <a href="https://www.linkedin.com/in/ksmithbaylor" target="_blank">
+              Kevin Smith
+            </a>.
+          </p>
         </Dialog>
         <Dialog
           title="Paste a license"
@@ -114,16 +115,12 @@ export default class InputOptions extends Component {
     this.fileReader.onload = event => setTimeout((() => this.props.newResults(
       processLicense(this.fileReader.result)
     )), 200);
-
-    request('/help.txt', (err, res) => {
-      this.setState({ helpText: res.text });
-    });
   }
 
   closePasteModal = () => this.setState({ pasteModalOpen: false })
   openPasteModal = () => this.setState({ pasteModalOpen: true })
-  closeHelpModal = () => this.setState({ helpModalOpen: false })
-  openHelpModal = () => this.setState({ helpModalOpen: true })
+  closeAboutModal = () => this.setState({ aboutModalOpen: false })
+  openAboutModal = () => this.setState({ aboutModalOpen: true })
 
   receiveFile = (event) => {
     if (event.target.files[0]) {
