@@ -5,3 +5,5 @@ html, body {
 body {
   font-family: "Roboto", sans-serif;
 }
+
+::-webkit-file-upload-button { cursor:pointer; }

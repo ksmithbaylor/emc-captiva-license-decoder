@@ -22,7 +22,12 @@ export default class InputOptions extends Component {
       <div>
         <Paper zDepth={2}>
           <div style={sectionStyle}>
-            <RaisedButton label="OPEN" primary={true} style={buttonStyle}>
+            <RaisedButton
+              label="OPEN"
+              primary={true}
+              linkButton={true}
+              style={buttonStyle}
+            >
               <input
                 type="file"
                 onChange={this.receiveFile}
@@ -134,6 +139,7 @@ const sectionStyle = {
 };
 
 const buttonStyle = {
+  textAlign: 'center',
   marginRight: '2rem'
 };
 
