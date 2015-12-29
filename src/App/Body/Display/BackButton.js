@@ -1,30 +1,24 @@
 import React from 'react';
 
 import RaisedButton from 'material-ui/lib/raised-button';
-import FontIcon from 'material-ui/lib/font-icon';
 
 export default ({ onTouchTap }) => (
   <RaisedButton
     label="BACK TO START"
     labelPosition="after"
-    labelStyle={labelStyle}
+    labelStyle={{ paddingLeft: '0.5rem', }}
     onTouchTap={onTouchTap}
   >
-    <FontIcon className="material-icons" style={iconStyle}>
-      chevron_left
-    </FontIcon>
+    <span style={iconStyle}>&lsaquo;</span>
   </RaisedButton>
 );
 
 const iconStyle = {
   height: '100%',
   display: 'inline-block',
-  verticalAlign: 'middle',
+  verticalAlign: 'top',
   padding: 0,
+  paddingLeft: '0.5rem',
   lineHeight: '2rem',
   fontSize: '2rem'
-};
-
-const labelStyle = {
-  paddingLeft: 0
 };

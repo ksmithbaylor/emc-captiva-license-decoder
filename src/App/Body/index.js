@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { pageWidth } from 'data/layout';
 
@@ -8,16 +8,16 @@ import FlatButton from 'material-ui/lib/flat-button';
 import InputOptions from './InputOptions';
 import Display from './Display';
 
-export default class Body extends Component {
+export default class Body extends React.Component {
   state = {
     showResults: false,
+    errorModalOpen: false,
     modules: null,
-    serverID: null,
-    errorModalOpen: false
+    serverID: null
   }
 
   render() {
-    const { modules, serverID, showResults } = this.state;
+    const { modules, serverID, showResults, errorModalOpen } = this.state;
 
     const viewMarkup = showResults ? (
       <Display
@@ -31,20 +31,29 @@ export default class Body extends Component {
       />
     );
 
+    const okButtonMarkup = (
+      <FlatButton
+        label="OK"
+        primary={true}
+        onTouchTap={this.closeErrorModal}
+      />
+    );
+
     return (
-      <div style={containerStyle}>
+      <div
+        style={{
+          width: pageWidth,
+          marginTop: '8rem',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}
+      >
         {viewMarkup}
         <Dialog
           title="Error"
-          open={this.state.errorModalOpen}
+          open={errorModalOpen}
           modal={false}
-          actions={[
-            <FlatButton
-              label="OK"
-              primary={true}
-              onTouchTap={this.closeErrorModal}
-            />
-          ]}
+          actions={ [okButtonMarkup] }
           onRequestClose={this.closeErrorModal}
         >
           The input was invalid.
@@ -69,10 +78,3 @@ export default class Body extends Component {
     this.setState({ errorModalOpen: false });
   }
 }
-
-const containerStyle = {
-  width: pageWidth,
-  marginTop: '8rem',
-  marginLeft: 'auto',
-  marginRight: 'auto'
-};
