@@ -5,7 +5,6 @@ import Paper from 'material-ui/lib/paper';
 import Row from './Row';
 
 import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from 'data/columnNames';
-import { hasLetters, numberWithCommas } from 'util';
 
 export default ({ modules, serverID }) => (
   <Paper zDepth={2} style={containerStyle}>

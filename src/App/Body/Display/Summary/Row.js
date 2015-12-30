@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { hasLetters, numberWithCommas } from 'util';
+
 export default ({ title, value }) => (
   <tr style={rowStyle}>
     <td style={titleStyle}>

@@ -11,7 +11,7 @@ export default ({ open, closeMe }) => (
       <FlatButton
         label="OK"
         primary={true}
-        onTouchTap={this.closeErrorModal}
+        onTouchTap={closeMe}
       />
     ]}
     modal={false}
