@@ -1,4 +1,4 @@
-import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, NAME, PAGES } from 'data/columnNames';
+import allColumns, { dateFields, NAME, PAGES } from 'data/columnNames';
 import { zipObject, pipe, member, sortBy, hasLetters, lowerCaseEqual } from 'util';
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -99,13 +99,13 @@ function removeHeaderLine(grid) {
 // Common steps used by both file and pasted input
 
 function rowsZippedWithColumns(grid) {
-  return grid.map(row => zipObject(COLUMN_NAMES, row));
+  return grid.map(row => zipObject(allColumns, row));
 }
 
 function dateFieldsConverted(modules) {
   return modules.map(module => ({
     ...module,
-    ...[VALID, ENTER_BY, ISSUED].reduce(
+    ...dateFields.reduce(
       (obj, field) => ({
         ...obj,
         [field]: parseDateField(module[field])
