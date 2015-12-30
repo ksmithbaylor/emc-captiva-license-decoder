@@ -2,62 +2,60 @@ import React from 'react';
 
 import Paper from 'material-ui/lib/paper';
 
+import Row from './Row';
+
 import { NAME, CONNECTIONS, PAGES, FEATURES, VALID } from 'data/columnNames';
 import { hasLetters, numberWithCommas } from 'util';
 
 export default ({ modules, serverID }) => (
-  <Paper zDepth={2} style={{ marginTop: '1rem', padding: '1rem' }}>
-    <h2 style={{ marginTop: 0, color: '#00406E', textAlign: 'center' }}>Summary for License #{serverID}</h2>
-    <table style={{ borderStyle: 'hidden', borderCollapse: 'collapse', margin: '0 auto' }}>
+  <Paper zDepth={2} style={containerStyle}>
+    <h2 style={headerStyle}>
+      Summary for License #{serverID}
+    </h2>
+    <table style={tableStyle}>
       <tbody>
-        {row(
-          'Server Type',
-          isEnterprise(modules) ? 'Enterprise' : 'Standard'
-        )}
-        {row(
-          'Page Volume (PPY)',
-          pageVolume(modules)
-        )}
-        {row(
-          'Advanced Recognition Volume',
-          advancedRecognitionVolume(modules)
-        )}
-        {row(
-          'Production Auto Learning',
-          productionAutoLearning(modules)
-        )}
-        {row(
-          'Attended Clients',
-          attendClients(modules)
-        )}
-        {row(
-          'ScanPlus (standard)',
-          scanPlus(modules, false)
-        )}
-        {row(
-          'ScanPlus (premium)',
-          scanPlus(modules, true)
-        )}
-        {row(
-          'Major Exporters',
-          majorExporters(modules)
-        )}
+        {rows(modules)}
       </tbody>
     </table>
   </Paper>
 );
 
-function row(title, value) {
-  return (
-    <tr style={{ border: '1px solid #e0e0e0' }}>
-      <td style={{ fontWeight: 'bold', verticalAlign: 'top', padding: '0.25rem 1rem' }}>
-        {title}:
-      </td>
-      <td style={{ padding: '0.25rem 1rem' }}>
-        {hasLetters(value) ? value : numberWithCommas(value)}
-      </td>
-    </tr>
-  );
+const containerStyle = {
+  marginTop: '1rem',
+  padding: '1rem'
+};
+
+const headerStyle = {
+  marginTop: 0,
+  color: '#00406E',
+  textAlign: 'center'
+};
+
+const tableStyle = {
+  borderStyle: 'hidden',
+  borderCollapse: 'collapse',
+  margin: '0 auto'
+};
+
+function rows(modules) {
+  const rowData = {
+    'Server Type': isEnterprise(modules) ? 'Enterprise' : 'Standard',
+    'Page Volume (PPY)': pageVolume(modules),
+    'Advanced Recognition Volume': advancedRecognitionVolume(modules),
+    'Production Auto Learning': productionAutoLearning(modules),
+    'Attended Clients': attendClients(modules),
+    'ScanPlus (standard)': scanPlus(modules, false),
+    'ScanPlus (premium)': scanPlus(modules, true),
+    'Major Exporters': majorExporters(modules)
+  };
+
+  return Object.keys(rowData).map((title, i) => (
+    <Row
+      title={title}
+      value={rowData[title]}
+      key={i}
+    />
+  ));
 }
 
 function isEnterprise(modules) {
@@ -105,9 +103,10 @@ function scanPlus(modules, premium) {
 
   return unlimited ? 'Unlimited' : sumOf(
     CONNECTIONS,
-    modules.filter(withName('SCANPLUS'))
-           .filter(notExpired)
-           .filter(withFeature(premium ? 'D' : 'C'))
+    modules
+      .filter(withName('SCANPLUS'))
+      .filter(notExpired)
+      .filter(withFeature(premium ? 'D' : 'C'))
   );
 }
 
@@ -121,12 +120,11 @@ function majorExporters(modules) {
     'SAP Archive and AP Connect': [ 'EXSAPAL', 'ASISAP' ]
   };
 
-
   return Object.keys(exporterMappings).filter(exporter => (
     exporterMappings[exporter].some(name => (
       modules.find(withName(name))
     ))
-  )).map((str, i) => <div key={i}>{str}</div>)
+  )).map((str, i) => <div key={i}>{str}</div>);
 }
 
 function withName(name) {
@@ -138,7 +136,9 @@ function withFeature(code) {
 }
 
 function sumOf(column, modules) {
-  return modules.map(module => parseInt(module[column])).reduce((a, b) => a + b, 0);
+  return modules
+    .map(module => parseInt(module[column]))
+    .reduce((a, b) => a + b, 0);
 }
 
 function notExpired(module) {
