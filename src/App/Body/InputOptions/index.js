@@ -4,18 +4,17 @@ import Divider from 'material-ui/lib/divider';
 import FileInput from './FileInput';
 import PasteInput from './PasteInput';
 
-// TODO: rename newResults to requestResults
 // TODO: rename as Inputs
-export default function InputOptions({ newResults }) {
+export default function InputOptions({ requestResults }) {
   return (
     <Paper zDepth={2}>
       <FileInput
-        requestResults={newResults}
+        requestResults={requestResults}
         styles={{ sectionStyle, buttonStyle }}
       />
       <Divider />
       <PasteInput
-        requestResults={newResults}
+        requestResults={requestResults}
         styles={{ sectionStyle, buttonStyle }}
       />
     </Paper>

@@ -23,7 +23,7 @@ export default class Body extends React.Component {
         backToStart={this.backToStart}
       />
     ) : (
-      <InputOptions newResults={this.handleNewResults} />
+      <InputOptions requestResults={this.handleNewResults} />
     );
 
     return (
