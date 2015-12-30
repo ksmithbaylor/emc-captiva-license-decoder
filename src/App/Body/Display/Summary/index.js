@@ -2,7 +2,7 @@ import React from 'react';
 
 import Paper from 'material-ui/lib/paper';
 
-import Rows from './Rows';
+import SummaryBody from './SummaryBody';
 
 export default ({ modules, serverID }) => (
   <Paper zDepth={2} style={containerStyle}>
@@ -10,9 +10,7 @@ export default ({ modules, serverID }) => (
       Summary for License #{serverID}
     </h2>
     <table style={tableStyle}>
-      <tbody>
-        <Rows modules={modules} />
-      </tbody>
+      <SummaryBody modules={modules} />
     </table>
   </Paper>
 );
