@@ -2,7 +2,6 @@ import React from 'react';
 import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 
-// TODO: press enter to close
 // TODO: convert all arrow-function exports to named functions
 export default ({ open, closeMe }) => {
   const okButton = (
