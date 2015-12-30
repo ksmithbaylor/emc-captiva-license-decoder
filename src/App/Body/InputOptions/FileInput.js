@@ -16,7 +16,7 @@ export default class FileInput extends React.Component {
         >
           <input
             type="file"
-            onChange={this.receiveFile}
+            onChange={this.onChange}
             style={invisibleFileInputStyle}
           />
         </RaisedButton>
@@ -25,18 +25,28 @@ export default class FileInput extends React.Component {
     );
   }
 
-  // TODO: make timeout a constant
   componentDidMount() {
     this.fileReader = new FileReader();
-    this.fileReader.onload = event => setTimeout((() => this.props.requestResults(
-      processLicense(this.fileReader.result)
-    )), 200);
+    this.fileReader.addEventListener('load', this.handleNewFile);
   }
 
-  receiveFile = (event) => {
+  componentWillUnmount() {
+    this.fileReader.removeEventListener('load', this.handleNewFile);
+  }
+
+  onChange = (event) => {
     if (event.target.files[0]) {
       this.fileReader.readAsText(event.target.files[0])
     }
+  }
+
+  handleNewFile = (event) => {
+    // TODO: make timeout a constant
+    setTimeout((() => (
+      this.props.requestResults(
+        processLicense(this.fileReader.result)
+      )
+    )), 200)
   }
 }
 
