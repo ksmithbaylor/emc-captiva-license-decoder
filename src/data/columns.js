@@ -1,8 +1,8 @@
 export const NAME = 'Module Name';
 export const FUNCTION = 'Function';
 export const CONNECTIONS = 'Connections / Group';
-export const PAGES  = 'Pages / Group';
-export const VALID  = 'Valid Until';
+export const PAGES = 'Pages / Group';
+export const VALID = 'Valid Until';
 export const ENTER_BY = 'Install By';
 export const FEATURES = 'Feature Codes';
 export const ISSUED = 'Issue Date';

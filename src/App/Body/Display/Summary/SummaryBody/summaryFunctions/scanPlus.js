@@ -2,8 +2,8 @@ import { withName, withFeature, sumOf, notExpired } from './shared';
 import { CONNECTIONS } from 'data/columns';
 
 export default function scanPlus(modules, premium) {
-  const unlimited = modules.some(m => (
-    withName('SCANPLUS')(m) && m[CONNECTIONS] == '0'
+  const unlimited = modules.some(module => (
+    withName('SCANPLUS')(module) && module[CONNECTIONS] === '0'
   ));
 
   return unlimited

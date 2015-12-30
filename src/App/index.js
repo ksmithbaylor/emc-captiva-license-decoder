@@ -8,7 +8,7 @@ import Body from './Body';
 @ThemeDecorator(ThemeManager.getMuiTheme({
   palette: { accent1Color: colors.emc.blue.logo }
 }))
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <div>
@@ -18,3 +18,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;

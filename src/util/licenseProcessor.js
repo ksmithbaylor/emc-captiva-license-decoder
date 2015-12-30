@@ -62,9 +62,9 @@ function linesToGrid(lines) {
 }
 
 function onlyRowsOfLength(length) {
-  return function (grid) {
+  return function onlyRowsOfCertainLength(grid) {
     return grid.filter(row => row.length === length);
-  }
+  };
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ function onlyValidSection(pasted) {
 }
 
 function replaceTabsWithSemicolons(lines) {
-  return lines.map(line => line.replace(new RegExp('\t', 'g'), ';'));
+  return lines.map(line => line.replace(/\t/g, ';'));
 }
 
 function correctPastedColumnOrder(grid) {
@@ -131,10 +131,10 @@ function correctlyOrdered(modules) {
 
 function groupModulesReducer({ orderedModules, skipped }, __, _, allModules) {
   const pairs = allModules.map((module, index) => [module, index]);
-  const nonSkipped = pairs.filter(([module, index]) => !member(skipped, index));
+  const nonSkipped = pairs.filter(([_, index]) => !member(skipped, index));
 
   // Parent: First module with a numeric PAGES column
-  const [parentModule, parentIndex] = nonSkipped.find(([module, index]) => !hasLetters(module[PAGES])) || [undefined, undefined];
+  const [parentModule, parentIndex] = nonSkipped.find(([module, _]) => !hasLetters(module[PAGES])) || [undefined, undefined];
 
   // Siblings: All modules with the same NAME as the parent and numeric PAGES column
   const siblings = parentModule !== undefined ? nonSkipped.filter(([module, index]) => (
@@ -146,7 +146,7 @@ function groupModulesReducer({ orderedModules, skipped }, __, _, allModules) {
   // Children: All modules with a PAGES column identical to the parent's NAME and not already in the siblings
   const children = parentModule !== undefined ? nonSkipped.filter(([module, index]) => (
     index !== parentIndex
-    && !member(siblings.map(([module, i]) => i), index)
+    && !member(siblings.map(([_, i]) => i), index)
     && lowerCaseEqual(module[PAGES], parentModule[NAME])
   )) : [];
 
@@ -154,14 +154,14 @@ function groupModulesReducer({ orderedModules, skipped }, __, _, allModules) {
     orderedModules: [
       ...orderedModules,
       ...(parentModule !== undefined ? [parentModule] : []),
-      ...siblings.map(([module, index]) => module),
-      ...children.map(([module, index]) => indentedModule(module))
+      ...siblings.map(([module, _]) => module),
+      ...children.map(([module, _]) => indentedModule(module))
     ],
     skipped: [
       ...skipped,
       ...(parentIndex !== undefined ? [parentIndex] : []),
-      ...siblings.map(([module, index]) => index),
-      ...children.map(([module, index]) => index)
+      ...siblings.map(([_, index]) => index),
+      ...children.map(([_, index]) => index)
     ]
   };
 }

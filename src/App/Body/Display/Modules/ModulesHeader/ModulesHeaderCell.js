@@ -1,6 +1,5 @@
 import React from 'react';
 import colors from 'data/colors';
-import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 
 export default function ModulesHeaderCell({ column }) {

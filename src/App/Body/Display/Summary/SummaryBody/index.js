@@ -14,7 +14,7 @@ export default function SummaryBody({ modules }) {
       {rows}
     </tbody>
   );
-};
+}
 
 const rowDataFor = modules => ({
   'Server Type': S.isEnterprise(modules) ? 'Enterprise' : 'Standard',

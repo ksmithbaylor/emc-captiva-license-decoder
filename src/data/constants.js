@@ -1,4 +1,2 @@
-export default {
-  pageWidth: '1024px',
-  processingDelay: 200 // ms
-};
+export const pageWidth = '1024px';
+export const processingDelay = 200;

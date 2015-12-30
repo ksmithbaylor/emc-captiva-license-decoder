@@ -6,23 +6,27 @@ import Dialog from 'material-ui/lib/dialog';
 import PasteTextField from './PasteTextField';
 
 export default class PasteHandler extends React.Component {
-  render() {
-    const { open, closeMe } = this.props;
+  static propTypes = {
+    open: React.PropTypes.bool.isRequired,
+    closeMe: React.PropTypes.func.isRequired,
+    requestResults: React.PropTypes.func.isRequired
+  }
 
+  render() {
     const cancelButton = (
-      <FlatButton label="Cancel" primary={true} onTouchTap={closeMe} />
+      <FlatButton label="Cancel" primary onTouchTap={this.props.closeMe} />
     );
 
     const submitButton = (
-      <FlatButton label="Submit" primary={true} onTouchTap={this.handlePaste} />
+      <FlatButton label="Submit" primary onTouchTap={this.handlePaste} />
     );
 
     return (
       <Dialog
         title="Paste a license"
-        open={open}
-        actions={[ cancelButton, submitButton ]}
-        onRequestClose={closeMe}
+        open={this.props.open}
+        actions={[cancelButton, submitButton]}
+        onRequestClose={this.props.closeMe}
         modal={false}
       >
         While viewing the license in C4, press Ctrl+A (to select all text)
@@ -35,12 +39,12 @@ export default class PasteHandler extends React.Component {
     );
   }
 
-  handlePaste = (event) => {
+  handlePaste = () => {
     this.props.closeMe();
-    setTimeout((() => {
+    setTimeout(() => {
       this.props.requestResults(
         processLicensePaste(this.refs.textField.refs.pasteInput.getValue())
-      )
-    }), processingDelay);
+      );
+    }, processingDelay);
   }
 }

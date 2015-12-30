@@ -6,7 +6,7 @@ export default function ErrorDialog({ open, closeMe }) {
   const okButton = (
     <FlatButton
       label="OK"
-      primary={true}
+      primary
       onTouchTap={closeMe}
     />
   );
@@ -15,7 +15,7 @@ export default function ErrorDialog({ open, closeMe }) {
     <Dialog
       title="Error"
       open={open}
-      actions={[ okButton ]}
+      actions={[okButton]}
       modal={false}
       onRequestClose={closeMe}
     >
