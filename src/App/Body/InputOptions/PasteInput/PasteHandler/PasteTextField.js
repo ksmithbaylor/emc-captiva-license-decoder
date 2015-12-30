@@ -1,23 +1,25 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 
-export default function PasteTextField({ onEnterKeyDown }) {
-  return (
-    <TextField
-      autoFocus
-      hintText="Paste clipboard here"
-      onEnterKeyDown={onEnterKeyDown}
-      ref="pasteInput"
-      multiLine={true}
-      rows={1}
-      rowsMax={5}
-      fullWidth={true}
-      style={textFieldStyle}
-      underlineStyle={underlineStyle}
-      underlineFocusStyle={underlineFocusStyle}
-      hintStyle={hintStyle}
-    />
-  );
+export default class PasteTextField extends React.Component {
+  render() {
+    return (
+      <TextField
+        autoFocus
+        ref="pasteInput"
+        hintText="Paste clipboard here"
+        onEnterKeyDown={this.props.onEnterKeyDown}
+        multiLine={true}
+        rows={1}
+        rowsMax={5}
+        fullWidth={true}
+        style={textFieldStyle}
+        underlineStyle={underlineStyle}
+        underlineFocusStyle={underlineFocusStyle}
+        hintStyle={hintStyle}
+      />
+    );
+  }
 }
 
 const textFieldStyle = {
