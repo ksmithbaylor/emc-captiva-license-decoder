@@ -9,9 +9,17 @@ import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate, numberWithC
 import COLUMN_NAMES, { VALID, NAME, CODE, DISABLES } from 'data/columnNames';
 
 export default function ModulesBody({ modules, columns }) {
+  const rows = modules.map((module, i) => (
+    <ModuleRow
+      module={module}
+      columns={columns}
+      key={i}
+    />
+  ));
+
   return (
     <TableBody displayRowCheckbox={false}>
-      {modules.map(row.bind(null, columns))}
+      {rows}
     </TableBody>
   );
 }
@@ -19,9 +27,9 @@ export default function ModulesBody({ modules, columns }) {
 // For material-ui (expects a TableBody inside Table)
 ModulesBody.displayName = 'TableBody';
 
-function row(columns, module, i) {
+function ModuleRow({ module, columns }) {
   return (
-    <TableRow style={rowStyle(module)} key={i}>
+    <TableRow style={rowStyle(module)}>
       {columns.map(cell.bind(null, module))}
     </TableRow>
   );
