@@ -2,6 +2,7 @@ import React from 'react';
 import { processPaste } from 'processor';
 import FlatButton from 'material-ui/lib/flat-button';
 import Dialog from 'material-ui/lib/dialog';
+import PasteTextField from './PasteTextField';
 
 export default class PasteHandler extends React.Component {
   render() {
