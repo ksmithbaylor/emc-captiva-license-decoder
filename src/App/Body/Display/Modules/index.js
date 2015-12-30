@@ -6,10 +6,10 @@ import Paper from 'material-ui/lib/paper';
 import Table from 'material-ui/lib/table/table';
 import TableBody from 'material-ui/lib/table/table-body';
 import TableFooter from 'material-ui/lib/table/table-footer';
-import TableHeader from 'material-ui/lib/table/table-header';
-import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
+
+import ModulesHeader from './ModulesHeader';
 
 import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate, numberWithCommas } from 'util';
 import COLUMN_NAMES, { VALID, NAME, CODE, DISABLES } from 'data/columnNames';
@@ -25,15 +25,7 @@ columnsToDisplay.splice(1, 0, 'Function');
 export default ({ modules, serverID }) => (
   <Paper zDepth={2} style={{ marginTop: '1rem', display: 'inline-block' }}>
     <Table selectable={false}>
-      <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-        <TableRow style={headerStyle}>
-          {columnsToDisplay.map((column, i) => (
-            <TableRowColumn style={{ overflow: 'visible', textAlign: 'center', whiteSpace: 'normal', fontSize: '1rem', padding: 0 }} key={i}>
-              {column}
-            </TableRowColumn>
-          ))}
-        </TableRow>
-      </TableHeader>
+      <ModulesHeader columns={columnsToDisplay} />
       <TableBody displayRowCheckbox={false}>
         {modules.map((module, i) => (
           <TableRow style={rowStyle(module)} key={i}>
@@ -55,11 +47,6 @@ function cellContents(module, column) {
   if (column === 'Function') return functions[module[NAME]];
   return numberWithCommas(module[column]);
 }
-
-const headerStyle = {
-  backgroundColor: '#00406E',
-  color: '#ffffff'
-};
 
 function rowStyle(module) {
   return isExpired(module) ? {

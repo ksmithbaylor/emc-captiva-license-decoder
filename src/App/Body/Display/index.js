@@ -4,7 +4,7 @@ import Divider from 'material-ui/lib/divider';
 
 import BackButton from './BackButton';
 import Summary from './Summary';
-import Table from './Table';
+import Modules from './Modules';
 
 export default ({ modules, serverID, backToStart }) => (
   <div>
@@ -12,6 +12,6 @@ export default ({ modules, serverID, backToStart }) => (
     <br /><br />
     <Divider />
     <Summary modules={modules} serverID={serverID} />
-    <Table modules={modules} serverID={serverID} />
+    <Modules modules={modules} serverID={serverID} />
   </div>
 );
