@@ -1,44 +1,17 @@
 import React from 'react';
 import request from 'superagent';
 
-import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 
-import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate, numberWithCommas } from 'util';
-import COLUMN_NAMES, { VALID, NAME, CODE, DISABLES } from 'data/columnNames';
+import { isUnlimited, isDateField, formatDate, numberWithCommas } from 'util';
+import { VALID, NAME, CODE } from 'data/columnNames';
 
-export default function ModuleRow({ module, columns }) {
-  const cells = columns.map((column, i) => (
-    <ModuleCell
-      module={module}
-      column={column}
-      key={i}
-    />
-  ));
-
-  return (
-    <TableRow style={rowStyle(module)}>
-      {cells}
-    </TableRow>
-  );
-}
-
-function ModuleCell({ module, column }) {
+export default function ModuleCell({ module, column }) {
   return (
     <TableRowColumn style={cellStyle(module, column)}>
       {cellContents(module, column)}
     </TableRowColumn>
   );
-}
-
-function rowStyle(module) {
-  return isExpired(module) ? {
-    color: '#B71C1C',
-    backgroundColor: '#FFCDD2'
-  } : hasExpiry(module) ? {
-    color: '#1B5E20',
-    backgroundColor: '#C8E6C9'
-  } : {};
 }
 
 function cellStyle(module, column) {
