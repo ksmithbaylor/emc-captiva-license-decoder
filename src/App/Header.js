@@ -2,7 +2,7 @@ import React from 'react';
 
 import Paper from 'material-ui/lib/paper';
 
-import { sideMargin, pageWidth } from 'data/layout';
+import { pageWidth } from 'data/layout';
 
 export default () => (
   <Paper rounded={false} zDepth={1} style={barStyle}>
