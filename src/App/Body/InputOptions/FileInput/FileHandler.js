@@ -1,6 +1,9 @@
 import React from 'react';
 import { processLicense } from 'processor';
 
+let fileReader;
+
+// TODO: import only what's needed from React and other packages
 export default class FileHandler extends React.Component {
   render() {
     return (
@@ -13,17 +16,17 @@ export default class FileHandler extends React.Component {
   }
 
   componentDidMount() {
-    this.fileReader = new FileReader();
-    this.fileReader.addEventListener('load', this.handleNewFile);
+    fileReader = new FileReader();
+    fileReader.addEventListener('load', this.handleNewFile);
   }
 
   componentWillUnmount() {
-    this.fileReader.removeEventListener('load', this.handleNewFile);
+    fileReader.removeEventListener('load', this.handleNewFile);
   }
 
   onChange = (event) => {
     if (event.target.files[0]) {
-      this.fileReader.readAsText(event.target.files[0])
+      fileReader.readAsText(event.target.files[0])
     }
   }
 
