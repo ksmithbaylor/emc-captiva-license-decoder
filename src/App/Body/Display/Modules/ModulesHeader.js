@@ -8,12 +8,8 @@ import TableRowColumn from 'material-ui/lib/table/table-row-column';
 export default function ModulesHeader({ columns }) {
   return (
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-      <TableRow style={headerStyle}>
-        {columns.map((column, i) => (
-          <TableRowColumn style={cellStyle} key={i}>
-            {column}
-          </TableRowColumn>
-        ))}
+      <TableRow style={rowStyle}>
+        {columns.map(cell)}
       </TableRow>
     </TableHeader>
   );
@@ -22,7 +18,15 @@ export default function ModulesHeader({ columns }) {
 // For material-ui (expects a TableHeader inside Table)
 ModulesHeader.displayName = 'TableHeader';
 
-const headerStyle = {
+function cell(column, i) {
+  return (
+    <TableRowColumn style={cellStyle} key={i}>
+      {column}
+    </TableRowColumn>
+  );
+}
+
+const rowStyle = {
   backgroundColor: '#00406E',
   color: '#ffffff'
 };
