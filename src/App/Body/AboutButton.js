@@ -19,7 +19,7 @@ export default class AboutButton extends React.Component {
     );
 
     return (
-      <div style={containerStyle}>
+      <div style={style.container}>
         <RaisedButton
           label="About"
           onTouchTap={this.openDialog}
@@ -47,7 +47,9 @@ export default class AboutButton extends React.Component {
   openDialog = () => this.setState({ dialogIsOpen: true })
 }
 
-const containerStyle = {
-  margin: '2rem 0',
-  textAlign: 'center'
+const style = {
+  container: {
+    margin: '2rem 0',
+    textAlign: 'center'
+  }
 };

@@ -5,17 +5,19 @@ import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 
 export default function ModulesHeaderCell({ column }) {
   return (
-    <TableHeaderColumn style={cellStyle}>
+    <TableHeaderColumn style={style.cell}>
       {column}
     </TableHeaderColumn>
   );
 }
 
-const cellStyle = {
-  overflow: 'visible',
-  textAlign: 'center',
-  whiteSpace: 'normal',
-  fontSize: '1rem',
-  color: colors.white,
-  padding: 0
+const style = {
+  cell: {
+    overflow: 'visible',
+    textAlign: 'center',
+    whiteSpace: 'normal',
+    fontSize: '1rem',
+    color: colors.white,
+    padding: 0
+  }
 };

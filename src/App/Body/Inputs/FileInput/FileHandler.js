@@ -4,11 +4,10 @@ import { processingDelay } from 'data/constants';
 
 let fileReader;
 
-// TODO: import only what's needed from React and other packages
 export default class FileHandler extends React.Component {
   render() {
     return (
-      <input type="file" onChange={this.onChange} style={fileInputStyle} />
+      <input type="file" onChange={this.onChange} style={style.fileInput} />
     );
   }
 
@@ -36,13 +35,15 @@ export default class FileHandler extends React.Component {
   }
 }
 
-const fileInputStyle = {
-  opacity: 0,
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  cursor: 'pointer',
-  position: 'absolute',
-  width: '100%'
+const style = {
+  fileInput: {
+    opacity: 0,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    cursor: 'pointer',
+    position: 'absolute',
+    width: '100%'
+  }
 };

@@ -7,7 +7,7 @@ import ModulesBody from './ModulesBody';
 
 export default function Modules({ modules }) {
   return (
-    <Paper zDepth={2} style={containerStyle}>
+    <Paper zDepth={2} style={style.container}>
       <Table selectable={false}>
         <ModulesHeader columns={columnsToDisplay} />
         <ModulesBody columns={columnsToDisplay} modules={modules} />
@@ -16,7 +16,9 @@ export default function Modules({ modules }) {
   );
 }
 
-const containerStyle = {
-  marginTop: '1rem',
-  display: 'inline-block'
+const style = {
+  container: {
+    marginTop: '1rem',
+    display: 'inline-block'
+  }
 };

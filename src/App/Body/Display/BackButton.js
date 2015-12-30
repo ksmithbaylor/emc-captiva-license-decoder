@@ -6,20 +6,25 @@ export default function BackButton({ goBack }) {
     <RaisedButton
       label="BACK TO START"
       labelPosition="after"
-      labelStyle={{ paddingLeft: '0.5rem', }}
+      labelStyle={style.label}
       onTouchTap={goBack}
     >
-      <span style={iconStyle}>&lsaquo;</span>
+      <span style={style.icon}>&lsaquo;</span>
     </RaisedButton>
   );
 }
 
-const iconStyle = {
-  height: '100%',
-  display: 'inline-block',
-  verticalAlign: 'top',
-  padding: 0,
-  paddingLeft: '0.5rem',
-  lineHeight: '2rem',
-  fontSize: '2rem'
+const style = {
+  label: {
+    paddingLeft: '0.5rem'
+  },
+  icon: {
+    height: '100%',
+    display: 'inline-block',
+    verticalAlign: 'top',
+    padding: 0,
+    paddingLeft: '0.5rem',
+    lineHeight: '2rem',
+    fontSize: '2rem'
+  }
 };

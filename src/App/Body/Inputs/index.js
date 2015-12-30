@@ -5,26 +5,23 @@ import FileInput from './FileInput';
 import PasteInput from './PasteInput';
 
 export default function Inputs({ requestResults }) {
+  const inputProps = { requestResults, style };
+
   return (
     <Paper zDepth={2}>
-      <FileInput
-        requestResults={requestResults}
-        styles={{ sectionStyle, buttonStyle }}
-      />
+      <FileInput {...inputProps} />
       <Divider />
-      <PasteInput
-        requestResults={requestResults}
-        styles={{ sectionStyle, buttonStyle }}
-      />
+      <PasteInput {...inputProps} />
     </Paper>
   );
 }
 
-const sectionStyle = {
-  padding: '2rem'
-};
-
-const buttonStyle = {
-  textAlign: 'center',
-  marginRight: '2rem'
+const style = {
+  section: {
+    padding: '2rem'
+  },
+  button: {
+    textAlign: 'center',
+    marginRight: '2rem'
+  }
 };

@@ -14,32 +14,30 @@ export default class PasteTextField extends React.Component {
         rows={1}
         rowsMax={5}
         fullWidth={true}
-        style={textFieldStyle}
-        underlineStyle={underlineStyle}
-        underlineFocusStyle={underlineFocusStyle}
-        hintStyle={hintStyle}
+        style={style.textField}
+        underlineStyle={style.underline}
+        underlineFocusStyle={style.underlineFocus}
+        hintStyle={style.hint}
       />
     );
   }
 }
 
-const textFieldStyle = {
-  marginTop: '1rem',
-  border: `1px solid ${colors.grey.medium}`,
-  borderBottom: 'none',
-  verticalAlign: 'top'
-};
-
-// TODO: make a single style object for all components
-const underlineStyle = {
-  bottom: 0,
-  borderColor: colors.grey.medium
-};
-
-const underlineFocusStyle = {
-  borderColor: colors.emc.blue.logo
-};
-
-const hintStyle = {
-  marginLeft: '5px'
+const style = {
+  textField: {
+    marginTop: '1rem',
+    border: `1px solid ${colors.grey.medium}`,
+    borderBottom: 'none',
+    verticalAlign: 'top'
+  },
+  underline: {
+    bottom: 0,
+    borderColor: colors.grey.medium
+  },
+  underlineFocus: {
+    borderColor: colors.emc.blue.logo
+  },
+  hint: {
+    marginLeft: '5px'
+  }
 };

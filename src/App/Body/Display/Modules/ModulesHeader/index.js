@@ -14,13 +14,15 @@ export default function ModulesHeader({ columns }) {
 
   return (
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-      <TableRow style={rowStyle}>
+      <TableRow style={style.row}>
         {cells}
       </TableRow>
     </TableHeader>
   );
 }
 
-const rowStyle = {
-  backgroundColor: colors.emc.blue.dark
+const style = {
+  row: {
+    backgroundColor: colors.emc.blue.dark
+  }
 };

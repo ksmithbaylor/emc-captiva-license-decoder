@@ -27,7 +27,7 @@ export default class Body extends React.Component {
     );
 
     return (
-      <div style={containerStyle}>
+      <div style={style.container}>
         {mainViewMarkup}
         <AboutButton />
         <ErrorDialog open={errorDialogOpen} closeMe={this.closeErrorDialog} />
@@ -47,9 +47,11 @@ export default class Body extends React.Component {
   }
 }
 
-const containerStyle = {
-  width: pageWidth,
-  marginTop: '8rem',
-  marginLeft: 'auto',
-  marginRight: 'auto'
+const style = {
+  container: {
+    width: pageWidth,
+    marginTop: '8rem',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
 };

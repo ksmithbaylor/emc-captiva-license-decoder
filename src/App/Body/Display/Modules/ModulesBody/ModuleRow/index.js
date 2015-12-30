@@ -14,23 +14,25 @@ export default function ModuleRow({ module, columns }) {
   ));
 
   return (
-    <TableRow style={rowStyle(module)}>
+    <TableRow style={style.row(module)}>
       {cells}
     </TableRow>
   );
 }
 
-function rowStyle(module) {
-  return moduleIsExpired(module)
-    ? colored('red')
-    : moduleHasExpiration(module)
-      ? colored('green')
-      : {};
-}
+const style = {
+  row(module) {
+    return moduleIsExpired(module)
+      ? style.colored('red')
+      : moduleHasExpiration(module)
+        ? style.colored('green')
+        : {};
+  },
 
-function colored(color) {
-  return {
-    color: colors[color].dark,
-    backgroundColor: colors[color].light
-  };
-}
+  colored(color) {
+    return {
+      color: colors[color].dark,
+      backgroundColor: colors[color].light
+    };
+  }
+};

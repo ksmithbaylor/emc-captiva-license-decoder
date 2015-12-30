@@ -5,30 +5,30 @@ import SummaryBody from './SummaryBody';
 
 export default function Summary({ modules, serverID }) {
   return (
-    <Paper zDepth={2} style={containerStyle}>
-      <h2 style={headerStyle}>
+    <Paper zDepth={2} style={style.container}>
+      <h2 style={style.header}>
         Summary for License #{serverID}
       </h2>
-      <table style={tableStyle}>
+      <table style={style.table}>
         <SummaryBody modules={modules} />
       </table>
     </Paper>
   );
 }
 
-const containerStyle = {
-  marginTop: '1rem',
-  padding: '1rem'
-};
-
-const headerStyle = {
-  marginTop: 0,
-  color: colors.emc.blue.dark,
-  textAlign: 'center'
-};
-
-const tableStyle = {
-  borderStyle: 'hidden',
-  borderCollapse: 'collapse',
-  margin: '0 auto'
+const style = {
+  container: {
+    marginTop: '1rem',
+    padding: '1rem'
+  },
+  header: {
+    marginTop: 0,
+    color: colors.emc.blue.dark,
+    textAlign: 'center'
+  },
+  table: {
+    borderStyle: 'hidden',
+    borderCollapse: 'collapse',
+    margin: '0 auto'
+  }
 };
