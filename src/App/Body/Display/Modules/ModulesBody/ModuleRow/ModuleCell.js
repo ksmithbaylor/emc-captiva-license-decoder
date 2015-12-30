@@ -29,17 +29,21 @@ function cellStyle(module, column) {
   };
 }
 
-// TODO: move this somewhere else, maybe off of util?
+// Request functions instead of importing it so it can be edited without
+// rebuilding the code
 let functions = {};
 request('/src/data/functions.json', (err, res) => {
   functions = res.body;
 });
 
 function cellContents(module, column) {
-  if (isDateField(column)) return formatDate(module[column]);
-  if (isUnlimitedField(column) && module[column === '0']) return 'Unlimited';
-  if (column === 'Function') return functions[module[NAME]];
-  return numberWithCommas(module[column]);
+  return isDateField(column)
+    ? formatDate(module[column])
+    : isUnlimitedField(column) && module[column === '0']
+      ? 'Unlimited'
+      : column === 'Function'
+        ? functions[module[NAME]]
+        : numberWithCommas(module[column]);
 }
 
 function formatDate(date) {
