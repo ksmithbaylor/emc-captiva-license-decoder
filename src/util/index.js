@@ -1,12 +1,6 @@
 import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from 'data/columnNames';
 
-export function isExpired(module) {
-  return hasExpiry(module) && (module[VALID] < new Date());
-}
-
-export function hasExpiry(module) {
-  return module[VALID];
-}
+export { moduleIsExpired, moduleHasExpiration } from './moduleHelpers';
 
 export function zipObject(names, values) {
   return names.reduce(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { isExpired, hasExpiry } from 'util';
+import { moduleIsExpired, moduleHasExpiration } from 'util';
 import TableRow from 'material-ui/lib/table/table-row';
 import ModuleCell from './ModuleCell';
 
@@ -19,11 +19,12 @@ export default function ModuleRow({ module, columns }) {
   );
 }
 
+// TODO: use material-ui colors to get them
 function rowStyle(module) {
-  return isExpired(module) ? {
+  return moduleIsExpired(module) ? {
     color: '#B71C1C',
     backgroundColor: '#FFCDD2'
-  } : hasExpiry(module) ? {
+  } : moduleHasExpiration(module) ? {
     color: '#1B5E20',
     backgroundColor: '#C8E6C9'
   } : {};
