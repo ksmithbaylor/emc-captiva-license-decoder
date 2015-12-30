@@ -19,15 +19,13 @@ export default class InputOptions extends React.Component {
       <div>
         <Paper zDepth={2}>
           <FileInput
-            sectionStyle={sectionStyle}
-            buttonStyle={buttonStyle}
             requestResults={this.props.newResults}
+            styles={{ sectionStyle, buttonStyle }}
           />
           <Divider />
           <PasteInput
-            sectionStyle={sectionStyle}
-            buttonStyle={buttonStyle}
             requestResults={this.props.newResults}
+            styles={{ sectionStyle, buttonStyle }}
           />
         </Paper>
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>

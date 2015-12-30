@@ -2,14 +2,14 @@ import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import FileHandler from './FileHandler';
 
-export default function FileInput({ sectionStyle, buttonStyle, requestResults }) {
+export default function FileInput({ requestResults, styles }) {
   return (
-    <div style={sectionStyle}>
+    <div style={styles.sectionStyle}>
       <RaisedButton
         label="OPEN"
         primary={true}
         linkButton={true}
-        style={buttonStyle}
+        style={styles.buttonStyle}
       >
         <FileHandler requestResults={requestResults} />
       </RaisedButton>

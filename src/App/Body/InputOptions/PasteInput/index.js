@@ -8,14 +8,14 @@ export default class PasteInput extends React.Component {
   }
 
   render() {
-    const { sectionStyle, buttonStyle, requestResults } = this.props;
+    const { styles, requestResults } = this.props;
 
     return (
-      <div style={sectionStyle}>
+      <div style={styles.sectionStyle}>
         <RaisedButton
           label="PASTE"
           primary={true}
-          style={buttonStyle}
+          style={styles.buttonStyle}
           onTouchTap={this.openHandler}
         />
         <PasteHandler
