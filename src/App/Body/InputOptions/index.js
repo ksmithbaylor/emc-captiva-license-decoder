@@ -1,5 +1,5 @@
 import React from 'react';
-import { processLicense, processPaste } from 'processor';
+import { processPaste } from 'processor';
 import { version } from 'root/package.json';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import Divider from 'material-ui/lib/divider';
 import Dialog from 'material-ui/lib/dialog';
 import TextField from 'material-ui/lib/text-field';
+import FileInput from './FileInput';
 
 export default class InputOptions extends React.Component {
   state = {
@@ -18,21 +19,11 @@ export default class InputOptions extends React.Component {
     return (
       <div>
         <Paper zDepth={2}>
-          <div style={sectionStyle}>
-            <RaisedButton
-              label="OPEN"
-              primary={true}
-              linkButton={true}
-              style={buttonStyle}
-            >
-              <input
-                type="file"
-                onChange={this.receiveFile}
-                style={invisibleFileInputStyle}
-              />
-            </RaisedButton>
-            Open a license file from your computer
-          </div>
+          <FileInput
+            sectionStyle={sectionStyle}
+            buttonStyle={buttonStyle}
+            requestResults={this.props.newResults}
+          />
           <Divider />
           <div style={sectionStyle}>
             <RaisedButton
@@ -109,23 +100,10 @@ export default class InputOptions extends React.Component {
     );
   }
 
-  componentDidMount() {
-    this.fileReader = new FileReader();
-    this.fileReader.onload = event => setTimeout((() => this.props.newResults(
-      processLicense(this.fileReader.result)
-    )), 200);
-  }
-
   closePasteModal = () => this.setState({ pasteModalOpen: false })
   openPasteModal = () => this.setState({ pasteModalOpen: true })
   closeAboutModal = () => this.setState({ aboutModalOpen: false })
   openAboutModal = () => this.setState({ aboutModalOpen: true })
-
-  receiveFile = (event) => {
-    if (event.target.files[0]) {
-      this.fileReader.readAsText(event.target.files[0])
-    }
-  }
 
   receivePaste = (event) => {
     this.closePasteModal();
@@ -142,15 +120,4 @@ const sectionStyle = {
 const buttonStyle = {
   textAlign: 'center',
   marginRight: '2rem'
-};
-
-const invisibleFileInputStyle = {
-  opacity: 0,
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  cursor: 'pointer',
-  position: 'absolute',
-  width: '100%'
 };
