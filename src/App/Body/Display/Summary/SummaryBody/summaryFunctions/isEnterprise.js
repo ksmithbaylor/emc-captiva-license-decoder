@@ -1,5 +1,5 @@
 import { withName } from './shared';
-import { FEATURES } from 'data/columnNames';
+import { FEATURES } from 'data/columns';
 
 export default function isEnterprise(modules) {
   const serverModule = modules.find(withName('SERVER'));

@@ -1,4 +1,4 @@
-import { dateFields, unlimitedFields } from 'data/columnNames';
+import { dateFields, unlimitedFields } from 'data/columns';
 import { member } from 'util';
 
 export function isDateField(column) {

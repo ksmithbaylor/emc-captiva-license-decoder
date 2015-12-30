@@ -1,5 +1,5 @@
 import React from 'react';
-import { columnsToDisplay } from 'data/columnNames';
+import { columnsToDisplay } from 'data/columns';
 import Paper from 'material-ui/lib/paper';
 import Table from 'material-ui/lib/table/table';
 import ModulesHeader from './ModulesHeader';

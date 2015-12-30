@@ -1,4 +1,4 @@
-import { NAME, FEATURES, VALID } from 'data/columnNames';
+import { NAME, FEATURES, VALID } from 'data/columns';
 import { lowerCaseEqual } from 'util';
 
 export function withName(name) {

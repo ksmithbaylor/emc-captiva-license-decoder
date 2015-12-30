@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'superagent';
 import { isDateField, isUnlimitedField, numberWithCommas } from 'util';
-import { VALID, NAME, CODE } from 'data/columnNames';
+import { VALID, NAME, CODE } from 'data/columns';
 import colors from 'data/colors';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 

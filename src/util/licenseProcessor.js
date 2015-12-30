@@ -1,4 +1,4 @@
-import allColumns, { dateFields, NAME, PAGES } from 'data/columnNames';
+import allColumns, { dateFields, NAME, PAGES } from 'data/columns';
 import { zipObject, pipe, member, sortBy, hasLetters, lowerCaseEqual } from 'util';
 
 ////////////////////////////////////////////////////////////////////////////////

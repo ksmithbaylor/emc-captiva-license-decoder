@@ -1,4 +1,4 @@
-import { VALID } from 'data/columnNames';
+import { VALID } from 'data/columns';
 
 export function moduleIsExpired(module) {
   return moduleHasExpiration(module) && (module[VALID] < new Date());
