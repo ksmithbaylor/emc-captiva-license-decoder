@@ -1,7 +1,8 @@
 import React from 'react';
 import { pageWidth } from 'data/layout';
-import InputOptions from './InputOptions';
 import Display from './Display';
+import InputOptions from './InputOptions';
+import AboutButton from './AboutButton';
 import ErrorDialog from './ErrorDialog';
 
 export default class Body extends React.Component {
@@ -28,6 +29,7 @@ export default class Body extends React.Component {
     return (
       <div style={containerStyle}>
         {mainViewMarkup}
+        <AboutButton />
         <ErrorDialog open={errorDialogOpen} closeMe={this.closeErrorDialog} />
       </div>
     );
