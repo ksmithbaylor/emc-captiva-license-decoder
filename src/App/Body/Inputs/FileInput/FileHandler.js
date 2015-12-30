@@ -1,5 +1,5 @@
 import React from 'react';
-import { processLicense } from 'processor';
+import { processLicenseFile } from 'util';
 import { processingDelay } from 'data/constants';
 
 let fileReader;
@@ -28,11 +28,11 @@ export default class FileHandler extends React.Component {
   }
 
   handleNewFile = (event) => {
-    setTimeout((() => (
+    setTimeout((() => {
       this.props.requestResults(
-        processLicense(event.target.result)
+        processLicenseFile(event.target.result)
       )
-    )), processingDelay)
+    }), processingDelay)
   }
 }
 

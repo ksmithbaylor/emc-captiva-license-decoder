@@ -1,5 +1,6 @@
 export { moduleIsExpired, moduleHasExpiration } from './moduleHelpers';
 export { isDateField, isUnlimitedField } from './columnHelpers';
+export { processLicenseFile, processLicensePaste } from './licenseProcessor';
 
 export function zipObject(names, values) {
   return names.reduce(

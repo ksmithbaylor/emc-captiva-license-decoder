@@ -1,8 +1,6 @@
 import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, NAME, PAGES } from 'data/columnNames';
 import { zipObject, pipe, member, sortBy, hasLetters, lowerCaseEqual } from 'util';
 
-// TODO: move to a more relevant place
-
 ////////////////////////////////////////////////////////////////////////////////
 // Composed pipelines for file and pasted inputs
 
@@ -13,7 +11,7 @@ const commonSteps = [
   correctlyOrdered
 ];
 
-export function processLicense(rawFile) {
+export function processLicenseFile(rawFile) {
   return {
     serverID: pipe(rawFile, getFileServerID),
     modules: pipe(
@@ -27,7 +25,7 @@ export function processLicense(rawFile) {
   };
 }
 
-export function processPaste(pasted) {
+export function processLicensePaste(pasted) {
   return {
     serverID: pipe(pasted, getPastedServerID),
     modules: pipe(
