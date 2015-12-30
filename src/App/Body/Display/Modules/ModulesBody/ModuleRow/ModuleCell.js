@@ -1,6 +1,6 @@
 import React from 'react';
 import request from 'superagent';
-import { isUnlimited, isDateField, formatDate, numberWithCommas } from 'util';
+import { isUnlimited, isDateField, numberWithCommas } from 'util';
 import { VALID, NAME, CODE } from 'data/columnNames';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 
@@ -38,4 +38,10 @@ function cellContents(module, column) {
   if (isUnlimited(column) && module[column === '0']) return 'Unlimited';
   if (column === 'Function') return functions[module[NAME]];
   return numberWithCommas(module[column]);
+}
+
+function formatDate(date) {
+  if (!date) return '';
+  const shortMonth = date.toLocaleString('en-us', { month: 'short' });
+  return `${shortMonth} ${date.getDate()}, ${date.getFullYear()}`;
 }
