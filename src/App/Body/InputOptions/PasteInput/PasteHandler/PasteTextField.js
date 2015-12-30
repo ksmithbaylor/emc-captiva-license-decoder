@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from 'data/colors';
 import TextField from 'material-ui/lib/text-field';
 
 export default class PasteTextField extends React.Component {
@@ -24,7 +25,7 @@ export default class PasteTextField extends React.Component {
 
 const textFieldStyle = {
   marginTop: '1rem',
-  border: '1px solid #a0a0a0',
+  border: `1px solid ${colors.grey.medium}`,
   borderBottom: 'none',
   verticalAlign: 'top'
 };
@@ -32,11 +33,11 @@ const textFieldStyle = {
 // TODO: make a single style object for all components
 const underlineStyle = {
   bottom: 0,
-  borderColor: '#a0a0a0'
+  borderColor: colors.grey.medium
 };
 
 const underlineFocusStyle = {
-  borderColor: '#2c95dd'
+  borderColor: colors.emc.blue.logo
 };
 
 const hintStyle = {

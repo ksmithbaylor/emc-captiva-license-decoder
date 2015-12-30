@@ -1,5 +1,6 @@
 import React from 'react';
 import { pageWidth } from 'data/layout';
+import colors from 'data/colors';
 import Paper from 'material-ui/lib/paper';
 
 export default () => (
@@ -16,7 +17,7 @@ export default () => (
 );
 
 const barStyle = {
-  backgroundColor: '#4e5052',
+  backgroundColor: colors.emc.grey,
   height: '5rem',
   width: '100%',
   position: 'fixed',
@@ -32,7 +33,7 @@ const centerContainerStyle = {
 };
 
 const logoStyle = {
-  backgroundColor: '#2c95dd',
+  backgroundColor: colors.emc.blue.logo,
   display: 'inline-block',
   fontSize: 0
 };

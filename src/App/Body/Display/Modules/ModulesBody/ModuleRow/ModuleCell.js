@@ -2,6 +2,7 @@ import React from 'react';
 import request from 'superagent';
 import { isDateField, isUnlimitedField, numberWithCommas } from 'util';
 import { VALID, NAME, CODE } from 'data/columnNames';
+import colors from 'data/colors';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 
 export default function ModuleCell({ module, column }) {
@@ -22,10 +23,9 @@ function cellStyle(module, column) {
     fontWeight: (column === VALID) ? 'bold' : 'inherit',
     textAlign: (column === CODE || column === NAME) ? 'left' : 'center',
     backgroundColor: (column === NAME) ? (
-      // TODO: use material-ui colors? or at least split into constants
-      isIndented ? '#B6E0FE' : '#60B3EE'
+      isIndented ? colors.emc.blue.light : colors.emc.blue.medium
     ) : undefined,
-    color: (column === NAME) ? '#000000' : undefined
+    color: (column === NAME) ? colors.black : undefined
   };
 }
 

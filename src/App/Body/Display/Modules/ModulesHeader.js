@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from 'data/colors';
 import TableHeader from 'material-ui/lib/table/table-header';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableRow from 'material-ui/lib/table/table-row';
@@ -27,8 +28,8 @@ function cell(column, i) {
 }
 
 const rowStyle = {
-  backgroundColor: '#00406E',
-  color: '#ffffff'
+  backgroundColor: colors.emc.blue.dark,
+  color: colors.white
 };
 
 const cellStyle = {

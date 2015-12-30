@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from 'data/colors';
 import Paper from 'material-ui/lib/paper';
 import SummaryBody from './SummaryBody';
 
@@ -20,7 +21,7 @@ const containerStyle = {
 
 const headerStyle = {
   marginTop: 0,
-  color: '#00406E',
+  color: colors.emc.blue.dark,
   textAlign: 'center'
 };
 

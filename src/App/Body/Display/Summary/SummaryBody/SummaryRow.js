@@ -1,5 +1,6 @@
 import React from 'react';
 import { hasLetters, numberWithCommas } from 'util';
+import colors from 'data/colors';
 
 export default ({ title, value }) => (
   <tr style={rowStyle}>
@@ -13,7 +14,7 @@ function format(value) {
 }
 
 const rowStyle = {
-  border: '1px solid #e0e0e0'
+  border: `1px solid ${colors.grey.light}`
 };
 
 const titleStyle = {
