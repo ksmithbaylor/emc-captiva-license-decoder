@@ -12,6 +12,6 @@ export default ({ modules, serverID, backToStart }) => (
     <br /><br />
     <Divider />
     <Summary modules={modules} serverID={serverID} />
-    <Modules modules={modules} serverID={serverID} />
+    <Modules modules={modules} />
   </div>
 );
