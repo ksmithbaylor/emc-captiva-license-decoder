@@ -2,12 +2,12 @@ import React from 'react';
 
 import RaisedButton from 'material-ui/lib/raised-button';
 
-export default ({ onTouchTap }) => (
+export default ({ goBack }) => (
   <RaisedButton
     label="BACK TO START"
     labelPosition="after"
     labelStyle={{ paddingLeft: '0.5rem', }}
-    onTouchTap={onTouchTap}
+    onTouchTap={goBack}
   >
     <span style={iconStyle}>&lsaquo;</span>
   </RaisedButton>

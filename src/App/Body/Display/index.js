@@ -8,7 +8,7 @@ import Table from './Table';
 
 export default ({ modules, serverID, backToStart }) => (
   <div>
-    <BackButton onTouchTap={backToStart} />
+    <BackButton goBack={backToStart} />
     <br /><br />
     <Divider />
     <Summary modules={modules} serverID={serverID} />
