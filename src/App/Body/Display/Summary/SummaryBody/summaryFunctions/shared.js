@@ -9,9 +9,11 @@ export function withFeature(code) {
 }
 
 export function sumOf(column, modules) {
-  return modules
+  return (
+    modules
     .map(module => parseInt(module[column]))
-    .reduce((a, b) => a + b, 0);
+    .reduce((a, b) => a + b, 0)
+  );
 }
 
 export function notExpired(module) {

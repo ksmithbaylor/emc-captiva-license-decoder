@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import { processLicense, processPaste } from 'processor';
+import { version } from 'root/package.json';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import FlatButton from 'material-ui/lib/flat-button';
@@ -7,10 +8,7 @@ import Divider from 'material-ui/lib/divider';
 import Dialog from 'material-ui/lib/dialog';
 import TextField from 'material-ui/lib/text-field';
 
-import { processLicense, processPaste } from 'processor';
-import { version } from 'root/package.json';
-
-export default class InputOptions extends Component {
+export default class InputOptions extends React.Component {
   state = {
     pasteModalOpen: false,
     aboutModalOpen: false

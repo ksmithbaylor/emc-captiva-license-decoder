@@ -1,10 +1,8 @@
 import React from 'react';
 import request from 'superagent';
-
-import TableRowColumn from 'material-ui/lib/table/table-row-column';
-
 import { isUnlimited, isDateField, formatDate, numberWithCommas } from 'util';
 import { VALID, NAME, CODE } from 'data/columnNames';
+import TableRowColumn from 'material-ui/lib/table/table-row-column';
 
 export default function ModuleCell({ module, column }) {
   return (

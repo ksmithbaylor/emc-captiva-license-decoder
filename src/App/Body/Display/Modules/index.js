@@ -1,12 +1,9 @@
 import React from 'react';
-
+import COLUMN_NAMES, { CODE, DISABLES } from 'data/columnNames';
 import Paper from 'material-ui/lib/paper';
 import Table from 'material-ui/lib/table/table';
-
 import ModulesHeader from './ModulesHeader';
 import ModulesBody from './ModulesBody';
-
-import COLUMN_NAMES, { CODE, DISABLES } from 'data/columnNames';
 
 export default ({ modules }) => (
   <Paper zDepth={2} style={containerStyle}>
