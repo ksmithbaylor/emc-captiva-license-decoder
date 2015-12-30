@@ -1,5 +1,5 @@
 import { withName, withFeature, sumOf, notExpired } from './shared';
-import { CONNECTIONS } from 'data/columnNames';
+import { CONNECTIONS } from 'data/columns';
 
 export default function scanPlus(modules, premium) {
   const unlimited = modules.some(m => (

@@ -1,5 +1,5 @@
 import { withName, sumOf } from './shared';
-import { PAGES } from 'data/columnNames';
+import { PAGES } from 'data/columns';
 
 export default function advancedRecognitionVolume(modules) {
   const classifs = modules.filter(withName('CLASSIF'));

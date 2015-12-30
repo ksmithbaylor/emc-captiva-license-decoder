@@ -1,5 +1,5 @@
 import { withName, sumOf } from './shared';
-import { PAGES } from 'data/columnNames';
+import { PAGES } from 'data/columns';
 
 export default function pageVolume(modules) {
   const annuals = modules.filter(withName('ANNUAL'));

@@ -1,5 +1,5 @@
-import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, NAME, PAGES } from 'data/columnNames';
-import { zipObject, parseDate, formatDate, pipe, member, by, hasLetters, lowerCaseEqual } from 'util';
+import allColumns, { dateFields, NAME, PAGES } from 'data/columns';
+import { zipObject, pipe, member, sortBy, hasLetters, lowerCaseEqual } from 'util';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Composed pipelines for file and pasted inputs
@@ -11,7 +11,7 @@ const commonSteps = [
   correctlyOrdered
 ];
 
-export function processLicense(rawFile) {
+export function processLicenseFile(rawFile) {
   return {
     serverID: pipe(rawFile, getFileServerID),
     modules: pipe(
@@ -25,7 +25,7 @@ export function processLicense(rawFile) {
   };
 }
 
-export function processPaste(pasted) {
+export function processLicensePaste(pasted) {
   return {
     serverID: pipe(pasted, getPastedServerID),
     modules: pipe(
@@ -99,16 +99,16 @@ function removeHeaderLine(grid) {
 // Common steps used by both file and pasted input
 
 function rowsZippedWithColumns(grid) {
-  return grid.map(row => zipObject(COLUMN_NAMES, row));
+  return grid.map(row => zipObject(allColumns, row));
 }
 
 function dateFieldsConverted(modules) {
   return modules.map(module => ({
     ...module,
-    ...[VALID, ENTER_BY, ISSUED].reduce(
+    ...dateFields.reduce(
       (obj, field) => ({
         ...obj,
-        [field]: parseDate(module[field])
+        [field]: parseDateField(module[field])
       }),
       {}
     )
@@ -116,7 +116,7 @@ function dateFieldsConverted(modules) {
 }
 
 function sortedByModuleName(modules) {
-  return modules.sort(by(NAME));
+  return modules.sort(sortBy(NAME));
 }
 
 function correctlyOrdered(modules) {
@@ -127,7 +127,7 @@ function correctlyOrdered(modules) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Sorting functionality, used for both
+// Helpers
 
 function groupModulesReducer({ orderedModules, skipped }, __, _, allModules) {
   const pairs = allModules.map((module, index) => [module, index]);
@@ -171,4 +171,20 @@ function indentedModule(module) {
     ...module,
     [NAME]: `    ${module[NAME]}`
   };
+}
+
+function parseDateField(text) {
+  if (text === '' || text === '0' || lowerCaseEqual(text, 'Unlimited')) {
+    return null;
+  }
+
+  const [day, month, maybeYear] = [
+    text.substr(text.length - 2),
+    text.substr(text.length - 4, 2),
+    text.substr(0, text.length - 4)
+  ].map(x => parseInt(x, 10));
+
+  const year = maybeYear >= 20 ? Math.floor(maybeYear / 10) : maybeYear;
+
+  return new Date(year + 2000, month - 1, day);
 }

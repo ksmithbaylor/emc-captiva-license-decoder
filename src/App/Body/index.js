@@ -1,19 +1,20 @@
 import React from 'react';
-import { pageWidth } from 'data/layout';
-import InputOptions from './InputOptions';
+import { pageWidth } from 'data/constants';
 import Display from './Display';
+import Inputs from './Inputs';
+import AboutButton from './AboutButton';
 import ErrorDialog from './ErrorDialog';
 
 export default class Body extends React.Component {
   state = {
     showResults: false,
-    errorModalOpen: false,
+    errorDialogOpen: false,
     modules: null,
     serverID: null
   }
 
   render() {
-    const { modules, serverID, showResults, errorModalOpen } = this.state;
+    const { modules, serverID, showResults, errorDialogOpen } = this.state;
 
     const mainViewMarkup = showResults ? (
       <Display
@@ -22,32 +23,35 @@ export default class Body extends React.Component {
         backToStart={this.backToStart}
       />
     ) : (
-      <InputOptions newResults={this.handleNewResults} />
+      <Inputs requestResults={this.handleNewResults} />
     );
 
     return (
-      <div style={containerStyle}>
+      <div style={style.container}>
         {mainViewMarkup}
-        <ErrorDialog open={errorModalOpen} closeMe={this.closeErrorModal} />
+        <AboutButton />
+        <ErrorDialog open={errorDialogOpen} closeMe={this.closeErrorDialog} />
       </div>
     );
   }
 
   backToStart = () => this.setState({ showResults: false })
-  closeErrorModal = () => this.setState({ errorModalOpen: false })
+  closeErrorDialog = () => this.setState({ errorDialogOpen: false })
 
   handleNewResults = ({ modules, serverID }) => {
     if (!modules || !serverID || modules.length === 0 || modules.error) {
-      this.setState({ errorModalOpen: true });
+      this.setState({ errorDialogOpen: true });
     } else {
       this.setState({ modules, serverID, showResults: true });
     }
   }
 }
 
-const containerStyle = {
-  width: pageWidth,
-  marginTop: '8rem',
-  marginLeft: 'auto',
-  marginRight: 'auto'
+const style = {
+  container: {
+    width: pageWidth,
+    marginTop: '8rem',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
 };

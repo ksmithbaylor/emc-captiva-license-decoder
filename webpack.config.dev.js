@@ -19,8 +19,7 @@ module.exports = {
   resolve: {
     alias: {
       data: __dirname + '/src/data',
-      util: __dirname + '/src/util.js',
-      processor: __dirname + '/src/licenseProcessor.js',
+      util: __dirname + '/src/util',
       root: __dirname
     }
   },

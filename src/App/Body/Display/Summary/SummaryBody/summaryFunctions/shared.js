@@ -1,11 +1,15 @@
-import { NAME, FEATURES, VALID } from 'data/columnNames';
+import { NAME, FEATURES, VALID } from 'data/columns';
+import { lowerCaseEqual } from 'util';
 
 export function withName(name) {
-  return module => module[NAME].toLowerCase().includes(name.toLowerCase());
+  return module => lowerCaseEqual(name, module[NAME]);
 }
 
 export function withFeature(code) {
-  return module => new RegExp(code).test(module[FEATURES]);
+  return module => (
+    new RegExp(code.toLowerCase())
+    .test(module[FEATURES].toLowerCase())
+  );
 }
 
 export function sumOf(column, modules) {
@@ -17,5 +21,5 @@ export function sumOf(column, modules) {
 }
 
 export function notExpired(module) {
-  return !module[VALID] || (module[VALID] > new Date());
+  return !module[VALID] || module[VALID] > new Date();
 }

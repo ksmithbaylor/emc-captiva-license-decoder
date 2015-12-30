@@ -1,31 +1,34 @@
 import React from 'react';
+import colors from 'data/colors';
 import Paper from 'material-ui/lib/paper';
 import SummaryBody from './SummaryBody';
 
-export default ({ modules, serverID }) => (
-  <Paper zDepth={2} style={containerStyle}>
-    <h2 style={headerStyle}>
-      Summary for License #{serverID}
-    </h2>
-    <table style={tableStyle}>
-      <SummaryBody modules={modules} />
-    </table>
-  </Paper>
-);
+export default function Summary({ modules, serverID }) {
+  return (
+    <Paper zDepth={2} style={style.container}>
+      <h2 style={style.header}>
+        Summary for License #{serverID}
+      </h2>
+      <table style={style.table}>
+        <SummaryBody modules={modules} />
+      </table>
+    </Paper>
+  );
+}
 
-const containerStyle = {
-  marginTop: '1rem',
-  padding: '1rem'
-};
-
-const headerStyle = {
-  marginTop: 0,
-  color: '#00406E',
-  textAlign: 'center'
-};
-
-const tableStyle = {
-  borderStyle: 'hidden',
-  borderCollapse: 'collapse',
-  margin: '0 auto'
+const style = {
+  container: {
+    marginTop: '1rem',
+    padding: '1rem'
+  },
+  header: {
+    marginTop: 0,
+    color: colors.emc.blue.dark,
+    textAlign: 'center'
+  },
+  table: {
+    borderStyle: 'hidden',
+    borderCollapse: 'collapse',
+    margin: '0 auto'
+  }
 };
