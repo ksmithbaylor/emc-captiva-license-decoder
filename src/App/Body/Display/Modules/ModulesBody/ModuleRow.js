@@ -1,33 +1,13 @@
 import React from 'react';
 import request from 'superagent';
 
-import TableBody from 'material-ui/lib/table/table-body';
 import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 
 import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate, numberWithCommas } from 'util';
 import COLUMN_NAMES, { VALID, NAME, CODE, DISABLES } from 'data/columnNames';
 
-export default function ModulesBody({ modules, columns }) {
-  const rows = modules.map((module, i) => (
-    <ModuleRow
-      module={module}
-      columns={columns}
-      key={i}
-    />
-  ));
-
-  return (
-    <TableBody displayRowCheckbox={false}>
-      {rows}
-    </TableBody>
-  );
-}
-
-// For material-ui (expects a TableBody inside Table)
-ModulesBody.displayName = 'TableBody';
-
-function ModuleRow({ module, columns }) {
+export default function ModuleRow({ module, columns }) {
   return (
     <TableRow style={rowStyle(module)}>
       {columns.map(cell.bind(null, module))}
