@@ -5,6 +5,7 @@ import FileInput from './FileInput';
 import PasteInput from './PasteInput';
 
 // TODO: rename newResults to requestResults
+// TODO: rename as Inputs
 export default function InputOptions({ newResults }) {
   return (
     <Paper zDepth={2}>
