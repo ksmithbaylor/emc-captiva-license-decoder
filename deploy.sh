@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+git push && \
 git checkout gh-pages && \
 git merge master && \
 npm run build && \
