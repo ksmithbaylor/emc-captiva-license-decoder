@@ -7,11 +7,7 @@ let fileReader;
 export default class FileHandler extends React.Component {
   render() {
     return (
-      <input
-        type="file"
-        onChange={this.onChange}
-        style={invisibleFileInputStyle}
-      />
+      <input type="file" onChange={this.onChange} style={fileInputStyle} />
     );
   }
 
@@ -40,7 +36,7 @@ export default class FileHandler extends React.Component {
   }
 }
 
-const invisibleFileInputStyle = {
+const fileInputStyle = {
   opacity: 0,
   top: 0,
   bottom: 0,
