@@ -17,7 +17,7 @@ export default class InputOptions extends Component {
   }
 
   render() {
-    return  (
+    return (
       <div>
         <Paper zDepth={2}>
           <div style={sectionStyle}>

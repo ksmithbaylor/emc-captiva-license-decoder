@@ -23,35 +23,31 @@ const columnsToDisplay = COLUMN_NAMES.filter(name => name !== CODE && name !== D
 columnsToDisplay.splice(1, 0, 'Function');
 
 export default ({ modules, serverID }) => (
-  (!modules || !serverID) ? (
-    <span></span>
-  ) : (
-    <Paper zDepth={2} style={{ marginTop: '1rem', display: 'inline-block' }}>
-      <Table selectable={false}>
-        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-          <TableRow style={headerStyle}>
+  <Paper zDepth={2} style={{ marginTop: '1rem', display: 'inline-block' }}>
+    <Table selectable={false}>
+      <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+        <TableRow style={headerStyle}>
+          {columnsToDisplay.map((column, i) => (
+            <TableRowColumn style={{ overflow: 'visible', textAlign: 'center', whiteSpace: 'normal', fontSize: '1rem', padding: 0 }} key={i}>
+              {column}
+            </TableRowColumn>
+          ))}
+        </TableRow>
+      </TableHeader>
+      <TableBody displayRowCheckbox={false}>
+        {modules.map((module, i) => (
+          <TableRow style={rowStyle(module)} key={i}>
             {columnsToDisplay.map((column, i) => (
-              <TableRowColumn style={{ overflow: 'visible', textAlign: 'center', whiteSpace: 'normal', fontSize: '1rem', padding: 0 }} key={i}>
-                {column}
+              <TableRowColumn style={cellStyle(module, column)} key={i}>
+                {cellContents(module, column)}
               </TableRowColumn>
             ))}
           </TableRow>
-        </TableHeader>
-        <TableBody displayRowCheckbox={false}>
-          {modules.map((module, i) => (
-            <TableRow style={rowStyle(module)} key={i}>
-              {columnsToDisplay.map((column, i) => (
-                <TableRowColumn style={cellStyle(module, column)} key={i}>
-                  {cellContents(module, column)}
-                </TableRowColumn>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  )
-)
+        ))}
+      </TableBody>
+    </Table>
+  </Paper>
+);
 
 function cellContents(module, column) {
   if (isDateField(column)) return formatDate(module[column]);
