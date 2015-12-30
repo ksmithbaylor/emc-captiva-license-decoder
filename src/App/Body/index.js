@@ -7,13 +7,13 @@ import ErrorDialog from './ErrorDialog';
 export default class Body extends React.Component {
   state = {
     showResults: false,
-    errorModalOpen: false,
+    errorDialogOpen: false,
     modules: null,
     serverID: null
   }
 
   render() {
-    const { modules, serverID, showResults, errorModalOpen } = this.state;
+    const { modules, serverID, showResults, errorDialogOpen } = this.state;
 
     const mainViewMarkup = showResults ? (
       <Display
@@ -28,17 +28,17 @@ export default class Body extends React.Component {
     return (
       <div style={containerStyle}>
         {mainViewMarkup}
-        <ErrorDialog open={errorModalOpen} closeMe={this.closeErrorModal} />
+        <ErrorDialog open={errorDialogOpen} closeMe={this.closeErrorDialog} />
       </div>
     );
   }
 
   backToStart = () => this.setState({ showResults: false })
-  closeErrorModal = () => this.setState({ errorModalOpen: false })
+  closeErrorDialog = () => this.setState({ errorDialogOpen: false })
 
   handleNewResults = ({ modules, serverID }) => {
     if (!modules || !serverID || modules.length === 0 || modules.error) {
-      this.setState({ errorModalOpen: true });
+      this.setState({ errorDialogOpen: true });
     } else {
       this.setState({ modules, serverID, showResults: true });
     }
