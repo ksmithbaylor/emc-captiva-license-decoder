@@ -31,7 +31,7 @@ export default class FileHandler extends React.Component {
     // TODO: make timeout a constant
     setTimeout((() => (
       this.props.requestResults(
-        processLicense(this.fileReader.result)
+        processLicense(event.target.result)
       )
     )), 200)
   }
