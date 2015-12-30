@@ -29,6 +29,7 @@ function cellStyle(module, column) {
   };
 }
 
+// TODO: move this somewhere else, maybe off of util?
 let functions = {};
 request('/src/data/functions.json', (err, res) => {
   functions = res.body;

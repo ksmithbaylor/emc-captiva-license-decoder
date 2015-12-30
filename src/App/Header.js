@@ -3,18 +3,20 @@ import { pageWidth } from 'data/layout';
 import colors from 'data/colors';
 import Paper from 'material-ui/lib/paper';
 
-export default () => (
-  <Paper rounded={false} zDepth={1} style={barStyle}>
-    <div style={centerContainerStyle}>
-      <Paper rounded={false} zDepth={2} style={logoStyle}>
-        <img src="logo.png" style={logoImageStyle} />
-      </Paper>
-      <span style={titleStyle}>
-        CAPTIVA License Decoder
-      </span>
-    </div>
-  </Paper>
-);
+export default function Header() {
+  return (
+    <Paper rounded={false} zDepth={1} style={barStyle}>
+      <div style={centerContainerStyle}>
+        <Paper rounded={false} zDepth={2} style={logoStyle}>
+          <img src="logo.png" style={logoImageStyle} />
+        </Paper>
+        <span style={titleStyle}>
+          CAPTIVA License Decoder
+        </span>
+      </div>
+    </Paper>
+  );
+}
 
 const barStyle = {
   backgroundColor: colors.emc.grey,

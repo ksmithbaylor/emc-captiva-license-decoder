@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './summaryFunctions';
 import SummaryRow from './SummaryRow';
 
-export default ({ modules }) => {
+export default function SummaryBody({ modules }) {
   const rowData = rowDataFor(modules);
 
   const rows = Object.keys(rowData).map(title => (

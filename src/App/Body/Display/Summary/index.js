@@ -3,16 +3,18 @@ import colors from 'data/colors';
 import Paper from 'material-ui/lib/paper';
 import SummaryBody from './SummaryBody';
 
-export default ({ modules, serverID }) => (
-  <Paper zDepth={2} style={containerStyle}>
-    <h2 style={headerStyle}>
-      Summary for License #{serverID}
-    </h2>
-    <table style={tableStyle}>
-      <SummaryBody modules={modules} />
-    </table>
-  </Paper>
-);
+export default function Summary({ modules, serverID }) {
+  return (
+    <Paper zDepth={2} style={containerStyle}>
+      <h2 style={headerStyle}>
+        Summary for License #{serverID}
+      </h2>
+      <table style={tableStyle}>
+        <SummaryBody modules={modules} />
+      </table>
+    </Paper>
+  );
+}
 
 const containerStyle = {
   marginTop: '1rem',

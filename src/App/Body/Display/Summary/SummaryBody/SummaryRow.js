@@ -2,12 +2,14 @@ import React from 'react';
 import { hasLetters, numberWithCommas } from 'util';
 import colors from 'data/colors';
 
-export default ({ title, value }) => (
-  <tr style={rowStyle}>
-    <td style={titleStyle}>{title}:</td>
-    <td style={valueStyle}>{format(value)}</td>
-  </tr>
-);
+export default function SummaryRow({ title, value }) {
+  return (
+    <tr style={rowStyle}>
+      <td style={titleStyle}>{title}:</td>
+      <td style={valueStyle}>{format(value)}</td>
+    </tr>
+  );
+}
 
 function format(value) {
   return hasLetters(value) ? value : numberWithCommas(value);

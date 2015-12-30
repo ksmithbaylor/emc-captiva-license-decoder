@@ -2,8 +2,7 @@ import React from 'react';
 import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 
-// TODO: convert all arrow-function exports to named functions
-export default ({ open, closeMe }) => {
+export default function ErrorDialog({ open, closeMe }) {
   const okButton = (
     <FlatButton
       label="OK"

@@ -5,20 +5,23 @@ import Table from 'material-ui/lib/table/table';
 import ModulesHeader from './ModulesHeader';
 import ModulesBody from './ModulesBody';
 
-export default ({ modules }) => (
-  <Paper zDepth={2} style={containerStyle}>
-    <Table selectable={false}>
-      <ModulesHeader columns={columnsToDisplay} />
-      <ModulesBody columns={columnsToDisplay} modules={modules} />
-    </Table>
-  </Paper>
-);
+export default function Modules({ modules }) {
+  return (
+    <Paper zDepth={2} style={containerStyle}>
+      <Table selectable={false}>
+        <ModulesHeader columns={columnsToDisplay} />
+        <ModulesBody columns={columnsToDisplay} modules={modules} />
+      </Table>
+    </Paper>
+  );
+}
 
 const containerStyle = {
   marginTop: '1rem',
   display: 'inline-block'
 };
 
+// TODO: organize this better, maybe in columnHelpers? along with dateColumns?
 let columnsToDisplay = COLUMN_NAMES.filter(
   name => name !== CODE && name !== DISABLES
 );
