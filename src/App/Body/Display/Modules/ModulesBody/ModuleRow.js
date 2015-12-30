@@ -8,16 +8,24 @@ import { isUnlimited, isExpired, hasExpiry, isDateField, formatDate, numberWithC
 import COLUMN_NAMES, { VALID, NAME, CODE, DISABLES } from 'data/columnNames';
 
 export default function ModuleRow({ module, columns }) {
+  const cells = columns.map((column, i) => (
+    <ModuleCell
+      module={module}
+      column={column}
+      key={i}
+    />
+  ));
+
   return (
     <TableRow style={rowStyle(module)}>
-      {columns.map(cell.bind(null, module))}
+      {cells}
     </TableRow>
   );
 }
 
-function cell(module, column, i) {
+function ModuleCell({ module, column }) {
   return (
-    <TableRowColumn style={cellStyle(module, column)} key={i}>
+    <TableRowColumn style={cellStyle(module, column)}>
       {cellContents(module, column)}
     </TableRowColumn>
   );
