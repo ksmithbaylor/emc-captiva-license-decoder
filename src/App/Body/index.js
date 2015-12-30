@@ -1,7 +1,7 @@
 import React from 'react';
 import { pageWidth } from 'data/constants';
 import Display from './Display';
-import InputOptions from './InputOptions';
+import Inputs from './Inputs';
 import AboutButton from './AboutButton';
 import ErrorDialog from './ErrorDialog';
 
@@ -23,7 +23,7 @@ export default class Body extends React.Component {
         backToStart={this.backToStart}
       />
     ) : (
-      <InputOptions requestResults={this.handleNewResults} />
+      <Inputs requestResults={this.handleNewResults} />
     );
 
     return (

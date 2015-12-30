@@ -4,8 +4,7 @@ import Divider from 'material-ui/lib/divider';
 import FileInput from './FileInput';
 import PasteInput from './PasteInput';
 
-// TODO: rename as Inputs
-export default function InputOptions({ requestResults }) {
+export default function Inputs({ requestResults }) {
   return (
     <Paper zDepth={2}>
       <FileInput
