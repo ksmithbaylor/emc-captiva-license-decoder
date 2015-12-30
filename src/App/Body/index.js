@@ -1,5 +1,5 @@
 import React from 'react';
-import { pageWidth } from 'data/layout';
+import { pageWidth } from 'data/constants';
 import Display from './Display';
 import InputOptions from './InputOptions';
 import AboutButton from './AboutButton';

@@ -1,6 +1,8 @@
 import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, NAME, PAGES } from 'data/columnNames';
 import { zipObject, pipe, member, sortBy, hasLetters, lowerCaseEqual } from 'util';
 
+// TODO: move to a more relevant place
+
 ////////////////////////////////////////////////////////////////////////////////
 // Composed pipelines for file and pasted inputs
 

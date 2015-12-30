@@ -1,5 +1,5 @@
 import React from 'react';
-import { pageWidth } from 'data/layout';
+import { pageWidth } from 'data/constants';
 import colors from 'data/colors';
 import Paper from 'material-ui/lib/paper';
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { processPaste } from 'processor';
+import { processingDelay } from 'data/constants';
 import FlatButton from 'material-ui/lib/flat-button';
 import Dialog from 'material-ui/lib/dialog';
 import PasteTextField from './PasteTextField';
@@ -38,6 +39,6 @@ export default class PasteHandler extends React.Component {
     this.props.closeMe();
     setTimeout((() => this.props.requestResults(
       processPaste(this.refs.textField.refs.pasteInput.getValue())
-    )), 200);
+    )), processingDelay);
   }
 }
