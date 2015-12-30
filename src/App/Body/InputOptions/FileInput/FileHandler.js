@@ -1,27 +1,14 @@
 import React from 'react';
 import { processLicense } from 'processor';
-import RaisedButton from 'material-ui/lib/raised-button';
 
-export default class FileInput extends React.Component {
+export default class FileHandler extends React.Component {
   render() {
-    const { sectionStyle, buttonStyle } = this.props;
-
     return (
-      <div style={sectionStyle}>
-        <RaisedButton
-          label="OPEN"
-          primary={true}
-          linkButton={true}
-          style={buttonStyle}
-        >
-          <input
-            type="file"
-            onChange={this.onChange}
-            style={invisibleFileInputStyle}
-          />
-        </RaisedButton>
-        Open a license file from your computer
-      </div>
+      <input
+        type="file"
+        onChange={this.onChange}
+        style={invisibleFileInputStyle}
+      />
     );
   }
 
