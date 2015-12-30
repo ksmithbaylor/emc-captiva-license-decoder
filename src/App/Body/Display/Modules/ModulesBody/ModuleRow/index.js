@@ -1,10 +1,7 @@
 import React from 'react';
-
-import ModuleCell from './ModuleCell';
-
-import TableRow from 'material-ui/lib/table/table-row';
-
 import { isExpired, hasExpiry } from 'util';
+import TableRow from 'material-ui/lib/table/table-row';
+import ModuleCell from './ModuleCell';
 
 export default function ModuleRow({ module, columns }) {
   const cells = columns.map((column, i) => (

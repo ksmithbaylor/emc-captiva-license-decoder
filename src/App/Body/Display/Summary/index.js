@@ -1,7 +1,5 @@
 import React from 'react';
-
 import Paper from 'material-ui/lib/paper';
-
 import SummaryBody from './SummaryBody';
 
 export default ({ modules, serverID }) => (

@@ -1,10 +1,8 @@
 import React from 'react';
-
+import { pageWidth } from 'data/layout';
 import InputOptions from './InputOptions';
 import Display from './Display';
 import ErrorDialog from './ErrorDialog';
-
-import { pageWidth } from 'data/layout';
 
 export default class Body extends React.Component {
   state = {
