@@ -1,6 +1,5 @@
-import { ENTER_BY, ISSUED, VALID, CONNECTIONS, PAGES } from 'data/columnNames';
-
 export { moduleIsExpired, moduleHasExpiration } from './moduleHelpers';
+export { isDateField, isUnlimitedField } from './columnHelpers';
 
 export function zipObject(names, values) {
   return names.reduce(
@@ -12,19 +11,11 @@ export function zipObject(names, values) {
   );
 }
 
-export function isDateField(column) {
-  return member([ENTER_BY, ISSUED, VALID], column);
-}
-
-export function isUnlimited(column) {
-  return member([CONNECTIONS, PAGES, VALID], column);
-}
-
 export function member(arr, elem) {
   return arr.indexOf(elem) !== -1;
 }
 
-export function by(prop) {
+export function sortBy(prop) {
   return function (a, b) {
     if (a[prop] < b[prop]) return -1;
     if (a[prop] > b[prop]) return 1;

@@ -1,6 +1,6 @@
 import React from 'react';
 import request from 'superagent';
-import { isUnlimited, isDateField, numberWithCommas } from 'util';
+import { isDateField, isUnlimitedField, numberWithCommas } from 'util';
 import { VALID, NAME, CODE } from 'data/columnNames';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 
@@ -22,6 +22,7 @@ function cellStyle(module, column) {
     fontWeight: (column === VALID) ? 'bold' : 'inherit',
     textAlign: (column === CODE || column === NAME) ? 'left' : 'center',
     backgroundColor: (column === NAME) ? (
+      // TODO: use material-ui colors? or at least split into constants
       isIndented ? '#B6E0FE' : '#60B3EE'
     ) : undefined,
     color: (column === NAME) ? '#000000' : undefined
@@ -35,7 +36,7 @@ request('/src/data/functions.json', (err, res) => {
 
 function cellContents(module, column) {
   if (isDateField(column)) return formatDate(module[column]);
-  if (isUnlimited(column) && module[column === '0']) return 'Unlimited';
+  if (isUnlimitedField(column) && module[column === '0']) return 'Unlimited';
   if (column === 'Function') return functions[module[NAME]];
   return numberWithCommas(module[column]);
 }

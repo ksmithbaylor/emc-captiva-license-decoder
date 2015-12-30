@@ -1,5 +1,5 @@
 import COLUMN_NAMES, { ENTER_BY, ISSUED, VALID, NAME, PAGES } from 'data/columnNames';
-import { zipObject, pipe, member, by, hasLetters, lowerCaseEqual } from 'util';
+import { zipObject, pipe, member, sortBy, hasLetters, lowerCaseEqual } from 'util';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Composed pipelines for file and pasted inputs
@@ -116,7 +116,7 @@ function dateFieldsConverted(modules) {
 }
 
 function sortedByModuleName(modules) {
-  return modules.sort(by(NAME));
+  return modules.sort(sortBy(NAME));
 }
 
 function correctlyOrdered(modules) {
