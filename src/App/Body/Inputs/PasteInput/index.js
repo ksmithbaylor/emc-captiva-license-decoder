@@ -3,6 +3,14 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import PasteHandler from './PasteHandler';
 
 export default class PasteInput extends React.Component {
+  static propTypes = {
+    style: React.PropTypes.shape({
+      section: React.PropTypes.object,
+      button: React.PropTypes.object
+    }),
+    requestResults: React.PropTypes.func
+  }
+
   state = {
     handlerIsOpen: false
   }
@@ -14,7 +22,7 @@ export default class PasteInput extends React.Component {
       <div style={style.section}>
         <RaisedButton
           label="PASTE"
-          primary={true}
+          primary
           style={style.button}
           onTouchTap={this.openHandler}
         />

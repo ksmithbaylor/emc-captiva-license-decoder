@@ -7,8 +7,8 @@ export default function FileInput({ requestResults, style }) {
     <div style={style.section}>
       <RaisedButton
         label="OPEN"
-        primary={true}
-        linkButton={true}
+        primary
+        linkButton
         style={style.button}
       >
         <FileHandler requestResults={requestResults} />

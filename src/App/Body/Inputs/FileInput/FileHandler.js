@@ -5,6 +5,10 @@ import { processingDelay } from 'data/constants';
 let fileReader;
 
 export default class FileHandler extends React.Component {
+  static propTypes = {
+    requestResults: React.PropTypes.func
+  }
+
   render() {
     return (
       <input type="file" onChange={this.onChange} style={style.fileInput} />
@@ -22,16 +26,16 @@ export default class FileHandler extends React.Component {
 
   onChange = (event) => {
     if (event.target.files[0]) {
-      fileReader.readAsText(event.target.files[0])
+      fileReader.readAsText(event.target.files[0]);
     }
   }
 
   handleNewFile = (event) => {
-    setTimeout((() => {
+    setTimeout(() => {
       this.props.requestResults(
         processLicenseFile(event.target.result)
-      )
-    }), processingDelay)
+      );
+    }, processingDelay);
   }
 }
 

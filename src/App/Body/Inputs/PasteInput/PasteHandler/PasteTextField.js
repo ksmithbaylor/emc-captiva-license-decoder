@@ -3,6 +3,10 @@ import colors from 'data/colors';
 import TextField from 'material-ui/lib/text-field';
 
 export default class PasteTextField extends React.Component {
+  static propTypes = {
+    onEnterKeyDown: React.PropTypes.func.isRequired
+  }
+
   render() {
     return (
       <TextField
@@ -10,10 +14,10 @@ export default class PasteTextField extends React.Component {
         ref="pasteInput"
         hintText="Paste clipboard here"
         onEnterKeyDown={this.props.onEnterKeyDown}
-        multiLine={true}
+        fullWidth
+        multiLine
         rows={1}
         rowsMax={5}
-        fullWidth={true}
         style={style.textField}
         underlineStyle={style.underline}
         underlineFocusStyle={style.underlineFocus}

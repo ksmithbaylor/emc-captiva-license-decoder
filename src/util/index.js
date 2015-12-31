@@ -17,11 +17,11 @@ export function member(arr, elem) {
 }
 
 export function sortBy(prop) {
-  return function (a, b) {
+  return function sortByProp(a, b) {
     if (a[prop] < b[prop]) return -1;
     if (a[prop] > b[prop]) return 1;
     return 0;
-  }
+  };
 }
 
 export function hasLetters(str) {
@@ -33,12 +33,12 @@ export function lowerCaseEqual(a, b) {
 }
 
 export function numberWithCommas(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export function pipe(input, ...fs) {
   return fs.reduce(
-    ((nextInput, f) => {
+    (nextInput, f) => {
       let result;
 
       try {
@@ -49,7 +49,7 @@ export function pipe(input, ...fs) {
       }
 
       return result;
-    }),
+    },
     input
   );
 }

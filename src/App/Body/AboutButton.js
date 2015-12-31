@@ -13,7 +13,7 @@ export default class AboutButton extends React.Component {
     const okButton = (
       <FlatButton
         label="OK"
-        primary={true}
+        primary
         onTouchTap={this.closeDialog}
       />
     );
@@ -27,7 +27,7 @@ export default class AboutButton extends React.Component {
         <Dialog
           title="About this tool"
           open={this.state.dialogIsOpen}
-          actions={[ okButton ]}
+          actions={[okButton]}
           onRequestClose={this.closeDialog}
           modal={false}
         >

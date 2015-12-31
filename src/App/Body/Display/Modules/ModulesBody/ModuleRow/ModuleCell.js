@@ -50,6 +50,6 @@ const style = {
         isIndented ? colors.emc.blue.light : colors.emc.blue.medium
       ) : undefined,
       color: (column === NAME) ? colors.black : undefined
-    }
+    };
   }
-}
+};
