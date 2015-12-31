@@ -1,65 +1,14 @@
-React Transform Boilerplate
-=====================
+# EMC Captiva License Decoder
 
-A *new* Webpack boilerplate with:
+This tool is used to decode and summarize EMC Captiva license files. The idea, concept, and functionality came from my dad, Jim Smith. You can see it running (hopefully) at [emc.kevinjs.com](http://emc.kevinjs.com).
 
-* hot reloading React components;
-* error handling inside component `render()` function;
-* error handling for syntax errors (thanks, **[@glenjamin](https://github.com/glenjamin)**!)
+Obligatory list of libraries, tools, etc:
 
-Built with **[babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform)** and a few custom transforms.  
-**[Does not](https://medium.com/@dan_abramov/the-death-of-react-hot-loader-765fa791d7c4)** use React Hot Loader.
+- [React](https://facebook.github.io/react/) 0.14.5
+- [material-ui](http://www.material-ui.com/)
+- [Babel](http://babeljs.io/) 6
+- [Webpack](https://webpack.github.io)
+- [react-transform](https://github.com/gaearon/babel-plugin-react-transform) 2.0.0 with the [react-hmre](https://github.com/danmartinez101/babel-preset-react-hmre) Babel preset
+- [eslint](http://eslint.org/) with [Airbnb's config](https://github.com/airbnb/javascript) (plus some of my own changes)
 
-[![react-transform channel on slack](https://img.shields.io/badge/slack-react--transform%40reactiflux-61DAFB.svg?style=flat-square)](http://www.reactiflux.com)
-
-## Demo
-
-![](http://i.imgur.com/AhGY28T.gif)
-
-```
-git clone https://github.com/gaearon/react-transform-boilerplate.git
-cd react-transform-boilerplate
-npm install
-npm start
-open http://localhost:3000
-```
-
-Then go ahead and edit files inside `src` (any file except `index.js`).
-
-## What’s Inside
-
-
-The component instrumentation is implemented on top of **[babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform)**:
-
-* **[react-transform-hmr](https://github.com/gaearon/react-transform-hmr)** handles hot reloading
-* **[react-transform-catch-errors](https://github.com/gaearon/react-transform-catch-errors)** catches component errors
-
-The syntax errors are displayed in an overlay by **[@glenjamin](https://github.com/glenjamin)**’s **[webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware)** which replaces Webpack Dev Server.
-
-## Troubleshooting
-
-### I can’t serve images / use different HTML file / etc
-
-This boilerplate is just a Webpack bundle served by an Express server. It’s not meant to demonstrate every feature of either project. Please consult Webpack and Express docs to learn how to serve images, or bundle them into your JavaScript application.
-
-### I don’t see the syntax error overlay!
-
-Make sure your react-app is not attached to `document.body` as the client overlay provided by [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) will render into `document.body`.
-Attaching the React root node to `document.body` requires extra caution, as many third-party packages will append their markup to the body as well. React will replace the entire contents in the body on every re-render. Thus you will not see the additional markup.
-
-It’s always better to render your React app in a `#root` DOM element.
-
-```js
-import React from 'react'
-import { App } from 'app'
-
-React.render(<App />, document.getElementById('root'))
-```
-
-## Discussion
-
-You can discuss React Transform and related projects in **#react-transform** channel on [Reactiflux Slack](http://reactiflux.com).
-
-## License
-
-CC0 (public domain)
+I took the approach of componentizing everything as much as I could, making many tiny modules instead of fewer large modules. I also tried to keep the codebase as functional as possible, avoiding mutation as much as possible.
