@@ -7,7 +7,7 @@ let fileReader;
 export default class FileHandler extends React.Component {
   static propTypes = {
     requestResults: React.PropTypes.func
-  }
+  };
 
   render() {
     return (
@@ -28,7 +28,7 @@ export default class FileHandler extends React.Component {
     if (event.target.files[0]) {
       fileReader.readAsText(event.target.files[0]);
     }
-  }
+  };
 
   handleNewFile = (event) => {
     setTimeout(() => {
@@ -36,7 +36,7 @@ export default class FileHandler extends React.Component {
         processLicenseFile(event.target.result)
       );
     }, processingDelay);
-  }
+  };
 }
 
 const style = {

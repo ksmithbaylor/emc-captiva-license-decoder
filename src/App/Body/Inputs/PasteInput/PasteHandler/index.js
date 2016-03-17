@@ -10,7 +10,7 @@ export default class PasteHandler extends React.Component {
     open: React.PropTypes.bool.isRequired,
     closeMe: React.PropTypes.func.isRequired,
     requestResults: React.PropTypes.func.isRequired
-  }
+  };
 
   render() {
     const cancelButton = (
@@ -46,5 +46,5 @@ export default class PasteHandler extends React.Component {
         processLicensePaste(this.refs.textField.refs.pasteInput.getValue())
       );
     }, processingDelay);
-  }
+  };
 }

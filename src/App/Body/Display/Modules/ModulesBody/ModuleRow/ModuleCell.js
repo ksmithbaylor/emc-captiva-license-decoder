@@ -1,5 +1,5 @@
 import React from 'react';
-import request from 'superagent';
+import functions from 'data/functions.json';
 import { isDateField, isUnlimitedField, numberWithCommas } from 'util';
 import { VALID, NAME, CODE } from 'data/columns';
 import colors from 'data/colors';
@@ -12,13 +12,6 @@ export default function ModuleCell({ module, column }) {
     </TableRowColumn>
   );
 }
-
-// Request functions instead of importing it so it can be edited without
-// rebuilding the code
-let functions = {};
-request('/src/data/functions.json', (err, res) => {
-  functions = res.body;
-});
 
 function cellContents(module, column) {
   return isDateField(column)
