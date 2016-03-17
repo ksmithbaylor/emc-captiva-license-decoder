@@ -5,7 +5,7 @@ import TextField from 'material-ui/lib/text-field';
 export default class PasteTextField extends React.Component {
   static propTypes = {
     onEnterKeyDown: React.PropTypes.func.isRequired
-  }
+  };
 
   render() {
     return (

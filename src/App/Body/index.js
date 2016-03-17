@@ -11,7 +11,7 @@ export default class Body extends React.Component {
     errorDialogOpen: false,
     modules: null,
     serverID: null
-  }
+  };
 
   render() {
     const { modules, serverID, showResults, errorDialogOpen } = this.state;
@@ -35,8 +35,8 @@ export default class Body extends React.Component {
     );
   }
 
-  backToStart = () => this.setState({ showResults: false })
-  closeErrorDialog = () => this.setState({ errorDialogOpen: false })
+  backToStart = () => this.setState({ showResults: false });
+  closeErrorDialog = () => this.setState({ errorDialogOpen: false });
 
   handleNewResults = ({ modules, serverID }) => {
     if (!modules || !serverID || modules.length === 0 || modules.error) {
@@ -44,7 +44,7 @@ export default class Body extends React.Component {
     } else {
       this.setState({ modules, serverID, showResults: true });
     }
-  }
+  };
 }
 
 const style = {

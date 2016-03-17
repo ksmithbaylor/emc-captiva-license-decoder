@@ -7,7 +7,7 @@ import Dialog from 'material-ui/lib/dialog';
 export default class AboutButton extends React.Component {
   state = {
     dialogIsOpen: false
-  }
+  };
 
   render() {
     const okButton = (
@@ -43,8 +43,8 @@ export default class AboutButton extends React.Component {
     );
   }
 
-  closeDialog = () => this.setState({ dialogIsOpen: false })
-  openDialog = () => this.setState({ dialogIsOpen: true })
+  closeDialog = () => this.setState({ dialogIsOpen: false });
+  openDialog = () => this.setState({ dialogIsOpen: true });
 }
 
 const style = {

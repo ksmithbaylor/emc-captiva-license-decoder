@@ -9,11 +9,11 @@ export default class PasteInput extends React.Component {
       button: React.PropTypes.object
     }),
     requestResults: React.PropTypes.func
-  }
+  };
 
   state = {
     handlerIsOpen: false
-  }
+  };
 
   render() {
     const { style, requestResults } = this.props;
@@ -36,6 +36,6 @@ export default class PasteInput extends React.Component {
     );
   }
 
-  openHandler = () => this.setState({ handlerIsOpen: true })
-  closeHandler = () => this.setState({ handlerIsOpen: false })
+  openHandler = () => this.setState({ handlerIsOpen: true });
+  closeHandler = () => this.setState({ handlerIsOpen: false });
 }
