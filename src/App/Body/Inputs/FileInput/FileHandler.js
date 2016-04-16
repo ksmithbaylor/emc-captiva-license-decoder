@@ -48,6 +48,7 @@ const style = {
     right: 0,
     cursor: 'pointer',
     position: 'absolute',
-    width: '100%'
+    width: '100%',
+    zIndex: 999
   }
 };
