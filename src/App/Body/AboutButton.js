@@ -33,7 +33,7 @@ export default class AboutButton extends React.Component {
         >
           <p>CAPTIVA License Decoder (version {version})</p>
           <p>
-            {'Concept and functionality by Jim Smith. Created and designed by '}
+            {'Concept and specifications by Jim Smith. Designed and implemented by '}
             <a href="https://www.linkedin.com/in/ksmithbaylor" target="_blank">
               Kevin Smith
             </a>.
@@ -49,7 +49,7 @@ export default class AboutButton extends React.Component {
 
 const style = {
   container: {
-    margin: '2rem 0',
-    textAlign: 'center'
+    display: 'inline-block',
+    marginRight: '0.5em'
   }
 };
