@@ -1,5 +1,13 @@
 #!/usr/bin/env zsh
 
+if [[ $# -lt 1 ]]; then
+  echo "Usage: ./deploy.sh {major,minor,patch}"
+  exit 1
+fi
+
+# Bump version
+npm version "$1"
+
 # Push to master
 git push
 
