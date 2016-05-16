@@ -178,13 +178,11 @@ function parseDateField(text) {
     return null;
   }
 
-  const [day, month, maybeYear] = [
+  const [day, month, year] = [
     text.substr(text.length - 2),
     text.substr(text.length - 4, 2),
     text.substr(0, text.length - 4)
   ].map(x => parseInt(x, 10));
-
-  const year = maybeYear >= 20 ? Math.floor(maybeYear / 10) : maybeYear;
 
   return new Date(year + 2000, month - 1, day);
 }
