@@ -49,7 +49,7 @@ export default class AboutButton extends React.Component {
 
 const style = {
   container: {
-    margin: '2rem 0',
-    textAlign: 'center'
+    display: 'inline-block',
+    marginRight: '0.5em'
   }
 };
