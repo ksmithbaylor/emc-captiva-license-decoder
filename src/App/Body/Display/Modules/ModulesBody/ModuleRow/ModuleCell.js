@@ -19,7 +19,7 @@ function cellContents(module, column) {
     : isUnlimitedField(column) && module[column === '0']
       ? 'Unlimited'
       : column === 'Function'
-        ? functions[module[NAME]]
+        ? functions[module[NAME].trim()]
         : numberWithCommas(module[column]);
 }
 
