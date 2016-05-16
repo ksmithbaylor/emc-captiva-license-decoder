@@ -34,7 +34,7 @@ const style = {
     const isIndented = module[NAME].startsWith(' ');
 
     return {
-      whiteSpace: isIndented ? 'pre' : 'pre-wrap',
+      whiteSpace: (isIndented && column === NAME) ? 'pre' : 'pre-wrap',
       overflow: 'visible',
       height: '1.5rem',
       fontWeight: (column === VALID) ? 'bold' : 'inherit',
