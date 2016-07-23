@@ -1,15 +1,12 @@
 #!/usr/bin/env zsh
 
-if [[ $# -lt 1 ]]; then
-  echo "Usage: ./deploy.sh {major,minor,patch}"
-  exit 1
+if [[ $# -gt 0 ]]; then
+  # Bump version
+  npm version "$1"
+
+  # Push to master
+  git push
 fi
-
-# Bump version
-npm version "$1"
-
-# Push to master
-git push
 
 # Commit changes to gh-pages branch, stop if anything fails
 git checkout gh-pages && \
