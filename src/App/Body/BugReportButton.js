@@ -7,7 +7,7 @@ export default function BugReportButton() {
       <RaisedButton
         label="Feedback?"
         linkButton
-        href="mailto:jim.smith@emc.com?subject=License Decoder Feedback"
+        href="mailto:ksmithbaylor@gmail.com?subject=EMC License Decoder Feedback"
       />
     </div>
   );
