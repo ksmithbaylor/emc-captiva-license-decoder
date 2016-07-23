@@ -39,8 +39,21 @@ export default class Body extends React.Component {
     );
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleEscapeKey);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleEscapeKey);
+  }
+
   backToStart = () => this.setState({ showResults: false });
   closeErrorDialog = () => this.setState({ errorDialogOpen: false });
+  handleEscapeKey = e => {
+    if (e.keyCode === 27) {
+      this.backToStart();
+    }
+  };
 
   handleNewResults = ({ modules, serverID }) => {
     if (!modules || !serverID || modules.length === 0 || modules.error) {
