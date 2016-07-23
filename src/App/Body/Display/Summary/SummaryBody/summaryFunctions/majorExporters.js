@@ -1,17 +1,15 @@
 import React from 'react';
-import { withName } from './shared';
+import { withName, notExpired } from './shared';
 
 export default function majorExporters(modules) {
-  return (
-    Object.keys(exporterMappings)
-    .filter(exporter => (
-      exporterMappings[exporter]
-      .some(name => (
-        modules.find(withName(name))
-      ))
-    ))
-    .map((str, i) => <div key={i}>{str}</div>)
-  );
+  return Object.keys(exporterMappings)
+    .filter(exporter => exporterMappings[exporter]
+      .some(name => modules
+        .filter(notExpired)
+        .find(withName(name))
+      )
+    )
+    .map((str, i) => <div key={i}>{str}</div>);
 }
 
 const exporterMappings = {
