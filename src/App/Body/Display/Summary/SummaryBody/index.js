@@ -19,7 +19,8 @@ export default function SummaryBody({ modules }) {
 const rowDataFor = modules => ({
   'Server Type': S.isEnterprise(modules) ? 'Enterprise' : 'Standard',
   'Page Volume (PPY)': S.pageVolume(modules),
-  'Advanced Recognition Volume': S.advancedRecognitionVolume(modules),
+  'Advanced Recognition - Classification': S.classificationAR(modules),
+  'Advanced Recognition - Extraction': S.extractionAR(modules),
   'Production Auto Learning': S.productionAutoLearning(modules),
   'Attended Clients': S.attendClients(modules),
   'ScanPlus (standard)': S.scanPlus(modules, false),
