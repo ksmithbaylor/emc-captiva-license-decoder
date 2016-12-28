@@ -9,6 +9,7 @@ export default function FileInput({ requestResults, style }) {
         label="OPEN"
         primary
         linkButton
+        onTouchTap={fileDecoded}
         style={style.button}
       >
         <FileHandler requestResults={requestResults} />
@@ -16,4 +17,10 @@ export default function FileInput({ requestResults, style }) {
       Open a license file from your computer
     </div>
   );
+}
+
+function fileDecoded(event) {
+  if (typeof window.ga === 'function') {
+    ga('send', 'event', 'Decode', 'file');
+  }
 }
