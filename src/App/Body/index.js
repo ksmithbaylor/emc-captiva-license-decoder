@@ -57,8 +57,14 @@ export default class Body extends React.Component {
 
   handleNewResults = ({ modules, serverID }) => {
     if (!modules || !serverID || modules.length === 0 || modules.error) {
+      if (typeof window.ga === 'function') {
+        ga('send', 'event', 'Decode', 'failure');
+      }
       this.setState({ errorDialogOpen: true });
     } else {
+      if (typeof window.ga === 'function') {
+        ga('send', 'event', 'Decode', 'success');
+      }
       this.setState({ modules, serverID, showResults: true });
     }
   };

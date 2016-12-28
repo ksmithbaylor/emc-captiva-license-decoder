@@ -36,6 +36,11 @@ export default class PasteInput extends React.Component {
     );
   }
 
-  openHandler = () => this.setState({ handlerIsOpen: true });
+  openHandler = () => {
+    if (typeof window.ga === 'function') {
+      ga('send', 'event', 'Decode', 'paste');
+    }
+    this.setState({ handlerIsOpen: true });
+  };
   closeHandler = () => this.setState({ handlerIsOpen: false });
 }
