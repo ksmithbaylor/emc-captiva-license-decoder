@@ -1,6 +1,6 @@
 {
   "name": "emc-captiva-license-decoder",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "A tool to decode and summarize EMC Captiva license files",
   "scripts": {
     "clean": "rimraf dist",
