@@ -5,3 +5,5 @@ export productionAutoLearning from './productionAutoLearning';
 export attendClients from './attendClients';
 export scanPlus from './scanPlus';
 export majorExporters from './majorExporters';
+export enterByDate from './enterByDate';
+export restServices from './restServices';

@@ -16,6 +16,7 @@ export default function BugReportButton() {
 const style = {
   container: {
     display: 'inline-block',
-    marginLeft: '0.5em'
+    marginLeft: '0.5em',
+    marginRight: '0.5em'
   }
 };

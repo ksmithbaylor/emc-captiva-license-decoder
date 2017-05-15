@@ -18,10 +18,12 @@ export default function SummaryBody({ modules }) {
 
 const rowDataFor = modules => ({
   'Server Type': S.isEnterprise(modules) ? 'Enterprise' : 'Standard',
+  'Enter By Date': S.enterByDate(modules),
   'Page Volume (PPY)': S.pageVolume(modules),
   'Advanced Recognition - Classification': S.classificationAR(modules),
   'Advanced Recognition - Extraction': S.extractionAR(modules),
   'Production Auto Learning': S.productionAutoLearning(modules),
+  'REST Services': S.restServices(modules),
   'Attended Clients': S.attendClients(modules),
   'ScanPlus (standard)': S.scanPlus(modules, false),
   'ScanPlus (premium)': S.scanPlus(modules, true),
