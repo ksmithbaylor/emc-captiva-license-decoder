@@ -18,6 +18,7 @@ export default function SummaryBody({ modules }) {
 
 const rowDataFor = modules => ({
   'Server Type': S.isEnterprise(modules) ? 'Enterprise' : 'Standard',
+  'Enter By Date': S.enterByDate(modules),
   'Page Volume (PPY)': S.pageVolume(modules),
   'Advanced Recognition - Classification': S.classificationAR(modules),
   'Advanced Recognition - Extraction': S.extractionAR(modules),

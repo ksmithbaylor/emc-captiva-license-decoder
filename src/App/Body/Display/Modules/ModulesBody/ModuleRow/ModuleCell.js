@@ -1,6 +1,6 @@
 import React from 'react';
 import functions from 'data/functions.json';
-import { isDateField, isUnlimitedField, numberWithCommas } from 'util';
+import { isDateField, isUnlimitedField, numberWithCommas, formatDate } from 'util';
 import { VALID, NAME, CODE } from 'data/columns';
 import colors from 'data/colors';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
@@ -21,12 +21,6 @@ function cellContents(module, column) {
       : column === 'Function'
         ? functions[module[NAME].trim()]
         : numberWithCommas(module[column]);
-}
-
-function formatDate(date) {
-  if (!date) return '';
-  const shortMonth = date.toLocaleString('en-us', { month: 'short' });
-  return `${shortMonth} ${date.getDate()}, ${date.getFullYear()}`;
 }
 
 const style = {
