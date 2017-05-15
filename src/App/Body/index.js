@@ -4,6 +4,7 @@ import Display from './Display';
 import Inputs from './Inputs';
 import AboutButton from './AboutButton';
 import BugReportButton from './BugReportButton';
+import VersionHistoryButton from './VersionHistoryButton';
 import ErrorDialog from './ErrorDialog';
 
 export default class Body extends React.Component {
@@ -33,6 +34,7 @@ export default class Body extends React.Component {
         <div style={style.buttons}>
           <AboutButton />
           <BugReportButton />
+          <VersionHistoryButton />
         </div>
         <ErrorDialog open={errorDialogOpen} closeMe={this.closeErrorDialog} />
       </div>
