@@ -12,3 +12,7 @@ Obligatory list of libraries, tools, etc:
 - [eslint](http://eslint.org/) with [Airbnb's config](https://github.com/airbnb/javascript) (plus some of my own changes)
 
 I took the approach of componentizing everything as much as I could, making many tiny modules instead of fewer large modules. I also tried to keep the codebase as functional and mutation-free as possible.
+
+## Screenshot
+
+![Summary Page](https://github.com/ksmithbaylor/emc-captiva-license-decoder/raw/master/screenshot.png)
