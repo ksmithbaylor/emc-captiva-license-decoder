@@ -1,5 +1,9 @@
 See full commit history <a href="https://github.com/ksmithbaylor/emc-captiva-license-decoder/commits/master" target="_blank">here</a>.
 
+### 2.5.1 (May 23rd, 2017)
+
+- Only consider unexpired modules for Enterprise and REST Services
+
 ### 2.5.0 (May 15th, 2017)
 
 - Added Enter By Date to the summary section
