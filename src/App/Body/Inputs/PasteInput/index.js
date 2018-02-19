@@ -31,7 +31,7 @@ export default class PasteInput extends React.Component {
           closeMe={this.closeHandler}
           requestResults={requestResults}
         />
-        Copy and paste from the C4 screen
+        Copy and paste from the C4 screen <strong>(only works with Chrome or Firefox)</strong>
       </div>
     );
   }
