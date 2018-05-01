@@ -17,11 +17,11 @@ export default {
   white: Colors.white,
   emc: {
     blue: {
-      light: '#B6E0FE',
-      medium: '#60B3EE',
-      logo: '#2c95dd',
-      dark: '#00406E'
+      light: '#e1e8f6',
+      medium: '#09bcef',
+      logo: '#2e3d98',
+      dark: '#4f3690'
     },
-    grey: '#4e5052'
+    grey: '#7e929f'
   }
 };
