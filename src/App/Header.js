@@ -40,8 +40,8 @@ const style = {
   },
   logoImage: {
     display: 'inline-block',
-    padding: '2rem 0.8rem',
-    height: '1.5rem',
+    padding: '0.75rem 0.8rem',
+    height: '4.5rem',
   },
   title: {
     display: 'inline-block',
