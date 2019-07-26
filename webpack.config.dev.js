@@ -25,18 +25,27 @@ module.exports = {
     }
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src')
-    }, {
-      test: /\.md$/,
-      loaders: ['html', 'markdown'],
-      include: path.join(__dirname, 'src')
-    }, {
-      test: /\.json$/,
-      loaders: ['json'],
-      exclude: path.join(__dirname, 'node_modules')
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.md$/,
+        loaders: ['html', 'markdown'],
+        include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.json$/,
+        loaders: ['json'],
+        exclude: path.join(__dirname, 'node_modules')
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        include: path.join(__dirname, 'src')
+      }
+    ]
   }
 };
