@@ -7,16 +7,8 @@ ModulesBody.displayName = 'TableBody';
 
 export default function ModulesBody({ modules, columns }) {
   const rows = modules.map((module, i) => (
-    <ModuleRow
-      module={module}
-      columns={columns}
-      key={i}
-    />
+    <ModuleRow module={module} columns={columns} key={i} />
   ));
 
-  return (
-    <TableBody displayRowCheckbox={false}>
-      {rows}
-    </TableBody>
-  );
+  return <TableBody displayRowCheckbox={false}>{rows}</TableBody>;
 }

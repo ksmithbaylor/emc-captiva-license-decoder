@@ -3,6 +3,7 @@
     display: none !important;
   }
 }
+
 @media print {
   .print-hidden {
     display: none !important;
@@ -20,7 +21,7 @@
     page-break-after: always;
   }
 
-  * {
+  div {
     box-shadow: none !important;
   }
 }

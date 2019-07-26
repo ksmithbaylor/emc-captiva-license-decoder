@@ -6,18 +6,10 @@ import ModuleCell from './ModuleCell';
 
 export default function ModuleRow({ module, columns }) {
   const cells = columns.map((column, i) => (
-    <ModuleCell
-      module={module}
-      column={column}
-      key={i}
-    />
+    <ModuleCell module={module} column={column} key={i} />
   ));
 
-  return (
-    <TableRow style={style.row(module)}>
-      {cells}
-    </TableRow>
-  );
+  return <TableRow style={style.row(module)}>{cells}</TableRow>;
 }
 
 const style = {
@@ -25,8 +17,8 @@ const style = {
     return moduleIsExpired(module)
       ? style.colored('red')
       : moduleHasExpiration(module)
-        ? style.colored('green')
-        : {};
+      ? style.colored('green')
+      : {};
   },
 
   colored(color) {
