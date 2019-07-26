@@ -1,5 +1,9 @@
 See full commit history <a href="https://github.com/ksmithbaylor/emc-captiva-license-decoder/commits/master" target="_blank">here</a>.
 
+### 2.6.0 (July 26th, 2019)
+
+- Improve print formatting for nicer PDFs
+
 ### 2.5.3 (April 30th, 2018)
 
 - Change to the new logo and official colors
