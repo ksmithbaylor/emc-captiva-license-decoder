@@ -8,8 +8,9 @@ export default function Display({ modules, serverID, backToStart }) {
   return (
     <div>
       <BackButton goBack={backToStart} />
-      <br /><br />
-      <Divider />
+      <br className="print-hidden" />
+      <br className="print-hidden" />
+      <Divider className="print-hidden" />
       <Summary modules={modules} serverID={serverID} />
       <Modules modules={modules} />
     </div>

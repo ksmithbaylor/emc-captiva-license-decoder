@@ -3,14 +3,16 @@ import RaisedButton from 'material-ui/lib/raised-button';
 
 export default function BackButton({ goBack }) {
   return (
-    <RaisedButton
-      label="BACK TO START"
-      labelPosition="after"
-      labelStyle={style.label}
-      onTouchTap={goBack}
-    >
-      <span style={style.icon}>&lsaquo;</span>
-    </RaisedButton>
+    <div className="print-hidden">
+      <RaisedButton
+        label="BACK TO START"
+        labelPosition="after"
+        labelStyle={style.label}
+        onTouchTap={goBack}
+      >
+        <span style={style.icon}>&lsaquo;</span>
+      </RaisedButton>
+    </div>
   );
 }
 

@@ -8,7 +8,7 @@ import ModulesBody from './ModulesBody';
 export default function Modules({ modules }) {
   return (
     <Paper zDepth={2} style={style.container}>
-      <Table selectable={false}>
+      <Table selectable={false} component="div">
         <ModulesHeader columns={columnsToDisplay} />
         <ModulesBody columns={columnsToDisplay} modules={modules} />
       </Table>

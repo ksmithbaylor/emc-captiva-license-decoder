@@ -6,9 +6,7 @@ import SummaryBody from './SummaryBody';
 export default function Summary({ modules, serverID }) {
   return (
     <Paper zDepth={2} style={style.container}>
-      <h2 style={style.header}>
-        Summary for License #{serverID}
-      </h2>
+      <h2 style={style.header}>Summary for License #{serverID}</h2>
       <table style={style.table}>
         <SummaryBody modules={modules} />
       </table>

@@ -29,9 +29,9 @@ export default class Body extends React.Component {
     );
 
     return (
-      <div style={style.container}>
+      <div style={style.container} className="print-small-top-margin">
         {mainViewMarkup}
-        <div style={style.buttons}>
+        <div style={style.buttons} className="print-hidden">
           <AboutButton />
           <BugReportButton />
           <VersionHistoryButton />
