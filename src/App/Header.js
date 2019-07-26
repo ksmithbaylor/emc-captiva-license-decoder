@@ -5,14 +5,17 @@ import Paper from 'material-ui/lib/paper';
 
 export default function Header() {
   return (
-    <Paper rounded={false} zDepth={1} style={style.bar}>
+    <Paper
+      rounded={false}
+      zDepth={1}
+      style={style.bar}
+      className="print-hidden"
+    >
       <div style={style.centerContainer}>
         <Paper rounded={false} zDepth={2} style={style.logo}>
           <img src="logo.png" style={style.logoImage} />
         </Paper>
-        <span style={style.title}>
-          CAPTIVA License Decoder
-        </span>
+        <span style={style.title}>CAPTIVA License Decoder</span>
       </div>
     </Paper>
   );
@@ -41,7 +44,7 @@ const style = {
   logoImage: {
     display: 'inline-block',
     padding: '0.75rem 0.8rem',
-    height: '4.5rem',
+    height: '4.5rem'
   },
   title: {
     display: 'inline-block',

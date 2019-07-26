@@ -1,5 +1,17 @@
-.print-hidden {
-  @media print {
-    display: none;
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+
+  .print-small-top-margin {
+    margin-top: 1rem !important;
+  }
+
+  td {
+    page-break-inside: avoid;
+  }
+
+  * {
+    box-shadow: none !important;
   }
 }
