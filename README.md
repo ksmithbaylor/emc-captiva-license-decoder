@@ -1,4 +1,4 @@
-# EMC Captiva License Decoder
+# Intelligent Capture License Decoder
 
 This tool is used to decode and summarize EMC Captiva license files. The idea, concept, and functionality came from my dad, Jim Smith. You can see it running (hopefully) at [decoder.kevinjs.com](http://decoder.kevinjs.com).
 

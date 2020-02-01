@@ -13,7 +13,7 @@ export default function majorExporters(modules) {
 }
 
 const exporterMappings = {
-  'EMC': ['EXAX', 'IAEXDM'],
+  'Opentext': ['EXAX', 'IAEXDM'],
   'IBM + FileNet': ['IAXNET2', 'EXFNCM', 'IAEXVI', 'IAEXFAF', 'EXICM', 'EXCSSAP'],
   'SharePoint': ['EXSHRPT2'],
   'GLOBAL360': ['IAEXWNT'],
