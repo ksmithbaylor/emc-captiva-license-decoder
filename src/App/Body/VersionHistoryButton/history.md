@@ -1,5 +1,9 @@
 See full commit history <a href="https://github.com/ksmithbaylor/emc-captiva-license-decoder/commits/master" target="_blank">here</a>.
 
+### 2.7.0 (February 1st, 2020)
+
+- Change CAPTIVA branding to Intelligent Capture
+
 ### 2.6.0 (July 26th, 2019)
 
 - Improve print formatting for nicer PDFs

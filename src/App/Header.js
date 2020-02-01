@@ -15,7 +15,7 @@ export default function Header() {
         <Paper rounded={false} zDepth={2} style={style.logo}>
           <img src="logo.png" style={style.logoImage} />
         </Paper>
-        <span style={style.title}>CAPTIVA License Decoder</span>
+        <span style={style.title}>Intelligent Capture License Decoder</span>
       </div>
     </Paper>
   );
