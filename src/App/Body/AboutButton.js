@@ -31,7 +31,7 @@ export default class AboutButton extends React.Component {
           onRequestClose={this.closeDialog}
           modal={false}
         >
-          <p>CAPTIVA License Decoder (version {version})</p>
+          <p>Intelligent Capture License Decoder (version {version})</p>
           <p>
             {'Concept and specifications by Jim Smith. Designed and implemented by '}
             <a href="https://www.linkedin.com/in/ksmithbaylor" target="_blank">
