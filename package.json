@@ -34,7 +34,7 @@
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.13.1",
     "eventsource-polyfill": "^0.9.6",
-    "express": "^4.13.3",
+    "express": "^4.17.3",
     "json-loader": "^0.5.4",
     "rimraf": "^2.4.3",
     "style-loader": "^0.23.1",
